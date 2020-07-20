@@ -2,7 +2,7 @@
 
 **SOCR Interactive (RShiny) Probability Distribution Calculators**
 
-<a href="https://raw.githubusercontent.com/SOCR/ProbDistCalc_RShiny/master/images/SOCR_ProbDistCalc_Figure.png"></a>
+<a href="http://www.distributome.org/V3/calc/index.html"><img align="middle" src="https://raw.githubusercontent.com/SOCR/ProbDistCalc_RShiny/master/images/SOCR_ProbDistCalc_Figure.png"></a>
 
 Table of contents
 =================
