@@ -10,6 +10,7 @@ Table of contents
 <!--ts-->
    * [Table of contents](#table-of-contents)
    * [Overview](#overview)
+   * [Current Deployment](#current-deployment)
    * [Code](#code)
    * [Team](#team)
    * [Acknowledgments](#acknowledgments)
@@ -21,6 +22,11 @@ Overview
 ========
 
 The [SOCR RShiny probability distribution calculators](https://shiny.med.umich.edu/apps/dinov/SOCR_DistribCalc_RShiny_App/) provide interactive vizualizations of probability densities, mass functions, and cumulative distributions, e.g., [bivariate normal distribution](https://socr.umich.edu/HTML5/BivariateNormal/).
+
+Current Deployment
+========
+
+The most current version is V0.5, deployed at https://shiny.med.umich.edu/apps/dinov/SOCR_DistribCalc_RShiny_App/.
 
 Code
 ====
