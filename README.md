@@ -26,7 +26,7 @@ The [SOCR RShiny probability distribution calculators](https://shiny.med.umich.e
 Current Deployment
 ========
 
-The most current version is V0.5, deployed at https://shiny.med.umich.edu/apps/dinov/SOCR_DistribCalc_RShiny_App/.
+The most current version is V0.5, deployed at https://shiny.med.umich.edu/apps/dinov/SOCR_DistribCalc_RShiny_App/. The release can be find [here](https://github.com/SOCR/ProbDistCalc_RShiny/releases/tag/Ver0.5).
 
 Code
 ====
