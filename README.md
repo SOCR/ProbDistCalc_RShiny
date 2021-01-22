@@ -31,7 +31,7 @@ The most current version is V0.7, deployed at https://shiny.med.umich.edu/apps/d
 Code
 ====
 
-The pure HTML5/JavaScript code is available in the [code folder](https://github.com/SOCR/ProbDistCalc_RShiny/tree/master/code). This is implemented as an RShiny app.
+The pure HTML5/JavaScript code is available in the [code folder](https://github.com/SOCR/ProbDistCalc_RShiny/tree/master/code). This is implemented as an RShiny app. R version 3.4.3 or above is required for this application.
 
 Team
 ====
