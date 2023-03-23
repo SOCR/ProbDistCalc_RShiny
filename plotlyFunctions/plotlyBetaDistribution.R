@@ -1,13 +1,32 @@
+library(xml2)
+library(shinyjs)
+library(flexsurv)
+library(vcdExtra)
+library(evd)
+library(DescTools)
+library(shiny)
+library(triangle)
+library(plotly)
+library(stringr)
+library(VGAM)
+library(BayesTools)
+library(extraDistr)
+library(statmod)
+library(truncnorm)
+library(tolerance)
+library(chi)
+library(Rlab)
+library(shinyWidgets)
 plotlyBetaDistribution <- function(plotrange, input, distType, probrange){
   xseq<-seq(min(0,as.numeric(plotrange[1])),max(as.numeric(plotrange[2]),10),0.01)
-  f24 <- 0
+  f5 <- 0
   graphtype<-""
   if(input$FunctionType == "PDF/PMF"){
-    f24 <- dbeta(xseq, as.numeric(input$BetaAlpha), as.numeric(input$BetaBeta))
+    f5 <- dbeta(xseq,as.numeric(input$BetaAlpha),as.numeric(input$BetaBeta))
     graphtype<-"PDF"
   }
   else if(input$FunctionType == "CDF/CMF"){
-    f24 <- pbeta(xseq, as.numeric(input$BetaAlpha), as.numeric(input$BetaBeta))
+    f5 <- pbeta(xseq,as.numeric(input$BetaAlpha),as.numeric(input$BetaBeta))
     graphtype<-"CDF"
   }
   else{
@@ -15,7 +34,7 @@ plotlyBetaDistribution <- function(plotrange, input, distType, probrange){
   }
   if(graphtype != ""){
     fig<-plot_ly(x = xseq,
-                  y = f24,
+                  y = f5,
                   name = distType,
                   type = 'scatter',
                   mode='lines',
@@ -23,7 +42,7 @@ plotlyBetaDistribution <- function(plotrange, input, distType, probrange){
     )
     print(fig)
     xsize = length(xseq)
-    newy = f24
+    newy = f5
     for (index in 1:xsize){
       if (xseq[index] < probrange[1] || xseq[index] > probrange[2]){
         newy[index] = NA
@@ -31,14 +50,14 @@ plotlyBetaDistribution <- function(plotrange, input, distType, probrange){
     }
     prob = pbeta(as.numeric(probrange[2]),as.numeric(input$BetaAlpha),as.numeric(input$BetaBeta))-pbeta(as.numeric(probrange[1]),as.numeric(input$BetaAlpha),as.numeric(input$BetaBeta))
     fig <- fig %>% add_trace(x=xseq, y = newy, name = paste("Probability = ",prob, sep = ""), hoverinfo = 'name', fill = 'tozeroy',fillcolor = 'rgba(255, 212, 96, 0.5)')
-    fig<-fig %>% layout(title = paste(distributions[24],' - ',graphtype,sep = ""),
+    fig<-fig %>% layout(title = paste(distributions[5],' - ',graphtype,sep = ""),
                         hovermode  = 'x',
                         hoverlabel = list(
                           namelength = 100
                         ),
                         yaxis = list(fixedrange = TRUE,
                                       zeroline = TRUE,
-                                      range = c(min(f24),max(f24))
+                                      range = c(min(f5),max(f5))
                         ),
                         xaxis=list(showticklabels=TRUE,
                                     zeroline = TRUE,
