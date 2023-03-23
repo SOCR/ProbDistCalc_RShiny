@@ -50,3 +50,10 @@ References
 * [Deployed RShiny Webapp](https://shiny.med.umich.edu/apps/dinov/SOCR_DistribCalc_RShiny_App/).
 * [Bivariate Normal Distribution Calculator](https://github.com/SOCR/SOCR_Bivariate_Distributions) and the [SOCR Bivariate Normal Distribution Activity](http://wiki.stat.ucla.edu/socr/index.php/SOCR_BivariateNormal_JS_Activity).
 * [SOCR Distributions](http://www.socr.ucla.edu/htmls/dist/) and [distribution activities](http://wiki.socr.umich.edu/index.php/SOCR_EduMaterials_DistributionsActivities).
+# TODO
+
+- Change `DistImplement` from a list to a hashmap.
+  > Downsides of using a list: It would be disastrous to decide to add or remove one distribution later, since the index is used everywhere to identify distribution and we also want to keep the lexicographic order. Also, it’s very hard to find the index based on the name of some distribution.
+- Refactor `plotly` functions into separate files.
+- Implement all missing distributions.
+- Make the slider self-adjust to the graph range.
