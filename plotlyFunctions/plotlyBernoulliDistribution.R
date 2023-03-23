@@ -26,13 +26,13 @@ plotlyBernoulliDistribution <- function(plotrange, input, distType, probrange){
                        name = distType,
                        type = 'bar',
                        marker = list(color = colors),
-                       text = c(rep(pbern(round(as.numeric(probrange[2]),0),as.numeric(input$BernProb))-pbern(round(as.numeric(probrange[1]),0)-1,as.numeric(input$BernProb)),xsize)),
-                       hovertemplate = paste('<br><b>Prob. </b>: %{text}</br>',
+                       text = f4,
+                       hovertemplate = paste('<br><b>Prob. </b>: %{y}</br>',
                                              '<b>X</b>: %{x}',
                                              '<b>Y</b>: %{y}'
                        ),
           )
-          fig<-fig %>% layout(title = paste(distributions[4],' - ',graphtype,sep = ""),
+          fig<-fig %>% plotly::layout(title = paste(distributions[4],' - ',graphtype,sep = ""),
                               hovermode  = 'x',
                               hoverlabel = list(
                                 namelength = 100
