@@ -1,1 +1,2 @@
-plotlyNegativeMultinomialDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyNegativeMultinomialDistribution <- function(plotrange, input, distType, probrange) {
+}

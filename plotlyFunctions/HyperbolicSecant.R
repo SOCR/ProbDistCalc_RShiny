@@ -1,1 +1,2 @@
-plotlyHyperbolicSecantDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyHyperbolicSecantDistribution <- function(plotrange, input, distType, probrange) {
+}

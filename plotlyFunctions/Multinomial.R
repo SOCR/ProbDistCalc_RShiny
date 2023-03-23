@@ -1,1 +1,2 @@
-plotlyMultinomialDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyMultinomialDistribution <- function(plotrange, input, distType, probrange) {
+}

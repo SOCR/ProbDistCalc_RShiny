@@ -1,1 +1,2 @@
-plotlyTwoSidedPowerDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyTwoSidedPowerDistribution <- function(plotrange, input, distType, probrange) {
+}

@@ -1,7 +1,8 @@
-plotlyRayleighDistribution <- function(plotrange, input, distType, probrange) {
-    sig = as.numeric(input$RayleighSigma)
-    mean = sig * sqrt(pi/2)
-    standard_dev = sqrt((4 - pi)/2 * sig^2)
+plotlyChiSqureNonCentralDistribution <- function(plotrange, input, distType, probrange) {
+    k = as.numeric(input$Chi2NCn)
+    lemda = as.numeric(input$Chi2NCNCP)
+    mean = k + lemda
+    standard_dev = sqrt(2 * (k + 2 * lemda))
     if (plotrange[2] != mean + as.numeric(input$SDNum) * standard_dev && input$numericalValues ==
         0) {
         if (input$SDNum > 0) {
@@ -31,37 +32,37 @@ plotlyRayleighDistribution <- function(plotrange, input, distType, probrange) {
     }
     xseq <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01)
-    f64 <- 0
+    f14 <- 0
     graphtype <- ""
     if (input$FunctionType == "PDF/PMF") {
-        f64 <- drayleigh(xseq, as.numeric(input$RayleighSigma))
+        f14 <- dchisq(xseq, as.numeric(input$Chi2NCn), as.numeric(input$Chi2NCNCP))
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f64 <- prayleigh(xseq, as.numeric(input$RayleighSigma))
+        f14 <- pchisq(xseq, as.numeric(input$Chi2NCn), as.numeric(input$Chi2NCNCP))
         graphtype <- "CDF"
     } else {
         graphtype <- ""
     }
     if (graphtype != "") {
-        fig <- plot_ly(x = xseq, y = f64, name = distType, type = "scatter", mode = "lines",
+        fig <- plot_ly(x = xseq, y = f14, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
         print(fig)
         xsize = length(xseq)
-        newy = f64
+        newy = f14
         for (index in 1:xsize) {
             if (xseq[index] < probrange[1] || xseq[index] > probrange[2]) {
                 newy[index] = NA
             }
         }
-        prob = prayleigh(as.numeric(probrange[2]), as.numeric(input$RayleighSigma)) -
-            prayleigh(as.numeric(probrange[1]), as.numeric(input$RayleighSigma))
+        prob = pchisq(as.numeric(probrange[2]), as.numeric(input$Chi2NCn), as.numeric(input$Chi2NCNCP)) -
+            pchisq(as.numeric(probrange[1]), as.numeric(input$Chi2NCn), as.numeric(input$Chi2NCNCP))
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")
         fig <- fig %>%
-            plotly::layout(title = paste(distributions[64], " - ", graphtype, sep = ""),
+            plotly::layout(title = paste(distributions[14], " - ", graphtype, sep = ""),
                 hovermode = "x", hoverlabel = list(namelength = 100), yaxis = list(fixedrange = TRUE,
-                  zeroline = TRUE, range = c(min(f64), max(f64))), xaxis = list(showticklabels = TRUE,
+                  zeroline = TRUE, range = c(min(f14), max(f14))), xaxis = list(showticklabels = TRUE,
                   zeroline = TRUE, showline = TRUE, showgrid = TRUE, linecolor = "rgb(204, 204, 204)",
                   linewidth = 2, mirror = TRUE, fixedrange = TRUE, range = c(plotrange[1],
                     plotrange[2])), showlegend = FALSE)

@@ -1,1 +1,2 @@
-plotlyGeneralCauchyDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyGeneralCauchyDistribution <- function(plotrange, input, distType, probrange) {
+}

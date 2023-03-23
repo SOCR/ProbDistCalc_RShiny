@@ -1,1 +1,2 @@
-plotlyFisherTippettDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyFisherTippettDistribution <- function(plotrange, input, distType, probrange) {
+}

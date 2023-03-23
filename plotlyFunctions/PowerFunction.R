@@ -1,1 +1,2 @@
-plotlyPowerFunctionDistribution <- function(plotrange, input, distType, probrange) {}
+plotlyPowerFunctionDistribution <- function(plotrange, input, distType, probrange) {
+}
