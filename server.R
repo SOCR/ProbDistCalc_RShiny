@@ -34,64 +34,6 @@ for (file in plotlyFunctions){
   source(file)
 }
 
-# update_slider<-function(input,output,session,mean,stand_dev, SDNum,old_SD,plotrange2,numericalValues){
-#     if(plotrange2 != mean + SDNum*stand_dev && numericalValues == 0){
-#       if(SDNum > 0){
-#         updateSliderInput(
-#           session,
-#           "plotrange",
-#           label = NULL,
-#           value = c(mean - SDNum*stand_dev,mean + SDNum*stand_dev),
-#           min = mean - SDNum*stand_dev,
-#           max = mean + SDNum*stand_dev,
-#           step = NULL,
-#           timeFormat = NULL,
-#           timezone = NULL
-#         )
-#         #plotrange[2] = as.numeric(input$NormMean) + as.numeric(input$SDNum)*as.numeric(input$NormSD)
-#         #plotrange[1] = as.numeric(input$NormMean) - as.numeric(input$SDNum)*as.numeric(input$NormSD)
-#       } else{
-#         updateSliderInput(
-#           session,
-#           "plotrange",
-#           label = NULL,
-#           value = NULL,
-#           min = -1000,
-#           max = 1000,
-#           step = NULL,
-#           timeFormat = NULL,
-#           timezone = NULL
-#         )
-#       }
-#     }
-#     if(old_SD != SDNum && numericalValues == 0 && SDNum > 0){
-#       updateSliderInput(
-#         session,
-#         "plotrange",
-#         label = NULL,
-#         value = c(mean - SDNum*stand_dev,mean + SDNum*stand_dev),
-#         min = mean - SDNum*stand_dev,
-#         max = mean + SDNum*stand_dev,
-#         step = NULL,
-#         timeFormat = NULL,
-#         timezone = NULL
-#       )
-#       #plotrange[2] = as.numeric(input$NormMean) + as.numeric(input$SDNum)*as.numeric(input$NormSD)
-#       #plotrange[1] = as.numeric(input$NormMean) - as.numeric(input$SDNum)*as.numeric(input$NormSD)
-#     } else if(numericalValues == 0 && SDNum <= 0){
-#       updateSliderInput(
-#         session,
-#         "plotrange",
-#         label = NULL,
-#         value = NULL,
-#         min = -1000,
-#         max = 1000,
-#         step = NULL,
-#         timeFormat = NULL,
-#         timezone = NULL
-#       )
-#     }
-# }
 shinyServer(
   function(input, output,session){
     # ----------------------- Update Distribution Type and Function Type according to URL handle ----------------------- #
@@ -283,12 +225,9 @@ shinyServer(
       ## Epsilon = shape
       ##dgev(x, loc=0, scale=1, shape=0, log = FALSE)
       ##pgev(q, loc=0, scale=1, shape=0, lower.tail = TRUE) 
-
-      
       else if(distType == distributions[29]){
         plotlyGeneralizedExtremeValueGEVDistribution(plotrange, input, distType, probrange)
       }
-      
       # ----------------------- Discrete: Geometric Distribution ----------------------- #
       else if(distType == distributions[30]){
         plotlyGeometricDistribution(plotrange, input, distType, probrange, session)
