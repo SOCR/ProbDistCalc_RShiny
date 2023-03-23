@@ -124,7 +124,7 @@ shinyServer(
     renderMainPlot(input, output, session)
     # ----------------------- Render Implementing Message ----------------------- #
     output$Implementing <- renderText({
-      if(input$Distribution %in% DistImplement){
+      if(input$Distribution %in% distToImpl){
         paste("The ", input$Distribution, " is still being implemented.", sep="")
       }
     })

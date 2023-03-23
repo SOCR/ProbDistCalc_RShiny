@@ -4,7 +4,7 @@ renderMainPlot <- function(input, output, session) {
         plotrange <- c(0, 0)
         probrange <- c(0, 0)
         old_SD <- 0
-        if (input$Distribution %in% SDS) {
+        if (input$Distribution %in% distWithSD) {
 
         } else {
             updateSliderInput(session, "plotrange", label = NULL, value = NULL, min = -1000,
@@ -21,7 +21,9 @@ renderMainPlot <- function(input, output, session) {
             probrange[1] <- input$probrangeNumMin
             probrange[2] <- input$probrangeNumMax
         }
-        if (distType == distributions[2]) {
+        if (distType == distributions[1]) {
+            plotlyAndersonDarlingDistribution(plotrange, input, distType, probrange)
+        }else if (distType == distributions[2]) {
             plotlyArcSineDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[3]) {
             plotlyBenfordDistribution(plotrange, input, distType, probrange)

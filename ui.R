@@ -30,12 +30,12 @@ shinyUI(
                   choices=c("","PDF/PMF","CDF/CMF")),
       # ----------------------- Input: Parameter Inputs ----------------------- #
         # ----------------------- Input: ArcSine Distribution ----------------------- #
-      conditionalPanel(condition = paste("input.Distribution == '",distributions[2],"'",sep = ""),
-                       textInput("ArcSineA",paste("Please input A for ",distributions[2]," : ",sep = ""),1),
-                       textInput("ArcSineB",paste("Please input B for ",distributions[2]," : ",sep = ""),2)),
-      # ----------------------- Input: Benford Distribution ----------------------- #
-      conditionalPanel(condition = paste("input.Distribution == '",distributions[3],"'",sep = ""),
-                       textInput("Benfn",paste("Please input number of leading digits for ",distributions[3]," : ",sep = ""),1)),
+        conditionalPanel(condition = paste("input.Distribution == '",distributions[2],"'",sep = ""),
+                        textInput("ArcSineA",paste("Please input A for ",distributions[2]," : ",sep = ""),1),
+                        textInput("ArcSineB",paste("Please input B for ",distributions[2]," : ",sep = ""),2)),
+        # ----------------------- Input: Benford Distribution ----------------------- #
+        conditionalPanel(condition = paste("input.Distribution == '",distributions[3],"'",sep = ""),
+                        textInput("Benfn",paste("Please input number of leading digits for ",distributions[3]," : ",sep = ""),1)),
         # ----------------------- Input: Bernoulli Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[4],"'",sep = ""),
                        textInput("BernProb",paste("Please input Probability for ",distributions[4]," : ",sep = ""),1)),
