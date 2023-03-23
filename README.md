@@ -52,9 +52,9 @@ References
 * [SOCR Distributions](http://www.socr.ucla.edu/htmls/dist/) and [distribution activities](http://wiki.socr.umich.edu/index.php/SOCR_EduMaterials_DistributionsActivities).
 # TODO
 
-- Change `distributions` from a list to a hashmap.
+- Change `distributions` from a list to a hashmap of named lists.
   > Downsides of using a list: It would be disastrous to decide to add or remove one distribution later, since the index is used everywhere to identify distribution and we also want to keep the lexicographic order. Also, it’s very hard to find the index based on the name of some distribution.
-- Refactor `plotly` functions into separate files.
+- ~~Refactor `plotly` functions into separate files.~~
 - Implement all missing distributions.
-  > - `parcsine` needs `VaRES` package
+  > - some plotly needs `VaRES` package
 - Make the slider self-adjust to the graph range.
