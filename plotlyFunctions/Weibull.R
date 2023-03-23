@@ -1,4 +1,4 @@
-plotlyWeibullDistribution <- function(plotrange, input, distType, probrange) {
+plotlyWeibullDistribution <- function(plotrange, input, distType, probrange, session) {
     k = as.numeric(input$WeibullK)
     l = as.numeric(input$WeibullLambda)
     mean = l * gamma(1 + 1/k)

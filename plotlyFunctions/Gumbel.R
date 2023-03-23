@@ -1,4 +1,4 @@
-plotlyGumbelDistribution <- function(plotrange, input, distType, probrange) {
+plotlyGumbelDistribution <- function(plotrange, input, distType, probrange, session) {
     Beta = as.numeric(input$Gumbel_Beta)
     U = as.numeric(input$Gumbel_U)
     mean = U + Beta * 0.57721

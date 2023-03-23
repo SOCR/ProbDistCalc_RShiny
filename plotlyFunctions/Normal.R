@@ -1,4 +1,4 @@
-plotlyNormalDistribution <- function(plotrange, input, distType, probrange) {
+plotlyNormalDistribution <- function(plotrange, input, distType, probrange, session) {
     if (plotrange[2] != as.numeric(input$NormMean) + as.numeric(input$SDNum) * as.numeric(input$NormSD) &&
         input$numericalValues == 0) {
         if (input$SDNum > 0) {

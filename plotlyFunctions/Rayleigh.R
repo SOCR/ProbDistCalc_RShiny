@@ -1,4 +1,4 @@
-plotlyRayleighDistribution <- function(plotrange, input, distType, probrange) {
+plotlyRayleighDistribution <- function(plotrange, input, distType, probrange, session) {
     sig = as.numeric(input$RayleighSigma)
     mean = sig * sqrt(pi/2)
     standard_dev = sqrt((4 - pi)/2 * sig^2)

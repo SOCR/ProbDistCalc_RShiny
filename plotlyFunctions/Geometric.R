@@ -1,4 +1,4 @@
-plotlyGeometricDistribution <- function(plotrange, input, distType, probrange) {
+plotlyGeometricDistribution <- function(plotrange, input, distType, probrange, session) {
     p = as.numeric(input$GeomProb)
     mean = 1/p
     standard_dev = sqrt((1 - p)/p^2)

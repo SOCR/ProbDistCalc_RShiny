@@ -1,4 +1,4 @@
-plotlyMaxwellDistribution <- function(plotrange, input, distType, probrange) {
+plotlyMaxwellDistribution <- function(plotrange, input, distType, probrange, session) {
     a = as.numeric(input$MaxwellA)
     mean = 2 * a * sqrt(2/pi)
     standard_dev = sqrt(a^2 * (3 * pi - 8)/pi)

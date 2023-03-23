@@ -1,4 +1,4 @@
-plotlyHyperGeometricDistribution <- function(plotrange, input, distType, probrange) {
+plotlyHyperGeometricDistribution <- function(plotrange, input, distType, probrange, session, old_SD) {
     M = as.numeric(input$HyperM)
     n = as.numeric(input$HyperK)
     N = as.numeric(input$HyperN)

@@ -1,4 +1,4 @@
-plotlyGammaDistribution <- function(plotrange, input, distType, probrange) {
+plotlyGammaDistribution <- function(plotrange, input, distType, probrange, session) {
     mean = as.numeric(input$GammaA)/as.numeric(input$GammaB)
     standard_dev = sqrt(mean/as.numeric(input$GammaB))
     if (plotrange[2] != mean + as.numeric(input$SDNum) * standard_dev && input$numericalValues ==

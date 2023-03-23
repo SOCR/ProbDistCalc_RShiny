@@ -1,4 +1,4 @@
-plotlyGompertzDistribution <- function(plotrange, input, distType, probrange) {
+plotlyGompertzDistribution <- function(plotrange, input, distType, probrange, session) {
     xseq <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01)
     f32 <- 0

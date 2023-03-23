@@ -1,4 +1,4 @@
-plotlyPoissonDistribution <- function(plotrange, input, distType, probrange) {
+plotlyPoissonDistribution <- function(plotrange, input, distType, probrange, session) {
     mean = as.numeric(input$PoiLambda)
     standard_dev = sqrt(mean)
     if (plotrange[2] != mean + as.numeric(input$SDNum) * standard_dev && input$numericalValues ==

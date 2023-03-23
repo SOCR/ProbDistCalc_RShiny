@@ -1,4 +1,4 @@
-plotlyLogarithmicSeriesDistribution <- function(plotrange, input, distType, probrange) {
+plotlyLogarithmicSeriesDistribution <- function(plotrange, input, distType, probrange, session) {
     p = as.numeric(input$LogP)
     mean = 1/-(log(1 - p, exp(1))) * p/(1 - p)
     standard_dev = sqrt(mean/(1 - p) * (1 - p/-(log(1 - p, exp(1)))))

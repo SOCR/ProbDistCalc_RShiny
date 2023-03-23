@@ -1,4 +1,4 @@
-plotlyHalfNormalDistribution <- function(plotrange, input, distType, probrange) {
+plotlyHalfNormalDistribution <- function(plotrange, input, distType, probrange, session) {
     sig = as.numeric(input$HNorm)
     mean = sig * sqrt(2/pi)
     standard_dev = sqrt(sig^2 * (1 - 2/pi))

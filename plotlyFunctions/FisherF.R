@@ -1,4 +1,4 @@
-plotlyFisherFDistribution <- function(plotrange, input, distType, probrange) {
+plotlyFisherFDistribution <- function(plotrange, input, distType, probrange, session) {
     d2 = as.numeric(input$FdTwo)
     d1 = as.numeric(input$FdOne)
     if (d2 > 4) {

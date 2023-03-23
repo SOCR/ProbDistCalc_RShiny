@@ -1,4 +1,4 @@
-plotlyLaplaceDistribution <- function(plotrange, input, distType, probrange) {
+plotlyLaplaceDistribution <- function(plotrange, input, distType, probrange, session) {
     mean = as.numeric(input$LapMu)
     standard_dev = sqrt(2 * as.numeric(input$LapSig)^2)
     if (plotrange[2] != mean + as.numeric(input$SDNum) * standard_dev && input$numericalValues ==

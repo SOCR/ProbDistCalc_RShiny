@@ -1,4 +1,4 @@
-plotlyChiDistribution <- function(plotrange, input, distType, probrange) {
+plotlyChiDistribution <- function(plotrange, input, distType, probrange, session) {
     k = as.numeric(input$ChiK)
     mean = sqrt(2) * gamma((k + 1)/2)/gamma(k/2)
     standard_dev = sqrt(k - mean^2)

@@ -1,4 +1,4 @@
-plotlyChiSquareDistribution <- function(plotrange, input, distType, probrange) {
+plotlyChiSquareDistribution <- function(plotrange, input, distType, probrange, session) {
     k = as.numeric(input$Chi2n)
     mean = k
     standard_dev = sqrt(2 * k)

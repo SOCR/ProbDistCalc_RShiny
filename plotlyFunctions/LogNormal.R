@@ -1,4 +1,4 @@
-plotlyLogNormalDistribution <- function(plotrange, input, distType, probrange) {
+plotlyLogNormalDistribution <- function(plotrange, input, distType, probrange, session) {
     u = as.numeric(input$LogNormMean)
     sig = as.numeric(input$LogNormSD)
     mean = exp((u + (sig^2/2)))

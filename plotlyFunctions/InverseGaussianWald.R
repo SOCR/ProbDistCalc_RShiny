@@ -1,4 +1,4 @@
-plotlyInverseGaussianWaldDistribution <- function(plotrange, input, distType, probrange) {
+plotlyInverseGaussianWaldDistribution <- function(plotrange, input, distType, probrange, session) {
     u = as.numeric(input$InvGausM)
     L = as.numeric(input$InvGausL)
     mean = u

@@ -1,4 +1,4 @@
-plotlyLogisticDistribution <- function(plotrange, input, distType, probrange) {
+plotlyLogisticDistribution <- function(plotrange, input, distType, probrange, session) {
     a = as.numeric(input$LogiA)
     b = as.numeric(input$LogiB)
     mean = a
