@@ -94,12 +94,12 @@ shinyServer(
         easyClose = TRUE
       ))
     })
-    # ----------------------- Render Metadata Information from XML Database ----------------------- #
+    # ----------------------- Render Metadata Information from xml Database ----------------------- #
     output$MetaData <- renderPrint({
       distType <- input$Distribution
       distType = tolower(str_replace_all(distType, "[^[:alnum:]]", ""))
       counter = 0
-      for(i in 1:XML_len){
+      for(i in 1:xml_len){
         j = 1
         while(distributions_meta[[j,i*2-1]] == "name"){
           if(tolower(str_replace_all(distributions_meta[[1,i*2]], "[^[:alnum:]]", "")) == distType){
@@ -114,7 +114,7 @@ shinyServer(
       outputstring = ""
       if (counter != 0){
         row = 1
-        while(distributions_meta[[row,counter*2-1]] != "" && row < XML_wid){
+        while(distributions_meta[[row,counter*2-1]] != "" && row < xml_wid){
           outputstring = paste(outputstring,"<b>",distributions_meta[[row,counter*2-1]],":</b> ",distributions_meta[[row,counter*2]],"\n", sep = "")
           row = row+1
         }
