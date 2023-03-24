@@ -296,6 +296,11 @@ renderProbability <- function(input, output, session) {
           prob = 0.5*(1+((as.numeric(probrange[2]) - C)/W)**3) - 0.5*(1+((as.numeric(probrange[1]) - C)/W)**3)
         }
         paste("Prob. = ",prob,sep="")
+      } 
+      else if(distType == distributions[71]){
+         prob <- circular::pvonmises(as.numeric(probrange[2]), as.numeric(input$vonMisesMu), as.numeric(input$vonMisesKappa)) -
+            circular::pvonmises(as.numeric(probrange[1]), as.numeric(input$vonMisesMu), as.numeric(input$vonMisesKappa))
+        paste("Prob. = ",prob,sep="")
       }
       # ----------------------- Continuous: Weibull Distribution ----------------------- #
       else if(distType == distributions[74]){

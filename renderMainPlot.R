@@ -128,7 +128,9 @@ renderMainPlot <- function(input, output, session) {
             plotlyTriangleDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[70]) {
             plotlyUQuadraticDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[74]) {
+        } else if (distType == distributions[71]) {
+            plotlyVonMisesDistribution(plotrange, input, distType, probrange, session)
+        }else if (distType == distributions[74]) {
             plotlyWeibullDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[75]) {
             plotlyZipfManelbrotDistribution(plotrange, input, distType, probrange)

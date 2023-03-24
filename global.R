@@ -70,7 +70,7 @@ distToImpl <- c(
   "Poker-Dice Distribution",
   "Power-Function Distribution",
   "Two-Sided Power Distribution",
-  "Von Mises Distribution",
+  # "Von Mises Distribution",
   "WalkMax Distribution",
   "WalkPosition Distribution"
 )
@@ -175,3 +175,80 @@ distributions <- c(
   "Weibull Distribution",
   "Zipf-Manelbrot Distribution"
 )
+
+# index of each distribution
+AndersonDarling <- 1
+ArcSine <- 2
+Benford <- 3
+Bernoulli <- 4
+Beta <- 5
+BetaGeneralized <- 6
+BetaBinomial <- 7
+Binomial <- 8
+Birthday <- 9
+BivariateNormal3D <- 10
+Cauchy <- 11
+Chi <- 12
+ChiSquare <- 13
+ChiSqureNonCentral <- 14
+Circle <- 15
+ContinuousUniform <- 16
+Coupon <- 17
+Die <- 18
+DiscreteArcSine <- 19
+DiscreteUniform <- 20
+Erlang <- 21
+Error <- 22
+Exponential <- 23
+Finite <- 24
+FisherF <- 25
+FisherTippett <- 26
+Gamma <- 27
+GeneralCauchy <- 28
+GeneralizedExtremeValueGEV <- 29
+Geometric <- 30
+Gilbrats <- 31
+Gompertz <- 32
+Gumbel <- 33
+HalfNormal <- 34
+HyperGeometric <- 35
+HyperbolicSecant <- 36
+InverseGamma <- 37
+InverseGaussianWald <- 38
+JohnsonSBBounded <- 39
+JohnsonSUUnbounded <- 40
+Kolmogorov <- 41
+Laplace <- 42
+LogarithmicSeries <- 43
+Logistic <- 44
+LogisticExponential <- 45
+LogNormal <- 46
+Lomax <- 47
+Matching <- 48
+Maxwell <- 49
+Minimax <- 50
+Mixture <- 51
+Multinomial <- 52
+Muth <- 53
+NegativeBinomial <- 54
+NegativeHyperGeometric <- 55
+NegativeMultinomial <- 56
+Normal <- 57
+NormalTruncated <- 58
+Pareto <- 59
+PointMass <- 60
+Poisson <- 61
+PokerDice <- 62
+PowerFunction <- 63
+Rayleigh <- 64
+RiceRician <- 65
+StudentsT <- 66
+StudentsTNonCentral <- 67
+Triangle <- 68
+TwoSidedPower <- 69
+UQuadratic <- 70
+VonMises <- 71
+WalkMax <- 72
+WalkPosition <- 73
+Weibull <- 74
+ZipfManelbrot <- 75

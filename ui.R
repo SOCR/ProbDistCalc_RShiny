@@ -212,6 +212,10 @@ shinyUI(
       conditionalPanel(condition = paste("input.Distribution == \"",distributions[70],"\"",sep = ""),
                        textInput("UQ_C",paste("Please input parameter c for ",distributions[70]," : ",sep = ""),1),
                        textInput("UQ_W",paste("Please input parameter w for ",distributions[70]," : ",sep = ""),1)),
+      # ----------------------- Input: Von Mises Distribution ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == \"",distributions[71],"\"",sep = ""),
+                       textInput("vonMisesMu",paste("Please input parameter mu for ",distributions[71]," : ",sep = ""), 0),
+                       textInput("vonMisesKappa",paste("Please input parameter kappa for ",distributions[71]," : ",sep = ""), 1)),
       # ----------------------- Input: Weibull Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[74],"'",sep = ""),
                        textInput("WeibullLambda",paste("Please input lambda for ",distributions[74]," : ",sep = ""),1),

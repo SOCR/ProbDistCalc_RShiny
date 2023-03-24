@@ -28,6 +28,7 @@ library(tolerance)
 library(chi)
 library(Rlab)
 library(shinyWidgets)
+library(circular)
 
 plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
 for (file in plotlyFunctions){
