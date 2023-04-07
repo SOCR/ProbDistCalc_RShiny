@@ -1,16 +1,17 @@
 plotlyBivariateNormal3DDistribution <- function(plotrange, input, distType, probrange) {
-    x1 <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 5),
-        length=500)
-    x2 <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 5),
-        length=500)
+    x1 <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 2),
+        length.out=500)
+    x2 <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 2),
+        length.out=500)
 
     graphtype <- ""
     if (input$FunctionType == "PDF/PMF") {
-        z <- function(x1,x2){ z <- exp(-(as.numeric(input$BivaV2)*(x1-as.numeric(input$BivaM1))^2+as.numeric(input$BivaV1)*(x2-as.numeric(input$BivaM2))^2-2*as.numeric(input$BivaCov)*(x1-as.numeric(input$BivaM1))*(x2-as.numeric(input$BivaM2)))/(2*(as.numeric(input$BivaV1)*as.numeric(input$BivaV2)-as.numeric(input$BivaCov)^2)))/(2*pi*sqrt(as.numeric(input$BivaV1)*as.numeric(input$BivaV2)-as.numeric(input$BivaCov)^2)) }
-        f10 <- t(outer(x1,x2,z))
+        f <- function(x1,x2) dmnorm(cbind(x1,x2), c(as.numeric(input$BivaM1), as.numeric(input$BivaM2)), matrix(c(as.numeric(input$BivaV1), as.numeric(input$BivaCov), as.numeric(input$BivaCov), as.numeric(input$BivaV2)), 2))
+        f10 <- outer(x1,x2,f)
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f10 <- pcauchy(xseq, as.numeric(input$CauchyX0), as.numeric(input$CauchyGamma))
+        f <- function(x1,x2) pmnorm(cbind(x1,x2), c(as.numeric(input$BivaM1), as.numeric(input$BivaM2)), matrix(c(as.numeric(input$BivaV1), as.numeric(input$BivaCov), as.numeric(input$BivaCov), as.numeric(input$BivaV2)), 2))
+        f10 <- outer(x1,x2,f)
         graphtype <- "CDF"
     } else {
         graphtype <- ""

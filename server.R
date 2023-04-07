@@ -29,7 +29,7 @@ library(chi)
 library(Rlab)
 library(shinyWidgets)
 library(circular)
-library(emdbook)
+library(mnormt)
 
 plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
 for (file in plotlyFunctions){
