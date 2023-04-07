@@ -142,6 +142,11 @@ renderProbability <- function(input, output, session) {
         prob = pinvgauss(as.numeric(probrange[2]), as.numeric(input$InvGausM), as.numeric(input$InvGausL))-pinvgauss(as.numeric(probrange[1]), as.numeric(input$InvGausM), as.numeric(input$InvGausL))
         paste("Prob. = ",prob,sep="")
       }
+      # ----------------------- Continuous: Johnson SB (Bounded) Distribution ----------------------- #
+      else if(distType == distributions[39]){
+        prob = pJohnsonSB(as.numeric(probrange[2]), as.numeric(input$JohnSBgamma), as.numeric(input$JohnSBdelta), as.numeric(input$JohnSBxi), as.numeric(input$JohnSBlambda))-pJohnsonSB(as.numeric(probrange[1]), as.numeric(input$JohnSBgamma), as.numeric(input$JohnSBdelta), as.numeric(input$JohnSBxi), as.numeric(input$JohnSBlambda))
+        paste("Prob. = ",prob,sep="")
+      }
       # ----------------------- Continuous: Laplace Distribution ----------------------- #
       else if(distType == distributions[42]){
         prob = plaplace(as.numeric(probrange[2]), as.numeric(input$LapMu), as.numeric(input$LapSig))-plaplace(as.numeric(probrange[1]), as.numeric(input$LapMu), as.numeric(input$LapSig))

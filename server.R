@@ -30,6 +30,7 @@ library(Rlab)
 library(shinyWidgets)
 library(circular)
 library(mnormt)
+library(ExtDist)
 
 plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
 for (file in plotlyFunctions){
