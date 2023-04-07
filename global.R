@@ -49,7 +49,6 @@ for (i in 1:xml_len) {
 distToImpl <- c(
   "Anderson-Darling Distribution",
   "Birthday Distribution",
-  "(3D) Bivariate Normal Distribution",
   "Circle Distribution",
   "Coupon Distribution",
   "Die Distribution",

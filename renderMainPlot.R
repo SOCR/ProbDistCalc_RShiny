@@ -37,6 +37,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyBetaBinomialDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[8]) {
             plotlyBinomialDistribution(plotrange, input, distType, probrange)
+        } else if (distType == distributions[10]) {
+            plotlyBivariateNormal3DDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[11]) {
             plotlyCauchyDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[12]) {

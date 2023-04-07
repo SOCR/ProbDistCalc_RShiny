@@ -58,6 +58,13 @@ shinyUI(
       conditionalPanel(condition = paste("input.Distribution == '",distributions[8],"'",sep = ""),
                        textInput("BinomP",paste("Please input Probability for ",distributions[8]," : ",sep = ""),0.5),
                        textInput("BinomN",paste("Please input n for ",distributions[8]," : ",sep = ""),10)),
+        # ----------------------- Input: Bivariate Normal Distribution (3D) ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == '",distributions[10],"'",sep = ""),
+                       textInput("BivaM1",paste("Please input mean of the first random variable for ",distributions[10]," : ",sep = ""),0),
+                       textInput("BivaV1",paste("Please input variance of the first random variable for ",distributions[10]," : ",sep = ""),1),
+                       textInput("BivaM2",paste("Please input mean for the second random variable for ",distributions[10]," : ",sep = ""),0),
+                       textInput("BivaV2",paste("Please input variance of the second random variable for ",distributions[10]," : ",sep = ""),1.1),
+                       textInput("BivaCov",paste("Please input covariance of the two random variables for ",distributions[10]," : ",sep = ""),1)),
         # ----------------------- Input: Cauchy Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[11],"'",sep = ""),
                        textInput("CauchyX0",paste("Please input x0 for ",distributions[11]," : ",sep = ""),1),
