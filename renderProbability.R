@@ -50,6 +50,13 @@ renderProbability <- function(input, output, session) {
         prob = pbinom(round(as.numeric(probrange[2]),0),as.numeric(input$BinomN), as.numeric(input$BinomP))-pbinom(round(as.numeric(probrange[1]),0)-1,as.numeric(input$BinomN), as.numeric(input$BinomP))
         paste("Prob. = ",prob,sep="")
       }
+      # ----------------------- Continuous: Bivariate Normal Distribution (3D) ----------------------- #
+      else if(distType == distributions[10]){
+        prob <- pmnorm(cbind(as.numeric(probrange[2]),as.numeric(probrange[2])), c(as.numeric(input$BivaM1), as.numeric(input$BivaM2)), matrix(c(as.numeric(input$BivaV1), as.numeric(input$BivaCov), as.numeric(input$BivaCov), as.numeric(input$BivaV2)), 2))
+            - pmnorm(cbind(as.numeric(probrange[1]),as.numeric(probrange[1])), c(as.numeric(input$BivaM1), as.numeric(input$BivaM2)), matrix(c(as.numeric(input$BivaV1), as.numeric(input$BivaCov), as.numeric(input$BivaCov), as.numeric(input$BivaV2)), 2))
+         
+        paste("Prob. = ",prob,sep="")
+      }
       # ----------------------- Continuous: Cauchy Distribution ----------------------- #
       else if(distType == distributions[11]){
         prob = pcauchy(as.numeric(probrange[2]),as.numeric(input$CauchyX0),as.numeric(input$CauchyGamma))-pcauchy(as.numeric(probrange[1]),as.numeric(input$CauchyX0),as.numeric(input$CauchyGamma))
