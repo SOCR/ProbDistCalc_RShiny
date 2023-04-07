@@ -60,7 +60,7 @@ distToImpl <- c(
   "Gilbrats Distribution",
   "Hyperbolic-Secant Distribution",
   # "Johnson SB (Bounded) Distribution",
-  "Johnson SU (Unbounded) Distribution",
+  # "Johnson SU (Unbounded) Distribution",
   "Kolmogorov Distribution",
   "Matching Distribution",
   "Mixture Distribution",

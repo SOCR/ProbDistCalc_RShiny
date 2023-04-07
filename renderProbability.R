@@ -147,6 +147,11 @@ renderProbability <- function(input, output, session) {
         prob = pJohnsonSB(as.numeric(probrange[2]), as.numeric(input$JohnSBgamma), as.numeric(input$JohnSBdelta), as.numeric(input$JohnSBxi), as.numeric(input$JohnSBlambda))-pJohnsonSB(as.numeric(probrange[1]), as.numeric(input$JohnSBgamma), as.numeric(input$JohnSBdelta), as.numeric(input$JohnSBxi), as.numeric(input$JohnSBlambda))
         paste("Prob. = ",prob,sep="")
       }
+      # ----------------------- Continuous: Johnson SU (Unbounded) Distribution ----------------------- #
+      else if(distType == distributions[40]){
+        prob = pJohnsonSU(as.numeric(probrange[2]), as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))-pJohnsonSU(as.numeric(probrange[1]), as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
+        paste("Prob. = ",prob,sep="")
+      }
       # ----------------------- Continuous: Laplace Distribution ----------------------- #
       else if(distType == distributions[42]){
         prob = plaplace(as.numeric(probrange[2]), as.numeric(input$LapMu), as.numeric(input$LapSig))-plaplace(as.numeric(probrange[1]), as.numeric(input$LapMu), as.numeric(input$LapSig))

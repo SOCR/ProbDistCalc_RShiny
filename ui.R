@@ -136,10 +136,16 @@ shinyUI(
                        textInput("InvGausL",paste("Please input lambda for ",distributions[38]," : ",sep = ""),0.2)),
       # ----------------------- Input: Johnson SB (Bounded) Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[39],"'",sep = ""),
-                       textInput("JohnSBgamma",paste("Please input gamma for ",distributions[38]," : ",sep = ""),-0.5),
-                       textInput("JohnSBdelta",paste("Please input delta for ",distributions[38]," : ",sep = ""),2),
-                       textInput("JohnSBxi",paste("Please input xi for ",distributions[38]," : ",sep = ""),-0.5),
-                       textInput("JohnSBlambda",paste("Please input lambda for ",distributions[38]," : ",sep = ""),2)),
+                       textInput("JohnSBgamma",paste("Please input gamma for ",distributions[39]," : ",sep = ""),-0.5),
+                       textInput("JohnSBdelta",paste("Please input delta for ",distributions[39]," : ",sep = ""),2),
+                       textInput("JohnSBxi",paste("Please input xi for ",distributions[39]," : ",sep = ""),-0.5),
+                       textInput("JohnSBlambda",paste("Please input lambda for ",distributions[39]," : ",sep = ""),2)),
+      # ----------------------- Input: Johnson SU (Unbounded) Distribution ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == '",distributions[40],"'",sep = ""),
+                       textInput("JohnSUgamma",paste("Please input gamma for ",distributions[40]," : ",sep = ""),-0.5),
+                       textInput("JohnSUdelta",paste("Please input delta for ",distributions[40]," : ",sep = ""),2),
+                       textInput("JohnSUxi",paste("Please input xi for ",distributions[40]," : ",sep = ""),-0.5),
+                       textInput("JohnSUlambda",paste("Please input lambda for ",distributions[40]," : ",sep = ""),2)),
         # ----------------------- Input: Laplace Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[42],"'",sep = ""),
                        textInput("LapMu",paste("Please input mu for ",distributions[42]," : ",sep = ""),0),

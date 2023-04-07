@@ -86,6 +86,8 @@ renderMainPlot <- function(input, output, session) {
                 session)
         } else if (distType == distributions[39]) {
             plotlyJohnsonSBBoundedDistribution(plotrange, input, distType, probrange)
+        } else if (distType == distributions[40]) {
+            plotlyJohnsonSUUnboundedDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[42]) {
             plotlyLaplaceDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[43]) {
