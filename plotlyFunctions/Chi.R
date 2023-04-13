@@ -45,7 +45,6 @@ plotlyChiDistribution <- function(plotrange, input, distType, probrange, session
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f12, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f12
         for (index in 1:xsize) {

@@ -44,7 +44,6 @@ plotlyGammaDistribution <- function(plotrange, input, distType, probrange, sessi
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f27, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f27
         for (index in 1:xsize) {

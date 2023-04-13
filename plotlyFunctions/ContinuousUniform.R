@@ -15,7 +15,6 @@ plotlyContinuousUniformDistribution <- function(plotrange, input, distType, prob
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f16, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f16
         for (index in 1:xsize) {

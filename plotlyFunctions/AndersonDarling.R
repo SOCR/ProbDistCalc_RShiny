@@ -13,7 +13,6 @@ plotlyAndersonDarlingDistribution <- function(plotrange, input, distType, probra
   }
   if (graphtype != "") {
     fig <- plot_ly(x = xseq, y = f1, name = distType, type = "scatter", mode = "lines", hoverinfo = "xy")
-    print(fig)
     xsize = length(xseq)
     newy = f1
     for (index in 1:xsize) {

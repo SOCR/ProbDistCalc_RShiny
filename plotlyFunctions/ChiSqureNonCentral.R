@@ -46,7 +46,6 @@ plotlyChiSqureNonCentralDistribution <- function(plotrange, input, distType, pro
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f14, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f14
         for (index in 1:xsize) {

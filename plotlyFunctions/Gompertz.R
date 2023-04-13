@@ -15,7 +15,6 @@ plotlyGompertzDistribution <- function(plotrange, input, distType, probrange, se
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f32, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f32
         for (index in 1:xsize) {

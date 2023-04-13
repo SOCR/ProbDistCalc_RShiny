@@ -15,7 +15,6 @@ plotlyBetaDistribution <- function(plotrange, input, distType, probrange) {
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f5, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize <- length(xseq)
         newy <- f5
         for (index in 1:xsize) {

@@ -208,6 +208,10 @@ shinyUI(
         # ----------------------- Input: Poisson Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[61],"'",sep = ""),
                        textInput("PoiLambda",paste("Please input lambda for ",distributions[61]," : ",sep = ""),1)),
+        # ----------------------- Input: Power Function Distribution ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == '",distributions[63],"'",sep = ""),
+                       textInput("PowerAlpha",paste("Please input alpha for ",distributions[63]," : ",sep = ""),3),
+                       textInput("PowerBeta",paste("Please input beta for ",distributions[63]," : ",sep = ""),4)),
         # ----------------------- Input: Rayleigh Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[64],"'",sep = ""),
                        textInput("RayleighSigma",paste("Please input sigma for ",distributions[64]," : ",sep = ""),1)),

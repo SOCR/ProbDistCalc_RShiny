@@ -122,6 +122,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyPointMassDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[61]) {
             plotlyPoissonDistribution(plotrange, input, distType, probrange, session)
+        } else if (distType == distributions[63]) {
+            plotlyPowerFunctionDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[64]) {
             plotlyRayleighDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[65]) {

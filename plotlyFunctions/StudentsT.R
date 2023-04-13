@@ -15,7 +15,6 @@ plotlyStudentsTDistribution <- function(plotrange, input, distType, probrange) {
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f66, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f66
         for (index in 1:xsize) {

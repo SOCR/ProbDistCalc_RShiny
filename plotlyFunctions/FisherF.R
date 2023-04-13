@@ -53,7 +53,6 @@ plotlyFisherFDistribution <- function(plotrange, input, distType, probrange, ses
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f25, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f25
         for (index in 1:xsize) {

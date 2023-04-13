@@ -67,7 +67,7 @@ distToImpl <- c(
   "Multinomial Distribution",
   "Negative-Multinomial Distribution",
   "Poker-Dice Distribution",
-  "Power-Function Distribution",
+  # "Power-Function Distribution",
   "Two-Sided Power Distribution",
   # "Von Mises Distribution",
   "WalkMax Distribution",

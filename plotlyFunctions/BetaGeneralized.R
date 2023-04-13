@@ -17,7 +17,6 @@ plotlyBetaGeneralizedDistribution <- function(plotrange, input, distType, probra
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f6, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f6
         for (index in 1:xsize) {

@@ -15,7 +15,6 @@ plotlyStudentsTNonCentralDistribution <- function(plotrange, input, distType, pr
     if (graphtype != "") {
         fig <- plot_ly(x = xseq, y = f67, name = distType, type = "scatter", mode = "lines",
             hoverinfo = "xy")
-        print(fig)
         xsize = length(xseq)
         newy = f67
         for (index in 1:xsize) {

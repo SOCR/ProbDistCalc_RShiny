@@ -268,6 +268,11 @@ renderProbability <- function(input, output, session) {
         prob = ppois(round(as.numeric(probrange[2]),0),as.numeric(input$PoiLambda))-ppois(round(as.numeric(probrange[1]),0)-1,as.numeric(input$PoiLambda))
         paste("Prob. = ",prob,sep="")
       }
+      # ----------------------- Continuous: Power Function Distribution ----------------------- #
+      else if(distType == distributions[63]){
+        prob = ppower(round(as.numeric(probrange[2]),0),as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta)))-ppower(round(as.numeric(probrange[1]),0),as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta)))
+        paste("Prob. = ",prob,sep="")
+      }
       # ----------------------- Discrete: Rayleigh Distribution ----------------------- #
       else if(distType == distributions[64]){
         prob = prayleigh(as.numeric(probrange[2]), as.numeric(input$RayleighSigma))-prayleigh(as.numeric(probrange[1]), as.numeric(input$RayleighSigma))
