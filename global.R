@@ -55,7 +55,7 @@ distToImpl <- c(
   "Erlang Distribution",
   "Error Distribution",
   "Finite Distribution",
-  "Fisher-Tippett Distribution",
+  # "Fisher-Tippett Distribution",
   "General Cauchy Distribution",
   "Gilbrats Distribution",
   # "Hyperbolic-Secant Distribution",
