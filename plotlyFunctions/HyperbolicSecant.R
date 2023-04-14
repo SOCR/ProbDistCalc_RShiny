@@ -42,8 +42,8 @@ plotlyHyperbolicSecantDistribution <- function(plotrange, input, distType, probr
                 newy[index] = NA
             }
         }
-        prob = pcauchy(as.numeric(probrange[2]), as.numeric(input$HSmu), as.numeric(input$HSsigma)) -
-            pcauchy(as.numeric(probrange[1]), as.numeric(input$HSmu), as.numeric(input$HSsigma))
+        prob = psech(as.numeric(probrange[2]), as.numeric(input$HSmu), as.numeric(input$HSsigma)) -
+            psech(as.numeric(probrange[1]), as.numeric(input$HSmu), as.numeric(input$HSsigma))
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")

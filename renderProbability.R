@@ -134,7 +134,8 @@ renderProbability <- function(input, output, session) {
       }
       # ----------------------- Continuous: Hyperbolic-Secant Distribution ----------------------- #
       else if(distType == distributions[36]){
-        prob = pcauchy(as.numeric(probrange[2]), as.numeric(input$HSmu), as.numeric(input$HSsigma)) - pcauchy(as.numeric(probrange[1]), as.numeric(input$HSmu), as.numeric(input$HSsigma))
+        prob = psech(as.numeric(probrange[2]), as.numeric(input$HSmu), as.numeric(input$HSsigma)) -
+          psech(as.numeric(probrange[1]), as.numeric(input$HSmu), as.numeric(input$HSsigma))
         paste("Prob. = ",prob,sep="")
       }
       # ----------------------- Continuous: Inverse Gamma Distribution ----------------------- #
