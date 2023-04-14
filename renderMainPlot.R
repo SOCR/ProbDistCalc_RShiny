@@ -58,6 +58,13 @@ renderMainPlot <- function(input, output, session) {
             plotlyExponentialDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[25]) {
             plotlyFisherFDistribution(plotrange, input, distType, probrange, session)
+        } else if (distType == distributions[26]) {
+            #   Discrete: GEV Distribution
+            #   Miu = locationn Sig = scale
+            #   Epsilon = shape dgev(x, loc=0, scale=1, shape=0, log = FALSE)
+            #   pgev(q, loc=0, scale=1, shape=0, lower.tail = TRUE)
+            plotlyFisherTippettDistribution(plotrange, input, distType,
+                probrange)
         } else if (distType == distributions[27]) {
             plotlyGammaDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[29]) {

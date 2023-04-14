@@ -98,6 +98,11 @@ shinyUI(
       conditionalPanel(condition = paste("input.Distribution == '",distributions[25],"'",sep = ""),
                        textInput("FdOne",paste("Please input d1 for ",distributions[25]," : ",sep = ""),1),
                        textInput("FdTwo",paste("Please input d2 for ",distributions[25]," : ",sep = ""),1)),
+      # ----------------------- Input: Fisher-Tippett Distribution ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == \"",distributions[26],"\"",sep = ""),
+                       textInput("GEVMiu",paste("Please input miu for ",distributions[26]," : ",sep = ""),1),
+                       textInput("GEVSigma",paste("Please input sigma for ",distributions[26]," : ",sep = ""),1),
+                        textInput("GEVEpsilon",paste("Please input Epsilon for ",distributions[26]," : ",sep = ""),1)),
         # ----------------------- Input: Gamma Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == \"",distributions[27],"\"",sep = ""),
                        textInput("GammaA",paste("Please input alpha for ",distributions[27]," : ",sep = ""),1),
