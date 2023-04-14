@@ -126,6 +126,10 @@ shinyUI(
                        textInput("HyperM",paste("Please input m for ",distributions[35]," : ",sep = ""),50),
                        textInput("HyperN",paste("Please input N for ",distributions[35]," : ",sep = ""),500),
                        textInput("HyperK",paste("Please input n for ",distributions[35]," : ",sep = ""),100)),
+      # ----------------------- Input: Hyperbolic-Secant Distribution ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == '",distributions[36],"'",sep = ""),
+                       textInput("HSmu",paste("Please input mu for ",distributions[36]," : ",sep = ""),0),
+                       textInput("HSsigma",paste("Please input sigma for ",distributions[36]," : ",sep = ""),1)),
       # ----------------------- Input: Inverse-Gamma Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[37],"'",sep = ""),
                        textInput("InvGammaA",paste("Please input alpha for ",distributions[37]," : ",sep = ""),1),

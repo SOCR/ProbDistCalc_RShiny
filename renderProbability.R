@@ -132,6 +132,11 @@ renderProbability <- function(input, output, session) {
         prob = phyper(round(as.numeric(probrange[2]),0),as.numeric(input$HyperM),as.numeric(input$HyperN)-as.numeric(input$HyperM),as.numeric(input$HyperK))-phyper(round(as.numeric(probrange[1]),0)-1,as.numeric(input$HyperM),as.numeric(input$HyperN)-as.numeric(input$HyperM),as.numeric(input$HyperK))
         paste("Prob. = ",prob,sep="")
       }
+      # ----------------------- Continuous: Hyperbolic-Secant Distribution ----------------------- #
+      else if(distType == distributions[36]){
+        prob = pcauchy(as.numeric(probrange[2]), as.numeric(input$HSmu), as.numeric(input$HSsigma)) - pcauchy(as.numeric(probrange[1]), as.numeric(input$HSmu), as.numeric(input$HSsigma))
+        paste("Prob. = ",prob,sep="")
+      }
       # ----------------------- Continuous: Inverse Gamma Distribution ----------------------- #
       else if(distType == distributions[37]){
         prob = pinvgamma(as.numeric(probrange[2]), as.numeric(input$InvGammaA), 1/as.numeric(input$InvGammaB))-pinvgamma(as.numeric(probrange[1]), as.numeric(input$InvGammaA), 1/as.numeric(input$InvGammaB))

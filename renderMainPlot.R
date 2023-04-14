@@ -78,6 +78,8 @@ renderMainPlot <- function(input, output, session) {
         } else if (distType == distributions[35]) {
             plotlyHyperGeometricDistribution(plotrange, input, distType, probrange,
                 session, old_SD)
+        } else if (distType == distributions[36]) {
+            plotlyHyperbolicSecantDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[37]) {
             plotlyInverseGammaDistribution(plotrange, input, distType, probrange,
                 session)
