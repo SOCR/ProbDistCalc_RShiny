@@ -1,6 +1,6 @@
 #SOCR Probability Distribution Calculator
 #Version 0.9
-#Updated March 20th 2022 by Shihang Li and Yongxiang Zhao at the University of Michigan -SOCR
+#Updated October 6th 2023 by Joonseop Kim at the University of Michigan -SOCR
 #Orginally created by Jared(Tianyi) Chai
 
 # This is a SOCR Interactive Graphical Probability Distribution Calculator
@@ -133,5 +133,81 @@ shinyServer(
     })
     # ----------------------- Calculate and Render Probability ----------------------- #
     renderProbability(input, output, session)
+    
+    
+    # Imputation of categorical variables using Mode
+    getmode <- function(v) {
+      v = v[nchar(as.character(v))>0]
+      uniqv <- unique(v)
+      uniqv[which.max(tabulate(match(v, uniqv)))]
+    }
+    
+    
+    
+    # Data output
+    output$tbl = DT::renderDataTable({
+      DT::datatable(dataset, options = list(lengthChange = FALSE))
+    })
+    
+    
+    
+    # Regression output
+    output$summary <- renderPrint({
+      fit <- lm(unlist(dataset[,input$outcome]) ~ unlist(dataset[,input$indepvar]))
+      names(fit$coefficients) <- c("Intercept", input$var2)
+      fitCurrent <- fit
+      summary(fit)
+    })
+    
+    # Scatterplot output
+    output$scatterplot <- renderPlotly({
+      plot_ly(x=~unlist(dataset[,input$indepvar]), y=~unlist(dataset[,input$outcome]), 
+              type="scatter", mode="markers", name="Data") %>%
+        add_lines(x = ~unlist(dataset[,input$indepvar]), 
+                  y = ~(lm(unlist(dataset[,input$outcome]) ~ unlist(dataset[,input$indepvar]))$fitted.values), 
+                  mode = "lines", name="Linear Model") %>%
+        add_lines(x = ~lowess(unlist(dataset[,input$indepvar]), unlist(dataset[,input$outcome]))$x,
+                  y = ~lowess(unlist(dataset[,input$indepvar]), unlist(dataset[,input$outcome]))$y,
+                  mode = "lines", name="LOESS") %>%
+        add_markers(x = mean(unlist(dataset[,input$indepvar])), y = mean(unlist(dataset[,input$outcome])), 
+                    name="Center Point", marker=list(size=20, color='green',line=list(color='yellow', width=2))) %>%
+        layout(title=paste0("lm(", input$outcome, " ~ ", input$indepvar,
+                            "), Cor(", input$indepvar, ",", input$outcome, ") = ",
+                            round(cor(unlist(dataset[,input$indepvar]), unlist(dataset[,input$outcome])),3)),
+               xaxis=list(title=input$indepvar), yaxis=list(title=input$outcome))})
+    
+    
   }
 )
+
+##stuff added
+
+dataset <- iris
+
+# Imputation of categorical variables using Mode
+getmode <- function(v) {
+  v = v[nchar(as.character(v))>0]
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+# Imputation
+medianModeImputation <- function (df) {
+  for (cols in colnames(df)) {
+    if (cols %in% names(df[,sapply(df, is.numeric)]))  ## Numeric variables first, then the Categorical
+      df<-df %>% mutate(!!cols := replace(!!rlang::sym(cols), is.na(!!rlang::sym(cols)), mean(!!rlang::sym(cols), na.rm=TRUE)))
+    else df <- df %>% mutate(!!cols := replace(!!rlang::sym(cols), !!rlang::sym(cols)=="", getmode(!!rlang::sym(cols))))
+  }
+  return(df)
+}
+
+fitCurrent <- NULL
+print(dataset)
+dataset <- medianModeImputation(dataset)
+
+# named list of features
+namedListOfFeatures <- function () {
+  namedList         <- as.list(colnames(dataset))
+  names (namedList) <- colnames(dataset)
+  return(namedList)
+}
