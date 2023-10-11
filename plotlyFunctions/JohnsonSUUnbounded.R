@@ -1,13 +1,15 @@
 plotlyJohnsonSUUnboundedDistribution <- function(plotrange, input, distType, probrange) {
     xseq <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
-    0.01)
+        0.01)
     f39 <- 0
     graphtype <- ""
     if (input$FunctionType == "PDF/PMF") {
-        f39 <- dJohnsonSU(xseq, as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
+        f39 <- dJohnsonSU(xseq, as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta),
+            as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f39 <- pJohnsonSU(xseq, as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
+        f39 <- pJohnsonSU(xseq, as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta),
+            as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
         graphtype <- "CDF"
     } else {
         graphtype <- ""
@@ -22,8 +24,10 @@ plotlyJohnsonSUUnboundedDistribution <- function(plotrange, input, distType, pro
                 newy[index] = NA
             }
         }
-        prob = pJohnsonSU(as.numeric(probrange[2]), as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda)) -
-            pJohnsonSU(as.numeric(probrange[1]), as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
+        prob = pJohnsonSU(as.numeric(probrange[2]), as.numeric(input$JohnSUgamma),
+            as.numeric(input$JohnSUdelta), as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda)) -
+            pJohnsonSU(as.numeric(probrange[1]), as.numeric(input$JohnSUgamma), as.numeric(input$JohnSUdelta),
+                as.numeric(input$JohnSUxi), as.numeric(input$JohnSUlambda))
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")

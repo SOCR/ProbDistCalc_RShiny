@@ -1,4 +1,5 @@
-plotlyInverseGammaDistribution <- function(plotrange, input, distType, probrange, session) {
+plotlyInverseGammaDistribution <- function(plotrange, input, distType, probrange,
+    session) {
     a = as.numeric(input$InvGammaA)
     b = as.numeric(input$InvGammaB)
     if (a > 2) {

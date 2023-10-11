@@ -2,20 +2,20 @@
 # PDF
 #------------------------------------------------------------------
 
-dsech <- Vectorize(function(x,mu,sigma,log = FALSE){
-  logden <-  -log(2) - log(sigma) - log( cosh( 0.5*pi*(x-mu)/sigma ) ) 
-  val <- ifelse(log, logden, exp(logden)) 
-  return(val)
+dsech <- Vectorize(function(x, mu, sigma, log = FALSE) {
+    logden <- -log(2) - log(sigma) - log(cosh(0.5 * pi * (x - mu)/sigma))
+    val <- ifelse(log, logden, exp(logden))
+    return(val)
 })
 
 #------------------------------------------------------------------
 # CDF
 #------------------------------------------------------------------
 
-psech <- Vectorize(function(x,mu,sigma,log.p = FALSE){
-  logcdf <-  log(2) - log(pi) + log( atan( exp( 0.5*pi*(x-mu)/sigma ) ) )
-  val <- ifelse(log.p, logcdf, exp(logcdf))
-  return(val)
+psech <- Vectorize(function(x, mu, sigma, log.p = FALSE) {
+    logcdf <- log(2) - log(pi) + log(atan(exp(0.5 * pi * (x - mu)/sigma)))
+    val <- ifelse(log.p, logcdf, exp(logcdf))
+    return(val)
 })
 
 plotlyHyperbolicSecantDistribution <- function(plotrange, input, distType, probrange) {

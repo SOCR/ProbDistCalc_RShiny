@@ -7,8 +7,10 @@ renderMainPlot <- function(input, output, session) {
         if (input$Distribution %in% distWithSD) {
 
         } else {
-            updateSliderInput(session, "plotrange", label = NULL, value = NULL, min = -1000,
-                max = 1000, step = NULL, timeFormat = NULL, timezone = NULL)
+            updateSliderInput(session, "plotrange",
+                label = NULL, value = NULL, min = -1000,
+                max = 1000, step = NULL, timeFormat = NULL, timezone = NULL
+            )
         }
         if (input$numericalValues == FALSE) {
             plotrange[1] <- input$plotrange[1]
@@ -23,7 +25,7 @@ renderMainPlot <- function(input, output, session) {
         }
         if (distType == distributions[1]) {
             plotlyAndersonDarlingDistribution(plotrange, input, distType, probrange)
-        }else if (distType == distributions[2]) {
+        } else if (distType == distributions[2]) {
             plotlyArcSineDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[3]) {
             plotlyBenfordDistribution(plotrange, input, distType, probrange)
@@ -46,8 +48,10 @@ renderMainPlot <- function(input, output, session) {
         } else if (distType == distributions[13]) {
             plotlyChiSquareDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[14]) {
-            plotlyChiSqureNonCentralDistribution(plotrange, input, distType, probrange,
-                session)
+            plotlyChiSqureNonCentralDistribution(
+                plotrange, input, distType, probrange,
+                session
+            )
         } else if (distType == distributions[16]) {
             plotlyContinuousUniformDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[19]) {
@@ -63,8 +67,10 @@ renderMainPlot <- function(input, output, session) {
             #   Miu = locationn Sig = scale
             #   Epsilon = shape dgev(x, loc=0, scale=1, shape=0, log = FALSE)
             #   pgev(q, loc=0, scale=1, shape=0, lower.tail = TRUE)
-            plotlyFisherTippettDistribution(plotrange, input, distType,
-                probrange)
+            plotlyFisherTippettDistribution(
+                plotrange, input, distType,
+                probrange
+            )
         } else if (distType == distributions[27]) {
             plotlyGammaDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[29]) {
@@ -72,8 +78,10 @@ renderMainPlot <- function(input, output, session) {
             #   Miu = locationn Sig = scale
             #   Epsilon = shape dgev(x, loc=0, scale=1, shape=0, log = FALSE)
             #   pgev(q, loc=0, scale=1, shape=0, lower.tail = TRUE)
-            plotlyGeneralizedExtremeValueGEVDistribution(plotrange, input, distType,
-                probrange)
+            plotlyGeneralizedExtremeValueGEVDistribution(
+                plotrange, input, distType,
+                probrange
+            )
         } else if (distType == distributions[30]) {
             plotlyGeometricDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[32]) {
@@ -83,16 +91,22 @@ renderMainPlot <- function(input, output, session) {
         } else if (distType == distributions[34]) {
             plotlyHalfNormalDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[35]) {
-            plotlyHyperGeometricDistribution(plotrange, input, distType, probrange,
-                session, old_SD)
+            plotlyHyperGeometricDistribution(
+                plotrange, input, distType, probrange,
+                session, old_SD
+            )
         } else if (distType == distributions[36]) {
             plotlyHyperbolicSecantDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[37]) {
-            plotlyInverseGammaDistribution(plotrange, input, distType, probrange,
-                session)
+            plotlyInverseGammaDistribution(
+                plotrange, input, distType, probrange,
+                session
+            )
         } else if (distType == distributions[38]) {
-            plotlyInverseGaussianWaldDistribution(plotrange, input, distType, probrange,
-                session)
+            plotlyInverseGaussianWaldDistribution(
+                plotrange, input, distType, probrange,
+                session
+            )
         } else if (distType == distributions[39]) {
             plotlyJohnsonSBBoundedDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[40]) {
@@ -100,8 +114,10 @@ renderMainPlot <- function(input, output, session) {
         } else if (distType == distributions[42]) {
             plotlyLaplaceDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[43]) {
-            plotlyLogarithmicSeriesDistribution(plotrange, input, distType, probrange,
-                session)
+            plotlyLogarithmicSeriesDistribution(
+                plotrange, input, distType, probrange,
+                session
+            )
         } else if (distType == distributions[44]) {
             plotlyLogisticDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[45]) {
@@ -119,8 +135,10 @@ renderMainPlot <- function(input, output, session) {
         } else if (distType == distributions[54]) {
             plotlyNegativeBinomialDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[55]) {
-            plotlyNegativeHyperGeometricDistribution(plotrange, input, distType,
-                probrange)
+            plotlyNegativeHyperGeometricDistribution(
+                plotrange, input, distType,
+                probrange
+            )
         } else if (distType == distributions[57]) {
             plotlyNormalDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[58]) {
@@ -147,7 +165,7 @@ renderMainPlot <- function(input, output, session) {
             plotlyUQuadraticDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[71]) {
             plotlyVonMisesDistribution(plotrange, input, distType, probrange, session)
-        }else if (distType == distributions[74]) {
+        } else if (distType == distributions[74]) {
             plotlyWeibullDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[75]) {
             plotlyZipfManelbrotDistribution(plotrange, input, distType, probrange)

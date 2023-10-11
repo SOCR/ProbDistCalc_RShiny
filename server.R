@@ -1,7 +1,7 @@
-#SOCR Probability Distribution Calculator
-#Version 0.9
-#Updated October 6th 2023 by Joonseop Kim at the University of Michigan -SOCR
-#Orginally created by Jared(Tianyi) Chai
+# SOCR Probability Distribution Calculator
+# Version 0.9
+# Updated October 6th 2023 by Joonseop Kim at the University of Michigan -SOCR
+# Orginally created by Jared(Tianyi) Chai
 
 # This is a SOCR Interactive Graphical Probability Distribution Calculator
 # You can run the application by clicking
@@ -33,42 +33,45 @@ library(mnormt)
 library(ExtDist)
 
 plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
-for (file in plotlyFunctions){
+for (file in plotlyFunctions) {
   source(file)
 }
 source("renderMainPlot.R")
 source("renderProbability.R")
 
 shinyServer(
-  function(input, output, session){
+  function(input, output, session) {
     # ----------------------- Update Distribution Type and Function Type according to URL handle ----------------------- #
     observe({
       query <- parseQueryString(session$clientData$url_search)
-      if (!is.null(query[['d']])) {
-        updateSelectInput(session, "Distribution", selected = distributions[as.numeric(query[['d']])])
-        updateSelectInput(session, "FunctionType", selected = 'PDF/PMF')
-        if (!is.null(query[['t']])) {
-          updateSelectInput(session, "FunctionType", selected = query[['t']])
+      if (!is.null(query[["d"]])) {
+        updateSelectInput(session, "Distribution", selected = distributions[as.numeric(query[["d"]])])
+        updateSelectInput(session, "FunctionType", selected = "PDF/PMF")
+        if (!is.null(query[["t"]])) {
+          updateSelectInput(session, "FunctionType", selected = query[["t"]])
         }
       }
       # ----------------------- Update Range of Probability Calculation according to Range of X ----------------------- #
-      updateSliderInput(session, 
-                        "probrange", 
-                        value = 0,
-                        min = input$plotrange[1], 
-                        max = input$plotrange[2], 
-                        step = 0.01)
+      updateSliderInput(session,
+        "probrange",
+        value = 0,
+        min = input$plotrange[1],
+        max = input$plotrange[2],
+        step = 0.01
+      )
       updateNumericInput(session,
-                      "probrangeNumMin",
-                      value = 0,
-                      min = input$plotrangeNumMin,
-                      max = input$plotrangeNumMax)
+        "probrangeNumMin",
+        value = 0,
+        min = input$plotrangeNumMin,
+        max = input$plotrangeNumMax
+      )
       updateNumericInput(session,
-                      "probrangeNumMax",
-                      value = 0,
-                      min = input$plotrangeNumMin,
-                      max = input$plotrangeNumMax)
-      })
+        "probrangeNumMax",
+        value = 0,
+        min = input$plotrangeNumMin,
+        max = input$plotrangeNumMax
+      )
+    })
     # ----------------------- HelpMe ----------------------- #
     observeEvent(input$fitNormalParams, {
       # Check if the data is available in the 'dataset' variable
@@ -91,52 +94,50 @@ shinyServer(
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
         title = "Help / ReadMe",
-        HTML('<div>
-             <font size="3"><font color="blue"><b>SOCR Interactive Probability Distribution Calculator [Version: V.0.8]</b></font></font> 
-             The SOCR RShiny probability distribution calculators provide interactive vizualizations of probability densities, 
+        HTML("<div>
+             <font size=\"3\"><font color=\"blue\"><b>SOCR Interactive Probability Distribution Calculator [Version: V.0.8]</b></font></font>
+             The SOCR RShiny probability distribution calculators provide interactive vizualizations of probability densities,
              mass functions, and cumulative distributions, e.g., bivariate normal distribution.
              <br /><br />
             <b> Acknowledgments </b>
              <br /><br />
-            This work is supported in part by NIH grants P20 NR015331, UL1TR002240, P30 DK089503, UL1TR002240, 
-            and NSF grants 1916425, 1734853, 1636840, 1416953, 0716055 and 1023115. Students, trainees, scholars, 
-            and researchers from SOCR, BDDS, MIDAS, MICHR, and the broad R-statistical computing community have contributed ideas, 
+            This work is supported in part by NIH grants P20 NR015331, UL1TR002240, P30 DK089503, UL1TR002240,
+            and NSF grants 1916425, 1734853, 1636840, 1416953, 0716055 and 1023115. Students, trainees, scholars,
+            and researchers from SOCR, BDDS, MIDAS, MICHR, and the broad R-statistical computing community have contributed ideas,
             code, and support.
-             <div align="center">
-             <font size="3"><b>Developers</b><br /></font></div>
-             <font size="2">Jared (Tianyi) Chai (<b>chtianyi@umich.edu</b>)
-             <font size="2">Shihang Li (<b>shihangl@umich.edu</b>)
-             <font size="2">Yongxiang Zhao (<b>zyxleo@umich.edu</b>),
+             <div align=\"center\">
+             <font size=\"3\"><b>Developers</b><br /></font></div>
+             <font size=\"2\">Jared (Tianyi) Chai (<b>chtianyi@umich.edu</b>)
+             <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)
+             <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>),
              Ivo Dinov (<b>dinov@med.umich.edu</b>).</font>
              <br /><br />
-             '),
-        
+             "),
         easyClose = TRUE
       ))
     })
     # ----------------------- Render Metadata Information from xml Database ----------------------- #
     output$MetaData <- renderPrint({
       distType <- input$Distribution
-      distType = tolower(str_replace_all(distType, "[^[:alnum:]]", ""))
-      counter = 0
-      for(i in 1:xml_len){
-        j = 1
-        while(distributions_meta[[j,i*2-1]] == "name"){
-          if(tolower(str_replace_all(distributions_meta[[1,i*2]], "[^[:alnum:]]", "")) == distType){
-            counter = i
+      distType <- tolower(str_replace_all(distType, "[^[:alnum:]]", ""))
+      counter <- 0
+      for (i in 1:xml_len) {
+        j <- 1
+        while (distributions_meta[[j, i * 2 - 1]] == "name") {
+          if (tolower(str_replace_all(distributions_meta[[1, i * 2]], "[^[:alnum:]]", "")) == distType) {
+            counter <- i
             break
-          }
-          else{
-            j= j+1
+          } else {
+            j <- j + 1
           }
         }
       }
-      outputstring = ""
-      if (counter != 0){
-        row = 1
-        while(distributions_meta[[row,counter*2-1]] != "" && row < xml_wid){
-          outputstring = paste(outputstring,"<b>",distributions_meta[[row,counter*2-1]],":</b> ",distributions_meta[[row,counter*2]],"\n", sep = "")
-          row = row+1
+      outputstring <- ""
+      if (counter != 0) {
+        row <- 1
+        while (distributions_meta[[row, counter * 2 - 1]] != "" && row < xml_wid) {
+          outputstring <- paste(outputstring, "<b>", distributions_meta[[row, counter * 2 - 1]], ":</b> ", distributions_meta[[row, counter * 2]], "\n", sep = "")
+          row <- row + 1
         }
       }
       withMathJax(helpText(HTML(outputstring)))
@@ -145,76 +146,89 @@ shinyServer(
     renderMainPlot(input, output, session)
     # ----------------------- Render Implementing Message ----------------------- #
     output$Implementing <- renderText({
-      if(input$Distribution %in% distToImpl){
-        paste("The ", input$Distribution, " is still being implemented.", sep="")
+      if (input$Distribution %in% distToImpl) {
+        paste("The ", input$Distribution, " is still being implemented.", sep = "")
       }
     })
     # ----------------------- Calculate and Render Probability ----------------------- #
     renderProbability(input, output, session)
-    
-    
+
+
     # Imputation of categorical variables using Mode
     getmode <- function(v) {
-      v = v[nchar(as.character(v))>0]
+      v <- v[nchar(as.character(v)) > 0]
       uniqv <- unique(v)
       uniqv[which.max(tabulate(match(v, uniqv)))]
     }
-    
-    
-    
+
+
+
     # Data output
-    output$tbl = DT::renderDataTable({
+    output$tbl <- DT::renderDataTable({
       DT::datatable(dataset, options = list(lengthChange = FALSE))
     })
-    
-    
-    
+
+
+
     # Regression output
     output$summary <- renderPrint({
-      fit <- lm(unlist(dataset[,input$outcome]) ~ unlist(dataset[,input$indepvar]))
+      fit <- lm(unlist(dataset[, input$outcome]) ~ unlist(dataset[, input$indepvar]))
       names(fit$coefficients) <- c("Intercept", input$var2)
       fitCurrent <- fit
       summary(fit)
     })
-    
+
     # Scatterplot output
     output$scatterplot <- renderPlotly({
-      plot_ly(x=~unlist(dataset[,input$indepvar]), y=~unlist(dataset[,input$outcome]), 
-              type="scatter", mode="markers", name="Data") %>%
-        add_lines(x = ~unlist(dataset[,input$indepvar]), 
-                  y = ~(lm(unlist(dataset[,input$outcome]) ~ unlist(dataset[,input$indepvar]))$fitted.values), 
-                  mode = "lines", name="Linear Model") %>%
-        add_lines(x = ~lowess(unlist(dataset[,input$indepvar]), unlist(dataset[,input$outcome]))$x,
-                  y = ~lowess(unlist(dataset[,input$indepvar]), unlist(dataset[,input$outcome]))$y,
-                  mode = "lines", name="LOESS") %>%
-        add_markers(x = mean(unlist(dataset[,input$indepvar])), y = mean(unlist(dataset[,input$outcome])), 
-                    name="Center Point", marker=list(size=20, color='green',line=list(color='yellow', width=2))) %>%
-        layout(title=paste0("lm(", input$outcome, " ~ ", input$indepvar,
-                            "), Cor(", input$indepvar, ",", input$outcome, ") = ",
-                            round(cor(unlist(dataset[,input$indepvar]), unlist(dataset[,input$outcome])),3)),
-               xaxis=list(title=input$indepvar), yaxis=list(title=input$outcome))})
-    
-    
+      plot_ly(
+        x = ~ unlist(dataset[, input$indepvar]), y = ~ unlist(dataset[, input$outcome]),
+        type = "scatter", mode = "markers", name = "Data"
+      ) %>%
+        add_lines(
+          x = ~ unlist(dataset[, input$indepvar]),
+          y = ~ (lm(unlist(dataset[, input$outcome]) ~ unlist(dataset[, input$indepvar]))$fitted.values),
+          mode = "lines", name = "Linear Model"
+        ) %>%
+        add_lines(
+          x = ~ lowess(unlist(dataset[, input$indepvar]), unlist(dataset[, input$outcome]))$x,
+          y = ~ lowess(unlist(dataset[, input$indepvar]), unlist(dataset[, input$outcome]))$y,
+          mode = "lines", name = "LOESS"
+        ) %>%
+        add_markers(
+          x = mean(unlist(dataset[, input$indepvar])), y = mean(unlist(dataset[, input$outcome])),
+          name = "Center Point", marker = list(size = 20, color = "green", line = list(color = "yellow", width = 2))
+        ) %>%
+        layout(
+          title = paste0(
+            "lm(", input$outcome, " ~ ", input$indepvar,
+            "), Cor(", input$indepvar, ",", input$outcome, ") = ",
+            round(cor(unlist(dataset[, input$indepvar]), unlist(dataset[, input$outcome])), 3)
+          ),
+          xaxis = list(title = input$indepvar), yaxis = list(title = input$outcome)
+        )
+    })
   }
 )
 
-##stuff added
+## stuff added
 
 dataset <- iris
 
 # Imputation of categorical variables using Mode
 getmode <- function(v) {
-  v = v[nchar(as.character(v))>0]
+  v <- v[nchar(as.character(v)) > 0]
   uniqv <- unique(v)
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
 
 # Imputation
-medianModeImputation <- function (df) {
+medianModeImputation <- function(df) {
   for (cols in colnames(df)) {
-    if (cols %in% names(df[,sapply(df, is.numeric)]))  ## Numeric variables first, then the Categorical
-      df<-df %>% mutate(!!cols := replace(!!rlang::sym(cols), is.na(!!rlang::sym(cols)), mean(!!rlang::sym(cols), na.rm=TRUE)))
-    else df <- df %>% mutate(!!cols := replace(!!rlang::sym(cols), !!rlang::sym(cols)=="", getmode(!!rlang::sym(cols))))
+    if (cols %in% names(df[, sapply(df, is.numeric)])) { ## Numeric variables first, then the Categorical
+      df <- df %>% mutate(!!cols := replace(!!rlang::sym(cols), is.na(!!rlang::sym(cols)), mean(!!rlang::sym(cols), na.rm = TRUE)))
+    } else {
+      df <- df %>% mutate(!!cols := replace(!!rlang::sym(cols), !!rlang::sym(cols) == "", getmode(!!rlang::sym(cols))))
+    }
   }
   return(df)
 }
@@ -224,8 +238,8 @@ fitCurrent <- NULL
 dataset <- medianModeImputation(dataset)
 
 # named list of features
-namedListOfFeatures <- function () {
-  namedList         <- as.list(colnames(dataset))
-  names (namedList) <- colnames(dataset)
+namedListOfFeatures <- function() {
+  namedList <- as.list(colnames(dataset))
+  names(namedList) <- colnames(dataset)
   return(namedList)
 }
