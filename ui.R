@@ -40,6 +40,7 @@ shinyUI(
       # ----------------------- Input: Specifying Function Type ----------------------- #
       selectInput("FunctionType","Please select distribution function type",
                   choices=c("","PDF/PMF","CDF/CMF")),
+      switchInput(inputId = "NeedFit", value = FALSE, onLabel = "Modeler", offLabel = "Calculator"),
       # ----------------------- Input: Parameter Inputs ----------------------- #
         # ----------------------- Input: ArcSine Distribution ----------------------- #
         conditionalPanel(condition = paste("input.Distribution == '",distributions[2],"'",sep = ""),
@@ -210,9 +211,14 @@ shinyUI(
                        textInput("NegHyperN",paste("Please input B for ",distributions[55]," : ",sep = ""),30),
                        textInput("NegHyperR",paste("Please input b for ",distributions[55]," : ",sep = ""),1)),
         # ----------------------- Input: Normal Distribution ----------------------- #
-      conditionalPanel(condition = paste("input.Distribution == '",distributions[57],"'",sep = ""),
+      conditionalPanel(condition = paste("!input.NeedFit && input.Distribution == '",distributions[57],"'",sep = ""),
                        textInput("NormMean",paste("Please input mean for ",distributions[57]," : ",sep = ""),0),
                        textInput("NormSD",paste("Please input standard deviation for ",distributions[57]," : ",sep = ""),1)),
+      conditionalPanel(
+        condition = paste("input.NeedFit && input.Distribution == '", distributions[57], "'", sep = ""),
+        actionButton("fitNormalParams", "Fit Parameters from Data"),
+        textOutput("fitStatus")
+      ),
         # ----------------------- Input: Normal Truncated Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[58],"'",sep = ""),
                        textInput("TruncNormMean",paste("Please input mean for ",distributions[58]," : ",sep = ""),0),

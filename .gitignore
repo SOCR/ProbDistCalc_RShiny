@@ -1,3 +1,4 @@
 .Rhistory
 test.R
 .lintr
+*.gz

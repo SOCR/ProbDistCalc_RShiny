@@ -70,6 +70,24 @@ shinyServer(
                       max = input$plotrangeNumMax)
       })
     # ----------------------- HelpMe ----------------------- #
+    observeEvent(input$fitNormalParams, {
+      # Check if the data is available in the 'dataset' variable
+      if (!is.null(dataset)) {
+        # Fit the data to a normal distribution
+        fit_result <- fitdist(dataset[, input$outcome], "norm")
+        # Extract the mean and standard deviation
+        fitted_mean <- fit_result$estimate[[1]]
+        fitted_sd <- fit_result$estimate[[2]]
+        # Update the input fields with the fitted parameters
+        updateTextInput(session, "NormMean", value = fitted_mean)
+        updateTextInput(session, "NormSD", value = fitted_sd)
+        # Display a fitting status message
+        output$fitStatus <- renderText({
+          paste("Fitted mean: ", fitted_mean, " Fitted standard deviation: ", fitted_sd)
+        })
+      }
+    })
+
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
         title = "Help / ReadMe",
