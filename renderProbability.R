@@ -368,6 +368,11 @@ renderProbability <- function(input, output, session) {
         circular::pvonmises(as.numeric(probrange[1]), as.numeric(input$vonMisesMu), as.numeric(input$vonMisesKappa))
       paste("Prob. = ", prob, sep = "")
     }
+    # ----------------------- Continuous: Walk Max Distribution ----------------------- #
+    else if (distType == distributions[72]) {
+      prob <- pWalkMax(as.numeric(probrange[2]), as.numeric(input$WalkMaxSteps)) - pWalkMax(as.numeric(probrange[1]), as.numeric(input$WalkMaxSteps))
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Continuous: Weibull Distribution ----------------------- #
     else if (distType == distributions[74]) {
       prob <- Rlab::pweibull(as.numeric(probrange[2]), as.numeric(input$WeibullK), as.numeric(input$WeibullLambda)) - Rlab::pweibull(as.numeric(probrange[1]), as.numeric(input$WeibullK), as.numeric(input$WeibullLambda))

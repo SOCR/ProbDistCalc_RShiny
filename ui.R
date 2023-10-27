@@ -428,6 +428,11 @@ shinyUI(
         textInput("vonMisesMu", paste("Please input parameter mu for ", distributions[71], " : ", sep = ""), 0),
         textInput("vonMisesKappa", paste("Please input parameter kappa for ", distributions[71], " : ", sep = ""), 1)
       ),
+      # ----------------------- Input: Walk Max Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == \"", distributions[72], "\"", sep = ""),
+        textInput("WalkMaxSteps", paste("Please input parameter mu for ", distributions[72], " : ", sep = ""), 4),
+      ),
       # ----------------------- Input: Weibull Distribution ----------------------- #
       conditionalPanel(
         condition = paste("input.Distribution == '", distributions[74], "'", sep = ""),

@@ -179,6 +179,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyUQuadraticDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[71]) {
             plotlyVonMisesDistribution(plotrange, input, distType, probrange, session)
+        } else if (distType == distributions[72]) {
+            plotlyWalkMaxDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[74]) {
             plotlyWeibullDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[75]) {
