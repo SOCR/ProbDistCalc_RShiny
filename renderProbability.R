@@ -91,6 +91,16 @@ renderProbability <- function(input, output, session) {
       prob <- punif(round(as.numeric(probrange[2]), 0), as.numeric(input$DisUnifMin), as.numeric(input$DisUnifMax)) - punif(round(as.numeric(probrange[1]), 0) - 1, as.numeric(input$DisUnifMin), as.numeric(input$DisUnifMax))
       paste("Prob. = ", prob, sep = "")
     }
+    # ----------------------- Discrete: Erlang Distribution  ----------------------- #
+    else if (distType == distributions[21]) {
+      prob <- pErlang(round(as.numeric(probrange[2]), 0), as.numeric(input$ErlangScale), as.numeric(input$ErlangShape)) - pErlang(round(as.numeric(probrange[1]), 0), as.numeric(input$ErlangScale), as.numeric(input$ErlangShape))
+      paste("Prob. = ", prob, sep = "")
+    }
+    # ----------------------- Discrete: Error Distribution ----------------------- #
+    else if (distType == distributions[22]) {
+      prob <- pError(round(as.numeric(probrange[2]), 0), as.numeric(input$ErrorLocation), as.numeric(input$ErrorScale), as.numeric(input$ErrorShape)) - pError(round(as.numeric(probrange[1]), 0), as.numeric(input$ErrorLocation), as.numeric(input$ErrorScale), as.numeric(input$ErrorShape))
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Continuous: Exponential Distribution ----------------------- #
     else if (distType == distributions[23]) {
       prob <- Rlab::pexp(as.numeric(probrange[2]), as.numeric(input$ExpLambda)) - Rlab::pexp(as.numeric(probrange[1]), as.numeric(input$ExpLambda))
@@ -104,6 +114,16 @@ renderProbability <- function(input, output, session) {
     # ----------------------- Continuous: Gamma Distribution ----------------------- #
     else if (distType == distributions[27]) {
       prob <- Rlab::pgamma(as.numeric(probrange[2]), shape = as.numeric(input$GammaA), rate = as.numeric(input$GammaB)) - Rlab::pgamma(as.numeric(probrange[1]), shape = as.numeric(input$GammaA), rate = as.numeric(input$GammaB))
+      paste("Prob. = ", prob, sep = "")
+    }
+    # ----------------------- Continuous: General Cauchy Distribution ----------------------- #
+    else if (distType == distributions[28]) {
+      prob <- pGeneralCauchy(as.numeric(probrange[2]), as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta)) - pGeneralCauchy(as.numeric(probrange[1]), as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta))
+      paste("Prob. = ", prob, sep = "")
+    }
+    # ----------------------- Continuous: Generalized Extreme Value (GEV) Distribution ----------------------- #
+    else if (distType == distributions[29]) {
+      prob <- pgev(as.numeric(probrange[2]), as.numeric(input$GEVMiu), as.numeric(input$GEVSigma), as.numeric(input$GEVEpsilon)) - pgev(as.numeric(probrange[1]), as.numeric(input$GEVMiu), as.numeric(input$GEVSigma), as.numeric(input$GEVEpsilon))
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Discrete: Geometric Distribution ----------------------- #

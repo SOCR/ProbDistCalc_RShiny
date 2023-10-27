@@ -77,6 +77,8 @@ renderMainPlot <- function(input, output, session) {
             )
         } else if (distType == distributions[27]) {
             plotlyGammaDistribution(plotrange, input, distType, probrange, session)
+        } else if (distType == distributions[28]) {
+            plotlyGeneralCauchyDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[29]) {
             #   Discrete: GEV Distribution
             #   Miu = locationn Sig = scale

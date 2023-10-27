@@ -172,20 +172,26 @@ shinyUI(
       ),
       # ----------------------- Input: Fisher-Tippett Distribution ----------------------- #
       conditionalPanel(
-        condition = paste("input.Distribution == \"", distributions[26], "\"", sep = ""),
+        condition = paste("input.Distribution == '", distributions[26], "'", sep = ""),
         textInput("GEVMiu", paste("Please input miu for ", distributions[26], " : ", sep = ""), 1),
         textInput("GEVSigma", paste("Please input sigma for ", distributions[26], " : ", sep = ""), 1),
         textInput("GEVEpsilon", paste("Please input Epsilon for ", distributions[26], " : ", sep = ""), 1)
       ),
       # ----------------------- Input: Gamma Distribution ----------------------- #
       conditionalPanel(
-        condition = paste("input.Distribution == \"", distributions[27], "\"", sep = ""),
+        condition = paste("input.Distribution == '", distributions[27], "'", sep = ""),
         textInput("GammaA", paste("Please input alpha for ", distributions[27], " : ", sep = ""), 1),
         textInput("GammaB", paste("Please input beta for ", distributions[27], " : ", sep = ""), 1)
       ),
+      # ----------------------- Input: General Cauchy Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == '", distributions[28], "'", sep = ""),
+        textInput("GeneralCauchyAlpha", paste("Please input alpha for ", distributions[28], " : ", sep = ""), 1),
+        textInput("GeneralCauchyBeta", paste("Please input beta for ", distributions[28], " : ", sep = ""), 1),
+      ),
       # ----------------------- Input: Generalized Extreme Value (GEV) Distribution ----------------------- #
       conditionalPanel(
-        condition = paste("input.Distribution == \"", distributions[29], "\"", sep = ""),
+        condition = paste("input.Distribution == '", distributions[29], "'", sep = ""),
         textInput("GEVMiu", paste("Please input miu for ", distributions[29], " : ", sep = ""), 1),
         textInput("GEVSigma", paste("Please input sigma for ", distributions[29], " : ", sep = ""), 1),
         textInput("GEVEpsilon", paste("Please input Epsilon for ", distributions[29], " : ", sep = ""), 1)
