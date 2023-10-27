@@ -79,6 +79,9 @@ shinyUI(
       conditionalPanel(condition = paste("input.Distribution == '",distributions[14],"'",sep = ""),
                        textInput("Chi2NCn",paste("Please input Probability for ",distributions[14]," : ",sep = ""),1),
                        textInput("Chi2NCNCP",paste("Please input non-centrality paramter for ",distributions[14]," : ",sep = ""),1)),
+        # ----------------------- Input: Circle Distribution ----------------------- #
+      conditionalPanel(condition = paste("input.Distribution == '",distributions[15],"'",sep = ""),
+                       textInput("CircleRadius",paste("Please input radius for ",distributions[15]," : ",sep = ""),2)),
         # ----------------------- Input: Continuous Uniform Distribution ----------------------- #
       conditionalPanel(condition = paste("input.Distribution == '",distributions[16],"'",sep = ""),
                        textInput("UnifMin",paste("Please input Min. for ",distributions[16]," : ",sep = ""),0),

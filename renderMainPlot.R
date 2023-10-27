@@ -48,6 +48,8 @@ renderMainPlot <- function(input, output, session) {
         } else if (distType == distributions[14]) {
             plotlyChiSqureNonCentralDistribution(plotrange, input, distType, probrange,
                 session)
+        } else if (distType == distributions[15]) {
+            plotlyCircleDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[16]) {
             plotlyContinuousUniformDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[19]) {

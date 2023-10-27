@@ -31,6 +31,7 @@ library(shinyWidgets)
 library(circular)
 library(mnormt)
 library(ExtDist)
+library(VaRES)
 
 plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
 for (file in plotlyFunctions){
