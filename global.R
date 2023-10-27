@@ -49,12 +49,12 @@ distToImpl <- c(
   "Die Distribution",
   "Finite Distribution",
   "Kolmogorov Distribution",
-  "Matching Distribution",
+  # "Matching Distribution",
   "Mixture Distribution",
   "Multinomial Distribution",
   "Negative-Multinomial Distribution",
-  "Poker-Dice Distribution",
-  "Two-Sided Power Distribution",
+  # "Poker-Dice Distribution",
+  # "Two-Sided Power Distribution",
   "WalkMax Distribution",
   "WalkPosition Distribution"
 )

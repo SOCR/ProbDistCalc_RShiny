@@ -304,6 +304,11 @@ renderProbability <- function(input, output, session) {
       prob <- ppois(round(as.numeric(probrange[2]), 0), as.numeric(input$PoiLambda)) - ppois(round(as.numeric(probrange[1]), 0) - 1, as.numeric(input$PoiLambda))
       paste("Prob. = ", prob, sep = "")
     }
+    # ----------------------- Discrete: Poker Dice Distribution ----------------------- #
+    else if (distType == distributions[62]) {
+      prob <- pPokerDice(as.numeric(probrange[2])) - pPokerDice(as.numeric(probrange[1]))
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Continuous: Power Function Distribution ----------------------- #
     else if (distType == distributions[63]) {
       prob <- ppower(round(as.numeric(probrange[2]), 0), as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta))) - ppower(round(as.numeric(probrange[1]), 0), as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta)))
@@ -332,6 +337,13 @@ renderProbability <- function(input, output, session) {
     # ----------------------- Continuous: Triangular Distribution ----------------------- #
     else if (distType == distributions[68]) {
       prob <- ptriangular(as.numeric(probrange[2]), as.numeric(input$Triangular_A), as.numeric(input$Triangular_B), as.numeric(input$Triangular_C)) - ptriangular(as.numeric(probrange[1]), as.numeric(input$Triangular_A), as.numeric(input$Triangular_B), as.numeric(input$Triangular_C))
+      paste("Prob. = ", prob, sep = "")
+    }
+    # ----------------------- Continuous: Two-Sided Power Distribution ----------------------- #
+    else if (distType == distributions[69]) {
+      prob <- pTwoSidedPower(as.numeric(probrange[2]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight)
+        , as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)) - pTwoSidedPower(as.numeric(probrange[1]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight)
+        , as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)) 
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: U-quadratic distribution ----------------------- #

@@ -369,6 +369,10 @@ shinyUI(
         condition = paste("input.Distribution == '", distributions[61], "'", sep = ""),
         textInput("PoiLambda", paste("Please input lambda for ", distributions[61], " : ", sep = ""), 1)
       ),
+      # ----------------------- Input: Poker Dice Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == '", distributions[62], "'", sep = "")
+      ),
       # ----------------------- Input: Power Function Distribution ----------------------- #
       conditionalPanel(
         condition = paste("input.Distribution == '", distributions[63], "'", sep = ""),
@@ -403,6 +407,14 @@ shinyUI(
         textInput("Triangular_A", paste("Please input parameter a for ", distributions[68], " : ", sep = ""), 1),
         textInput("Triangular_B", paste("Please input parameter b for ", distributions[68], " : ", sep = ""), 10),
         textInput("Triangular_C", paste("Please input parameter c for ", distributions[68], " : ", sep = ""), 4),
+      ),
+      # ----------------------- Input: Two-Sided Power Distribution ----------------------- #s
+      conditionalPanel(
+        condition = paste("input.Distribution == \"", distributions[69], "\"", sep = ""),
+        textInput("TSPowerLeft", paste("Please input left for ", distributions[69], " : ", sep = ""), -5),
+        textInput("TSPowerRight", paste("Please input right for ", distributions[69], " : ", sep = ""), 5),
+        textInput("TSPowerMed", paste("Please input med for ", distributions[69], " : ", sep = ""), 0),
+        textInput("TSPowerPower", paste("Please input power for ", distributions[69], " : ", sep = ""), 3)
       ),
       # ----------------------- Input: U-quadratic distribution ----------------------- #
       conditionalPanel(

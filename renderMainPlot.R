@@ -159,6 +159,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyPointMassDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[61]) {
             plotlyPoissonDistribution(plotrange, input, distType, probrange, session)
+        } else if (distType == distributions[62]) {
+            plotlyPokerDiceDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[63]) {
             plotlyPowerFunctionDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[64]) {
@@ -171,6 +173,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyStudentsTNonCentralDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[68]) {
             plotlyTriangleDistribution(plotrange, input, distType, probrange)
+        } else if (distType == distributions[69]) {
+            plotlyTwoSidedPowerDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[70]) {
             plotlyUQuadraticDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[71]) {
