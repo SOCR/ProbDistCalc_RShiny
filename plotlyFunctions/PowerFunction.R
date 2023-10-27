@@ -22,8 +22,10 @@ plotlyPowerFunctionDistribution <- function(plotrange, input, distType, probrang
                 newy[index] = NA
             }
         }
-        prob = ppower(round(as.numeric(probrange[2]),0),as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta)))-ppower(round(as.numeric(probrange[1]),0),as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta)))
-        
+        prob = ppower(round(as.numeric(probrange[2]), 0), as.numeric(input$PowerAlpha),
+            as.numeric((input$PowerBeta))) - ppower(round(as.numeric(probrange[1]),
+            0), as.numeric(input$PowerAlpha), as.numeric((input$PowerBeta)))
+
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")

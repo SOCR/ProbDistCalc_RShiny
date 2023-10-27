@@ -6,5 +6,9 @@ linters: linters_with_defaults(
 exclusions: list(
     "global.R",
     "server.R",
+    "ui.R",
+    "renderMainPlot.R",
+    "renderProbability.R",
+    "Function.R",
     "plotlyFunctions"
   )

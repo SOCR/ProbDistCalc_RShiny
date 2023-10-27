@@ -18,11 +18,7 @@ library("Rlab")
 library("shinyWidgets")
 
 # ----------------------- Parse and Store xml Databse of Metadata from Distributome Project ----------------------- #
-xml_data <- read_xml(
-  "https://socr.umich.edu/docs/uploads/2020/Distributome.xml",
-  encoding = "UTF-8", as_html = FALSE,
-  options = c("RECOVER", "NOERROR", "NOBLANKS")
-)
+xml_data <- read_xml("Distributome.xml", encoding = "UTF-8")
 xml_rootnode <- xml_root(xml_data)
 xml_distributions <- xml_children(xml_child(xml_rootnode))
 xml_len <- length(xml_distributions)
