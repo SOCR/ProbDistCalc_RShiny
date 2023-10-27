@@ -58,6 +58,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyDiscreteArcSineDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[20]) {
             plotlyDiscreteUniformDistribution(plotrange, input, distType, probrange)
+        } else if (distType == distributions[21]) {
+            plotlyErlangDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[23]) {
             plotlyExponentialDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[25]) {

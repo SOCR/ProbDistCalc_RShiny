@@ -145,6 +145,12 @@ shinyUI(
         textInput("DisUnifMin", paste("Please input Min. for ", distributions[20], " : ", sep = ""), 0),
         textInput("DisUnifMax", paste("Please input Max. for ", distributions[20], " : ", sep = ""), 1)
       ),
+      # ----------------------- Input: Erlang Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == '", distributions[21], "'", sep = ""),
+        textInput("ErlangScale", paste("Please input scale for ", distributions[21], " : ", sep = ""), 1),
+        textInput("ErlangShape", paste("Please input shape for ", distributions[21], " : ", sep = ""), 1)
+      ),
       # ----------------------- Input: Expopnential Distribution ----------------------- #
       conditionalPanel(
         condition = paste("input.Distribution == '", distributions[23], "'", sep = ""),
