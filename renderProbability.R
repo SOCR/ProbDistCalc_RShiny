@@ -226,6 +226,12 @@ renderProbability <- function(input, output, session) {
       prob <- plomax(as.numeric(probrange[2]), as.numeric(input$LomaxLamda), as.numeric(input$LomaxKappa)) - plomax(as.numeric(probrange[1]), as.numeric(input$LomaxLamda), as.numeric(input$LomaxKappa))
       paste("Prob. = ", prob, sep = "")
     }
+    # ----------------------- Continuous: Matching Distribution ----------------------- #
+    else if (distType == distributions[48]) {
+      prob <- pMatch(as.numeric(probrange[2]), as.numeric(input$MatchParam)) -
+            pMatch(as.numeric(probrange[1]), as.numeric(input$MatchParam))
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Continuous: Maxwell Distribution ----------------------- #
     else if (distType == distributions[49]) {
       prob <- pmaxwell(as.numeric(probrange[2]), as.numeric(input$MaxwellA)) - pmaxwell(as.numeric(probrange[1]), as.numeric(input$MaxwellA))

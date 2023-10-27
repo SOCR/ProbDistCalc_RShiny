@@ -300,6 +300,11 @@ shinyUI(
         textInput("LomaxLamda", paste("Please input Lambda for ", distributions[47], " : ", sep = ""), 1),
         textInput("LomaxKappa", paste("Please input Kappa for ", distributions[47], " : ", sep = ""), 2)
       ),
+      # ----------------------- Input: Matching Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == '", distributions[48], "'", sep = ""),
+        textInput("MatchParam", paste("Please input parameter for ", distributions[48], " : ", sep = ""), 1)
+      ),
       # ----------------------- Input: Maxwell Distribution ----------------------- #
       conditionalPanel(
         condition = paste("input.Distribution == '", distributions[49], "'", sep = ""),

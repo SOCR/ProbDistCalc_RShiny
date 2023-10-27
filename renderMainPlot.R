@@ -134,6 +134,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyLogNormalDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[47]) {
             plotlyLomaxDistribution(plotrange, input, distType, probrange)
+        } else if (distType == distributions[48]) {
+            plotlyMatchingDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[49]) {
             plotlyMaxwellDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[50]) {
