@@ -17,7 +17,7 @@ plotlyGeneralCauchyDistribution <- function(plotrange, input, distType, probrang
         f28 <- dGeneralCauchy(xseq, as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta))
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f28 <- Rlab::pexp(xseq, as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta))
+        f28 <- pGeneralCauchy(xseq, as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta))
         graphtype <- "CDF"
     } else {
         graphtype <- ""
@@ -32,8 +32,8 @@ plotlyGeneralCauchyDistribution <- function(plotrange, input, distType, probrang
                 newy[index] = NA
             }
         }
-        prob = Rlab::pexp(as.numeric(probrange[2]), as.numeric(input$ExpLambda)) -
-            Rlab::pexp(as.numeric(probrange[1]), as.numeric(input$ExpLambda))
+        prob = pGeneralCauchy(as.numeric(probrange[2]), as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta)) -
+            pGeneralCauchy(as.numeric(probrange[1]), as.numeric(input$GeneralCauchyAlpha), as.numeric(input$GeneralCauchyBeta))
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")

@@ -38,8 +38,8 @@ plotlyErlangDistribution <- function(plotrange, input, distType, probrange) {
                 newy[index] = NA
             }
         }
-        prob = Rlab::pexp(as.numeric(probrange[2]), as.numeric(input$ExpLambda)) -
-            Rlab::pexp(as.numeric(probrange[1]), as.numeric(input$ExpLambda))
+        prob = pErlang(as.numeric(probrange[2]), as.numeric(input$ErlangScale), as.numeric(input$ErlangShape)) -
+            pErlang(as.numeric(probrange[1]), as.numeric(input$ErlangScale), as.numeric(input$ErlangShape))
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")

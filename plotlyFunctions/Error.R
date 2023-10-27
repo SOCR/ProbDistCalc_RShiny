@@ -33,8 +33,8 @@ plotlyErrorDistribution <- function(plotrange, input, distType, probrange) {
                 newy[index] = NA
             }
         }
-        prob = Rlab::pexp(as.numeric(probrange[2]), as.numeric(input$ExpLambda)) -
-            Rlab::pexp(as.numeric(probrange[1]), as.numeric(input$ExpLambda))
+        prob = pError(as.numeric(probrange[2]), as.numeric(input$ErrorLocation), as.numeric(input$ErrorScale), as.numeric(input$ErrorShape)) -
+            pError(as.numeric(probrange[1]), as.numeric(input$ErrorLocation), as.numeric(input$ErrorScale), as.numeric(input$ErrorShape))
         fig <- fig %>%
             add_trace(x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
                 hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)")

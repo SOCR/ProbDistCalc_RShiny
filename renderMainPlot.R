@@ -90,6 +90,8 @@ renderMainPlot <- function(input, output, session) {
             )
         } else if (distType == distributions[30]) {
             plotlyGeometricDistribution(plotrange, input, distType, probrange, session)
+        } else if (distType == distributions[31]) {
+            plotlyGilbratsDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[32]) {
             plotlyGompertzDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[33]) {

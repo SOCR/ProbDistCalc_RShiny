@@ -131,6 +131,12 @@ renderProbability <- function(input, output, session) {
       prob <- pgeom(round(as.numeric(probrange[2]), 0), as.numeric(input$GeomProb)) - pgeom(round(as.numeric(probrange[1]), 0) - 1, as.numeric(input$GeomProb))
       paste("Prob. = ", prob, sep = "")
     }
+    # ----------------------- Discrete: Gilbrats Distribution ----------------------- #
+    else if (distType == distributions[31]) {
+      prob <- pGilbrats(as.numeric(probrange[2]), as.numeric(input$GilbratsMu), as.numeric(input$GilbratsSigma)) -
+            pGilbrats(as.numeric(probrange[1]), as.numeric(input$GilbratsMu), as.numeric(input$GilbratsSigma)) 
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Discrete: Gompertz Distribution ----------------------- #
     else if (distType == distributions[32]) {
       prob <- pgompertz(as.numeric(plotrange[2]), as.numeric(input$Gompertz_N), as.numeric(input$Gompertz_B)) - pgompertz(as.numeric(plotrange[1]), as.numeric(input$Gompertz_N), as.numeric(input$Gompertz_B))

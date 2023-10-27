@@ -48,8 +48,6 @@ distToImpl <- c(
   "Coupon Distribution",
   "Die Distribution",
   "Finite Distribution",
-  "General Cauchy Distribution",
-  "Gilbrats Distribution",
   "Kolmogorov Distribution",
   "Matching Distribution",
   "Mixture Distribution",

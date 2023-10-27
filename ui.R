@@ -201,6 +201,12 @@ shinyUI(
         condition = paste("input.Distribution == '", distributions[30], "'", sep = ""),
         textInput("GeomProb", paste("Please input Probability for ", distributions[30], " : ", sep = ""), 0.5)
       ),
+      # ----------------------- Input: Gilbrats Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == '", distributions[31], "'", sep = ""),
+        textInput("GilbratsMu", paste("Please input mu for ", distributions[31], " : ", sep = ""), 0),
+        textInput("GilbratsSigma", paste("Please input sigma for ", distributions[31], " : ", sep = ""), 1)
+      ),
       # ----------------------- Input: Gompertz Distribution ----------------------- #
       conditionalPanel(
         condition = paste("input.Distribution == '", distributions[32], "'", sep = ""),
