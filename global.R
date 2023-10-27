@@ -47,8 +47,6 @@ distToImpl <- c(
   "Birthday Distribution",
   "Coupon Distribution",
   "Die Distribution",
-  "Erlang Distribution",
-  "Error Distribution",
   "Finite Distribution",
   "General Cauchy Distribution",
   "Gilbrats Distribution",

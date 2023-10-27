@@ -14,6 +14,7 @@ library(xml2)
 library(shiny)
 library(plotly)
 library(stringr)
+library(HypergeoMat)
 library("Rlab")
 library("shinyWidgets")
 
@@ -150,6 +151,13 @@ shinyUI(
         condition = paste("input.Distribution == '", distributions[21], "'", sep = ""),
         textInput("ErlangScale", paste("Please input scale for ", distributions[21], " : ", sep = ""), 1),
         textInput("ErlangShape", paste("Please input shape for ", distributions[21], " : ", sep = ""), 1)
+      ),
+      # ----------------------- Input: Error Distribution ----------------------- #
+      conditionalPanel(
+        condition = paste("input.Distribution == '", distributions[22], "'", sep = ""),
+        textInput("ErrorLocation", paste("Please input location for ", distributions[22], " : ", sep = ""), 0),
+        textInput("ErrorScale", paste("Please input scale for ", distributions[22], " : ", sep = ""), 1),
+        textInput("ErrorShape", paste("Please input shape for ", distributions[22], " : ", sep = ""), 2)
       ),
       # ----------------------- Input: Expopnential Distribution ----------------------- #
       conditionalPanel(

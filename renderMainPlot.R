@@ -60,6 +60,8 @@ renderMainPlot <- function(input, output, session) {
             plotlyDiscreteUniformDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[21]) {
             plotlyErlangDistribution(plotrange, input, distType, probrange)
+        } else if (distType == distributions[22]) {
+            plotlyErrorDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[23]) {
             plotlyExponentialDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[25]) {
