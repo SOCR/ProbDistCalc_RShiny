@@ -51,10 +51,11 @@ References
 * [Bivariate Normal Distribution Calculator](https://github.com/SOCR/SOCR_Bivariate_Distributions) and the [SOCR Bivariate Normal Distribution Activity](http://wiki.stat.ucla.edu/socr/index.php/SOCR_BivariateNormal_JS_Activity).
 * [SOCR Distributions](http://www.socr.ucla.edu/htmls/dist/) and [distribution activities](http://wiki.socr.umich.edu/index.php/SOCR_EduMaterials_DistributionsActivities).
 # TODO
-
-- Change `distributions` from a list to a hashmap of named lists.
-  > Downsides of using a list: It would be disastrous to decide to add or remove one distribution later, since the index is used everywhere to identify distribution and we also want to keep the lexicographic order. Also, it’s very hard to find the index based on the name of some distribution.
-- ~~Refactor `plotly` functions into separate files.~~
-- Implement all missing distributions.
-  > - some plotly needs `VaRES` package
-- Make the slider self-adjust to the graph range.
+- [x] Sample finished to-do item.
+- [ ] The title of app should indicate it can be used as either probability calculator or modeler.
+- [ ] There should be histogram indicating the original dataset along with the distribution curve plot.
+- [ ] Should somehow allow user to upload their own datasets besides using the predefined datasets.
+- [ ] Should add labels to the plot, indicating the meaning of x,y axis.
+- [ ] Should display current parameters (like $\mu$ and $\sigma$) along with the plot.
+- [ ] User should be able to hide/display the distribution information (currently always shown in the left-bottom corner).
+- [ ] Extend modeling functionality to other distributions (currently only supporting Normal Distribution).
