@@ -93,6 +93,17 @@
       ],
       "Hash": "ca7382e6be11685fb4e4680485568860"
     },
+    "EigenR": {
+      "Package": "EigenR",
+      "Version": "1.2.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "Rcpp",
+        "RcppEigen"
+      ],
+      "Hash": "a3da654a5063d4d284e1d08be1ddaccb"
+    },
     "Exact": {
       "Package": "Exact",
       "Version": "3.2",
@@ -117,6 +128,27 @@
         "optimx"
       ],
       "Hash": "b95d429c613352f36b1eed60b0b81c45"
+    },
+    "HypergeoMat": {
+      "Package": "HypergeoMat",
+      "Version": "4.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "EigenR",
+        "JuliaConnectoR",
+        "Rcpp",
+        "RcppEigen",
+        "gsl"
+      ],
+      "Hash": "2d7e96494ba271fec3a57d99f608803d"
+    },
+    "JuliaConnectoR": {
+      "Package": "JuliaConnectoR",
+      "Version": "1.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "68962adf163c6be3674eb6128b7b74a0"
     },
     "MASS": {
       "Package": "MASS",
@@ -195,6 +227,19 @@
       ],
       "Hash": "cafeccdc6577a445a15ce98b6a1805cf"
     },
+    "RcppEigen": {
+      "Package": "RcppEigen",
+      "Version": "0.3.3.9.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "stats",
+        "utils"
+      ],
+      "Hash": "acb0a5bf38490f26ab8661b467f4f53a"
+    },
     "Rdpack": {
       "Package": "Rdpack",
       "Version": "2.5",
@@ -234,6 +279,16 @@
         "stats4"
       ],
       "Hash": "72b437528bf908ab586d5fdb838c5468"
+    },
+    "VaRES": {
+      "Package": "VaRES",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "87c625cec72700ecbb26e2497e9b44aa"
     },
     "anytime": {
       "Package": "anytime",
@@ -861,6 +916,16 @@
         "utils"
       ],
       "Hash": "a701a23d58eabb79f237b8b1bbf30620"
+    },
+    "gsl": {
+      "Package": "gsl",
+      "Version": "2.1-8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "8f8205cbb9f1066a94e22898fe949184"
     },
     "gtable": {
       "Package": "gtable",
