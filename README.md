@@ -52,7 +52,7 @@ References
 * [SOCR Distributions](http://www.socr.ucla.edu/htmls/dist/) and [distribution activities](http://wiki.socr.umich.edu/index.php/SOCR_EduMaterials_DistributionsActivities).
 # TODO
 - [x] Sample finished to-do item.
-- [ ] The title of app should indicate it can be used as either probability calculator or modeler.
+- [x] The title of app should indicate it can be used as either probability calculator or modeler.
 - [ ] There should be histogram indicating the original dataset along with the distribution curve plot.
 - [ ] Should somehow allow user to upload their own datasets besides using the predefined datasets.
 - [ ] Should add labels to the plot, indicating the meaning of x,y axis.

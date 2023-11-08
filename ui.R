@@ -24,7 +24,7 @@ shinyUI(
   fluidPage(
     withMathJax(),
     # ----------------------- Output: Title ----------------------- #
-    titlePanel("SOCR Probability Distribution Calculator"),
+    titlePanel("SOCR Probability Distribution Calculator and Modeler"),
     sidebarPanel(
       ## added
       selectInput("outcome",
