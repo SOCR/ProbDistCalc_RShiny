@@ -24,6 +24,10 @@ renderMainPlot <- function(input, output, session) {
             probrange[2] <- input$probrangeNumMax
         }
         distributionInfo <- distributionInfoList[[distType]]
+        if (distributionInfo$hasImplementation == FALSE) {
+            showNotification("This distribution is not yet implemented.", type = "error", duration = 2)
+            return()
+        }
         arity <- length(formals(distributionInfo$plotlyFunc))
         if (arity == 4) {
             distributionInfo$plotlyFunc(plotrange, input, distType, probrange)
