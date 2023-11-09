@@ -101,7 +101,12 @@ shinyUI(
       # ----------------------- Input: Helpme ----------------------- #
       actionButton("vh.readme", "ReadMe/Help"),
       # ----------------------- Output: Metadata Output ----------------------- #
-      uiOutput("MetaData"), tags$style(type = "text/css", "#MetaData {white-space: pre-wrap;}")
+      actionButton("toggleButton", "Show/Hide Distribution Metadata"),
+      conditionalPanel(
+        condition = "input.toggleButton % 2 == 1",
+        uiOutput("MetaData"),
+        tags$style(type = "text/css", "#MetaData {white-space: pre-wrap;}")
+      )
     ),
     mainPanel(
       h3(textOutput("caption")),
