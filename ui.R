@@ -198,23 +198,7 @@ shinyUI(
              left: calc(40%);
              font-size: 30px;
              }
-             .highlight-input {
-             background-color: yellow;
-             }
              ")
-      ),
-      tags$script(
-        HTML(
-          "Shiny.addCustomMessageHandler('highlightTextInput', function(inputId) {
-            var duration = 500; // 0.5 seconds
-            var inputElement = $('#' + inputId);
-            var originalColor = inputElement.css('background-color');
-            inputElement.addClass('highlight-input');
-            setTimeout(function() {
-              inputElement.removeClass('highlight-input');
-            }, duration);
-          });"
-        )
       )
     ),
     withMathJax(),
