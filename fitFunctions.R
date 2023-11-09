@@ -79,17 +79,17 @@ fitCauchy <- function(dataset) {
 #     return(fitDistModel)
 # }
 
-# Not tested
-fitChiSquareNonCentral <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "chisqnonc")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitChiSquareNonCentral <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "chisqnonc")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitCircle <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "circle")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitCircle <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "circle")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitContinuousUniform <- function(dataset) {
@@ -140,11 +140,11 @@ fitExponential <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitFinite <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "finite")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitFinite <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "finite")
+#     return(fitDistModel)
+# }
 
 
 # FIXME: This is not working
@@ -182,11 +182,11 @@ fitGeometric <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitGilbrats <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "gilbrat")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitGilbrats <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "gilbrat")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitGompertz <- function(dataset) {
@@ -315,11 +315,11 @@ fitMultinomial <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitMuth <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "muth")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitMuth <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "muth")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitNegativeBinomial <- function(dataset) {
