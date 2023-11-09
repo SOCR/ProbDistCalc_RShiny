@@ -36,10 +36,30 @@ generateParameterlPanel <- function(distributionInfo) {
 generateFitButton <- function() {
   conditionalPanel(
     condition = TRUE,
-    actionButton("fitParams", "Fit Parameters from Data"),
+    actionButton("fitParams", "Modeler: Fit Parameters from Data"),
     textOutput("fitStatus")
   )
 }
+
+# Define custom JavaScript to highlight the text input
+js_code <- "
+Shiny.addCustomMessageHandler('highlightTextInput', function(inputId) {
+  // Duration to keep the background color changed (in milliseconds)
+  var duration = 500; // 0.5 seconds
+  var inputElement = $('#' + inputId);
+
+  // Store the original background color
+  var originalColor = inputElement.css('background-color');
+
+  // Set the background color to yellow
+  inputElement.css('background-color', 'yellow');
+
+  // After the specified duration, revert to the original color
+  setTimeout(function() {
+    inputElement.css('background-color', originalColor);
+  }, duration);
+});
+"
 
 shinyUI(
   fluidPage(
@@ -51,9 +71,25 @@ shinyUI(
              left: calc(40%);
              font-size: 30px;
              }
+             .highlight-input {
+             background-color: yellow;
+             }
              "
             )
+        ),
+      tags$script(
+        HTML(
+          "Shiny.addCustomMessageHandler('highlightTextInput', function(inputId) {
+            var duration = 500; // 0.5 seconds
+            var inputElement = $('#' + inputId);
+            var originalColor = inputElement.css('background-color');
+            inputElement.addClass('highlight-input');
+            setTimeout(function() {
+              inputElement.removeClass('highlight-input');
+            }, duration);
+          });"
         )
+      )
     ),
     withMathJax(),
     # ----------------------- Output: Title ----------------------- #
