@@ -109,32 +109,6 @@ shinyUI(
       )
     ),
     mainPanel(
-      h3(textOutput("caption")),
-      tabsetPanel(
-        type = "tabs",
-        tabPanel("Data", DT::dataTableOutput("tbl")), # Data as datatable
-        tabPanel(
-          "Scatterplot", plotlyOutput("scatterplot"),
-          br(), hr(),
-          withMathJax(
-            paste0("Least Squares Linear Model Estimates"),
-            br(),
-            paste0(
-              "Slope: \\(\\hat{\\beta}_1 = \\dfrac{\\big(\\sum^n_{i=1} x_i y_i \\big) - n \\bar{x}
-                                    \\bar{y}}{\\sum^n_{i=1} (x_i- \\bar{x})^2} \\) =",
-              "\\(\\dfrac{ n \\big(\\sum^n_{i=1} x_i y_i \\big) -
-                                    \\big(\\sum^n_{i=1} x_i \\big) \\big(\\sum^n_{i=1} y_i \\big) }
-                                    {n \\sum^n_{i=1} x_i^2 - \\big(\\sum^n_{i=1} x_i \\big)^2} \\)"
-            ),
-            br(),
-            paste0("Intercept: \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x} \\) "),
-            br(),
-            paste0("Prediction: \\( \\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x \\) ")
-          )
-        ), # Scatter Plot,
-        tabPanel("Model Summary", verbatimTextOutput("summary")) # Regression output
-      ),
-
       # ----------------------- Input: Switch between Slider and Manual Inputs for Ranges and SD function ----------------------- #
       fluidRow(
         column(2, switchInput(inputId = "numericalValues", value = FALSE, onLabel = "Manual", offLabel = "Slider")),
@@ -189,6 +163,32 @@ shinyUI(
       ),
       # ----------------------- Ouput: Calculated Probability ----------------------- #
       textOutput("probability"),
+      # ----------------------- Dataset Information --------------------------------- #
+      h3(textOutput("caption")),
+      tabsetPanel(
+        type = "tabs",
+        tabPanel("Data", DT::dataTableOutput("tbl")), # Data as datatable
+        tabPanel(
+          "Scatterplot", plotlyOutput("scatterplot"),
+          br(), hr(),
+          withMathJax(
+            paste0("Least Squares Linear Model Estimates"),
+            br(),
+            paste0(
+              "Slope: \\(\\hat{\\beta}_1 = \\dfrac{\\big(\\sum^n_{i=1} x_i y_i \\big) - n \\bar{x}
+                                    \\bar{y}}{\\sum^n_{i=1} (x_i- \\bar{x})^2} \\) =",
+              "\\(\\dfrac{ n \\big(\\sum^n_{i=1} x_i y_i \\big) -
+                                    \\big(\\sum^n_{i=1} x_i \\big) \\big(\\sum^n_{i=1} y_i \\big) }
+                                    {n \\sum^n_{i=1} x_i^2 - \\big(\\sum^n_{i=1} x_i \\big)^2} \\)"
+            ),
+            br(),
+            paste0("Intercept: \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x} \\) "),
+            br(),
+            paste0("Prediction: \\( \\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x \\) ")
+          )
+        ), # Scatter Plot,
+        tabPanel("Model Summary", verbatimTextOutput("summary")) # Regression output
+      ),
       # ----------------------- Output: SOCR Footer ----------------------- #
       tags$footer(
         div(shinyUI(bootstrapPage(div(
