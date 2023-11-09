@@ -134,3 +134,10 @@ distributionInfoList <- list(
 distToImpl <- Filter(function(x) !x$hasImplementation, distributionInfoList)
 distWithSD <- Filter(function(x) x$isWithSD, distributionInfoList)
 distributions <- names(distributionInfoList)
+nameToFullName <- function(name) {
+  for (distributionInfo in distributionInfoList) {
+    if (distributionInfo$name == name) {
+      return(distributions[distributionInfo$id])
+    }
+  }
+}
