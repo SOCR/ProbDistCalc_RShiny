@@ -10,7 +10,7 @@ Anderson-Darling Distribution:
   defaultValues:
   - 1.0
   - 1.0
-  hasImplementation: no
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitAndersonDarling
   plotlyFunc: plotlyAndersonDarlingDistribution
