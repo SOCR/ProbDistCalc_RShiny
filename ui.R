@@ -43,6 +43,18 @@ generateFitButton <- function() {
 
 shinyUI(
   fluidPage(
+    tags$head(
+      tags$style(
+        HTML(".shiny-notification {
+             position:fixed;
+             top: calc(40%);
+             left: calc(40%);
+             font-size: 30px;
+             }
+             "
+            )
+        )
+    ),
     withMathJax(),
     # ----------------------- Output: Title ----------------------- #
     titlePanel("SOCR Probability Distribution Calculator and Modeler"),

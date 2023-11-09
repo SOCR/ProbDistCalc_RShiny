@@ -72,9 +72,9 @@ shinyServer(
     observeEvent(input$fitParams, {
       distributionInfo <- distributionInfoList[[input$Distribution]]
       if (is.null(dataset)) {
-        print("[ERROR] No dataset")
+        showNotification("Dataset is not specified.", type = "error", duration = 2)
       } else if (is.null((distributionInfo$fitFunc))) {
-        print("[ERROR] No fit function")
+        showNotification("Fitting this distribution is not supported yet.", type = "error", duration = 2)
       } else{
         fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
         for (i in 1:length(fit_result$estimate)) {

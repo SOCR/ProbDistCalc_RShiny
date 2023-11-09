@@ -1,14 +1,14 @@
 # Not tested
-fitAndersonDarling <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "andersonDarling")
-    return(fitDistModel)
-}
+# fitAndersonDarling <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "andersonDarling")
+#     return(fitDistModel)
+# }
 
 # Not tested
-fitArcSine <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "arcsine")
-    return(fitDistModel)
-}
+# fitArcSine <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "arcsine")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitBenford <- function(dataset) {
