@@ -48,10 +48,10 @@ generateModelerSidePanel <- function() {
       label = ("Outcome (y)"),
       choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[6]
     ),
-    # selectInput("indepvar",
-    #   label = ("Explanatory variable (x)"),
-    #   choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
-    # ),
+    selectInput("indepvar",
+      label = ("Explanatory variable (x)"),
+      choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
+    ),
     actionButton("fitParams", "Fit Parameters from Data"),
     tags$hr(),
     generateDatasetFilePanel()

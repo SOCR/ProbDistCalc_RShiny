@@ -126,8 +126,6 @@ shinyServer(
       req(input$file)
       dataset <<- read.csv(input$file$datapath)
       # Update choices for selectInput widgets
-      # updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = namedListOfFeatures()[6])
-      # updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = namedListOfFeatures()[4])
       updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = NULL)
       updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = NULL)
     })
@@ -206,9 +204,16 @@ shinyServer(
 
 
 
-    # Data output
+    # Reactive function to read uploaded file and update dataset
+    dataset_reactive <- reactive({
+      req(input$file)
+      read.csv(input$file$datapath)
+    })
+
+    # Render the DataTable dynamically based on the reactive dataset
     output$tbl <- DT::renderDataTable({
-      DT::datatable(dataset, options = list(lengthChange = FALSE))
+      # Use isolate to prevent invalidation of the reactive expression on initial render
+        DT::datatable(dataset_reactive(), options = list(lengthChange = FALSE))
     })
 
 
