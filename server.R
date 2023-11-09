@@ -104,12 +104,13 @@ shinyServer(
             and researchers from SOCR, BDDS, MIDAS, MICHR, and the broad R-statistical computing community have contributed ideas,
             code, and support.
              <div align=\"center\">
-             <font size=\"3\"><b>Developers</b><br /></font></div>
-             <font size=\"2\">Jared (Tianyi) Chai (<b>chtianyi@umich.edu</b>)
-             <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)
-             <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>),
-             Ivo Dinov (<b>dinov@med.umich.edu</b>).</font>
-             <br /><br />
+             <font size=\"3\"><b>Developers</b><br /></font>
+             <font size=\"2\">Jared (Tianyi) Chai (<b>chtianyi@umich.edu</b>)<br />
+             <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)<br />
+             <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>)<br />
+             <font size=\"2\">Bole Li (<b>boleli@umich.edu</b>)<br />
+             Ivo Dinov (<b>dinov@med.umich.edu</b>).</font><br />
+             </div>
              "),
         easyClose = TRUE
       ))
