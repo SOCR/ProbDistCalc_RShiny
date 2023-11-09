@@ -30,13 +30,17 @@ renderMainPlot <- function(input, output, session) {
         }
         arity <- length(formals(distributionInfo$plotlyFunc))
         if (arity == 4) {
-            distributionInfo$plotlyFunc(plotrange, input, distType, probrange)
+            fig <- distributionInfo$plotlyFunc(plotrange, input, distType, probrange)
         } else if (arity == 5) {
-            distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session)
+            fig <- distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session)
         } else if (arity == 6) {
-            distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session, old_SD)
+            fig <- distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session, old_SD)
         } else {
             stop("unexpected arity")
+        }
+        if (!is.null(fig)) {
+            fig <- fig %>% layout(yaxis = list(title = input$outcome)) %>%
+                            layout(xaxis = list(title = input$indepvar))
         }
     })
 }
