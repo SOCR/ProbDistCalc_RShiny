@@ -35,7 +35,7 @@ generateParameterlPanel <- function(distributionInfo) {
 
 generateFitButton <- function() {
   conditionalPanel(
-    condition = paste("input.NeedFit"),
+    condition = TRUE,
     actionButton("fitParams", "Fit Parameters from Data"),
     textOutput("fitStatus")
   )
@@ -68,7 +68,6 @@ shinyUI(
       selectInput("FunctionType", "Please select distribution function type",
         choices = c("", "PDF/PMF", "CDF/CMF")
       ),
-      switchInput(inputId = "NeedFit", value = FALSE, onLabel = "Modeler", offLabel = "Calculator"),
       # ----------------------- Input: Parameter Inputs ----------------------- #
       lapply(distributionInfoList, generateParameterlPanel),
       # ----------------------- Input: Fit Parameters from Data ----------------------- #
