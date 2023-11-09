@@ -34,10 +34,6 @@ generateParameterlPanel <- function(distributionInfo) {
 
 generateCalculatorSidePanel <- function() {
   panel(
-    selectInput("Distribution", "Please select distribution type",
-      choices = distributions,
-      selected = distributions[57]
-    ),
     selectInput("FunctionType", "Please select distribution function type",
       choices = c("", "PDF/PMF", "CDF/CMF")
     ),
@@ -77,6 +73,10 @@ generateHelpPanel <- function() {
 
 generateSideBarPanel <- function() {
   sidebarPanel(
+    selectInput("Distribution", "Please select distribution type",
+      choices = distributions,
+      selected = distributions[57]
+    ),
     tabsetPanel(
       id = "CalcModelerTabsetPanel",
       type = "tabs",
