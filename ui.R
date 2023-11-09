@@ -142,7 +142,7 @@ generateMainPlotPanel <- function() {
   )
 }
 
-generateModelerPanel <- function() {
+generateDatasetPanel <- function() {
   panel(
     h3(textOutput("caption")),
     tabsetPanel(
@@ -208,10 +208,11 @@ shinyUI(
     generateSideBarPanel(),
     # ----------------------- Output: Main Panel ----------------------- #
     mainPanel(
-      # ----------------------- Output: Main Plot Panel ----------------------- #
-      generateMainPlotPanel(),
-      # ----------------------- Output: Modeler Panel --------------------------------- #
-      generateModelerPanel(),
+      tabsetPanel(
+        type = "tabs",
+        tabPanel("Plot", generateMainPlotPanel()),
+        tabPanel("Dataset", generateDatasetPanel())
+      ),
       # ----------------------- Output: SOCR Footer ----------------------- #
       tags$footer(
         div(shinyUI(bootstrapPage(div(
