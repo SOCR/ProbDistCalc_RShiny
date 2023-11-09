@@ -123,10 +123,16 @@ Binomial Distribution:
 Birthday Distribution:
   id: 9
   name: Birthday
-  inputNames: BirthN
-  labels: 'n'
-  defaultValues: 10.0
-  hasImplementation: no
+  inputNames: 
+  - BirthN
+  - BirthK
+  labels: 
+  - 'n'
+  - 'k'
+  defaultValues: 
+  - 365.0
+  - 20
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitBirthday
   plotlyFunc: plotlyBirthdayDistribution
