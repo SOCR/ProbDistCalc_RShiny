@@ -38,9 +38,13 @@ renderMainPlot <- function(input, output, session) {
         } else {
             stop("unexpected arity")
         }
-        if (!is.null(fig)) {
-            fig <- fig %>% layout(yaxis = list(title = input$outcome)) %>%
-                            layout(xaxis = list(title = input$indepvar))
+        # change title axis labels if it is a modeler plot
+        if (!is.null(fig) && input$CalcModelerTabsetPanel == "Modeler") {
+            fig <- fig %>%
+                layout(title = "Data Histogram & Probability Distribution Model") %>%
+                layout(yaxis = list(title = input$outcome)) %>%
+                layout(xaxis = list(title = input$indepvar))
         }
+        fig
     })
 }

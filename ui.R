@@ -56,7 +56,7 @@ generateModelerSidePanel <- function() {
       label = h3("Explanatory variable (x)"),
       choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
     ),
-    actionButton("fitParams", "Modeler: Fit Parameters from Data"),
+    actionButton("fitParams", "Fit Parameters from Data"),
     textOutput("fitStatus")
   )
 }
@@ -78,8 +78,12 @@ generateHelpPanel <- function() {
 
 generateSideBarPanel <- function() {
   sidebarPanel(
-    generateCalculatorSidePanel(),
-    generateModelerSidePanel(),
+    tabsetPanel(
+      id = "CalcModelerTabsetPanel",
+      type = "tabs",
+      tabPanel("Calculator", generateCalculatorSidePanel()),
+      tabPanel("Modeler", generateModelerSidePanel())
+    ),
     generateHelpPanel()
   )
 }

@@ -72,6 +72,7 @@ shinyServer(
     })
     # ----------------------- HelpMe ----------------------- #
     observeEvent(input$fitParams, {
+      updateTextInput(session, "FunctionType", value = "PDF/PMF")
       distributionInfo <- distributionInfoList[[input$Distribution]]
       if (is.null(dataset)) {
         showNotification("Dataset is not specified.", type = "error", duration = 2)
@@ -117,6 +118,12 @@ shinyServer(
         paste("Current Parameters:<br />", paste(paramValues, collapse = "<br />"))
       })
     )
+
+    observeEvent(input$CalcModelerTabsetPanel, {
+      if (input$CalcModelerTabsetPanel == "Modeler") {
+        updateTextInput(session, "FunctionType", value = "")
+      }
+    })
 
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
