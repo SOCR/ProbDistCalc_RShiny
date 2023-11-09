@@ -65,7 +65,7 @@ distributionInfoList <- list(
   "ArcSine Distribution" = distributionInfoClass(2, "ArcSine", c("ArcSineA", "ArcSineB"), c("A", "B"), c(1, 2)),
   "Benford Distribution" = distributionInfoClass(3, "Benford", c("Benfn"), c("number of leading digits"), c(1)),
   "Bernoulli Distribution" = distributionInfoClass(4, "Bernoulli", c("BernProb"), c("Probability"), c(0.5)),
-  "Beta Distribution" = distributionInfoClass(5, "Beta", c("BetaAlpha", "BetaBeta"), c("Alpha", "Beta"), c(2, 2)),
+  "Beta Distribution" = distributionInfoClass(5, "Beta", c("BetaAlpha", "BetaBeta"), c("Alpha", "Beta"), c(2, 2), fitFunc = fitBeta),
   "Beta (Generalized) Distribution" = distributionInfoClass(6, "Beta(Generalized)", c("BetaGenA", "BetaGenB", "BetaGenC", "BetaGenP"), c("A", "B", "C", "P"), c(3, 2, 1, 5)),
   "Beta-Binomial Distribution" = distributionInfoClass(7, "Beta-Binomial", c("BetaBinomN", "BetaBinomU", "BetaBinomV"), c("n", "alpha", "beta"), c(2, 3, 0.2)),
   "Binomial Distribution" = distributionInfoClass(8, "Binomial", c("BinomP", "BinomN"), c("Probability", "n"), c(0.5, 10)),
