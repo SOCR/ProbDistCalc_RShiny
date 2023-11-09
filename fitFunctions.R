@@ -122,20 +122,19 @@ fitDiscreteUniform <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitErlang <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "erlang")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitErlang <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "erlang")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitError <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "error")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitError <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "error")
+#     return(fitDistModel)
+# }
 
 
-# Not tested
 fitExponential <- function(dataset) {
     fitDistModel <- fitdist(dataset, "exp")
     return(fitDistModel)
@@ -148,11 +147,11 @@ fitFinite <- function(dataset) {
 }
 
 
-# Not tested
-fitFisherF <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "f")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitFisherF <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "f")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitFisherTippett <- function(dataset) {
@@ -160,7 +159,6 @@ fitFisherTippett <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
 fitGamma <- function(dataset) {
     fitDistModel <- fitdist(dataset, "gamma")
     return(fitDistModel)
@@ -178,7 +176,6 @@ fitGeneralizedExtremeValueGEV <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
 fitGeometric <- function(dataset) {
     rounded_data <- round(dataset)
     fitDistModel <- fitdist(rounded_data, "geom")
@@ -197,23 +194,23 @@ fitGompertz <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitGumbel <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "gumbel")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitGumbel <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "gumbel")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitHalfNormal <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "halfnorm")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitHalfNormal <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "halfnorm")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitHyperGeometric <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "hyper")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitHyperGeometric <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "hyper")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitHyperbolicSecant <- function(dataset) {
@@ -221,11 +218,11 @@ fitHyperbolicSecant <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitInverseGamma <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "invgamma")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitInverseGamma <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "invgamma")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitInverseGaussianWald <- function(dataset) {
@@ -251,11 +248,11 @@ fitKolmogorov <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitLaplace <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "laplace")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitLaplace <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "laplace")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitLogarithmicSeries <- function(dataset) {
@@ -348,11 +345,11 @@ fitNormal <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitNormalTruncated <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "truncnorm")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitNormalTruncated <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "truncnorm")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitPareto <- function(dataset) {
@@ -378,11 +375,11 @@ fitPokerDice <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitPowerFunction <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "powerfunction")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitPowerFunction <- function(dataset) {
+# fitDistModel <- fitdist(dataset, "powerfunction")
+# return(fitDistModel)
+# }
 
 # Not tested
 fitRayleigh <- function(dataset) {
