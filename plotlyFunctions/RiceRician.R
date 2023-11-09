@@ -1,4 +1,4 @@
-plotlyRiceRicianDistribution <- function(plotrange, input, distType, probrange) {
+plotlyRiceDistribution <- function(plotrange, input, distType, probrange) {
     xseq <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01)
     f65 <- 0

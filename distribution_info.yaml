@@ -1,0 +1,1110 @@
+Anderson-Darling Distribution:
+  id: 1
+  name: AndersonDarling
+  inputNames:
+  - ADn
+  labels:
+  - 'n'
+  defaultValues:
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitAndersonDarling
+  plotlyFunc: plotlyAndersonDarlingDistribution
+ArcSine Distribution:
+  id: 2
+  name: ArcSine
+  inputNames:
+  - ArcSineA
+  - ArcSineB
+  labels:
+  - A
+  - B
+  defaultValues:
+  - 1.0
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitArcSine
+  plotlyFunc: plotlyArcSineDistribution
+Benford Distribution:
+  id: 3
+  name: Benford
+  inputNames: Benfn
+  labels: number of leading digits
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBenford
+  plotlyFunc: plotlyBenfordDistribution
+Bernoulli Distribution:
+  id: 4
+  name: Bernoulli
+  inputNames: BernProb
+  labels: Probability
+  defaultValues: 0.5
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBernoulli
+  plotlyFunc: plotlyBernoulliDistribution
+Beta Distribution:
+  id: 5
+  name: Beta
+  inputNames:
+  - BetaAlpha
+  - BetaBeta
+  labels:
+  - Alpha
+  - Beta
+  defaultValues:
+  - 2.0
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBeta
+  plotlyFunc: plotlyBetaDistribution
+Beta (Generalized) Distribution:
+  id: 6
+  name: BetaGeneralized
+  inputNames:
+  - BetaGenA
+  - BetaGenB
+  - BetaGenC
+  - BetaGenP
+  labels:
+  - A
+  - B
+  - C
+  - P
+  defaultValues:
+  - 3.0
+  - 2.0
+  - 1.0
+  - 5.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBetaGeneralized
+  plotlyFunc: plotlyBetaGeneralizedDistribution
+Beta-Binomial Distribution:
+  id: 7
+  name: BetaBinomial
+  inputNames:
+  - BetaBinomN
+  - BetaBinomU
+  - BetaBinomV
+  labels:
+  - 'n'
+  - alpha
+  - beta
+  defaultValues:
+  - 2.0
+  - 3.0
+  - 0.2
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBetaBinomial
+  plotlyFunc: plotlyBetaBinomialDistribution
+Binomial Distribution:
+  id: 8
+  name: Binomial
+  inputNames:
+  - BinomP
+  - BinomN
+  labels:
+  - Probability
+  - 'n'
+  defaultValues:
+  - 0.5
+  - 10.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBinomial
+  plotlyFunc: plotlyBinomialDistribution
+Birthday Distribution:
+  id: 9
+  name: Birthday
+  inputNames: BirthN
+  labels: 'n'
+  defaultValues: 10.0
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitBirthday
+  plotlyFunc: plotlyBirthdayDistribution
+Bivariate Normal Distribution (3D):
+  id: 10
+  name: BivariateNormal3D
+  inputNames:
+  - BivaM1
+  - BivaV1
+  - BivaM2
+  - BivaV2
+  - BivaCov
+  labels:
+  - mean of the first random variable
+  - variance of the first random variable
+  - mean for the second random variable
+  - variance of the second random variable
+  - covariance of the two random variables
+  defaultValues:
+  - 0.0
+  - 2.0
+  - 0.0
+  - 2.0
+  - -1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitBivariateNormal3D
+  plotlyFunc: plotlyBivariateNormal3DDistribution
+Cauchy Distribution:
+  id: 11
+  name: Cauchy
+  inputNames:
+  - CauchyX0
+  - CauchyGamma
+  labels:
+  - x0
+  - Gamma
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitCauchy
+  plotlyFunc: plotlyCauchyDistribution
+Chi Distribution:
+  id: 12
+  name: Chi
+  inputNames: ChiK
+  labels: k
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitChi
+  plotlyFunc: plotlyChiDistribution
+Chi Square Distribution:
+  id: 13
+  name: ChiSquare
+  inputNames: Chi2n
+  labels: 'n'
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitChiSquare
+  plotlyFunc: plotlyChiSquareDistribution
+Chi Square Non Central Distribution:
+  id: 14
+  name: ChiSquareNonCentral
+  inputNames:
+  - Chi2NCn
+  - Chi2NCNCP
+  labels:
+  - 'n'
+  - non-centrality paramter
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitChiSquareNonCentral
+  plotlyFunc: plotlyChiSquareNonCentralDistribution
+Circle Distribution:
+  id: 15
+  name: Circle
+  inputNames: CircleRadius
+  labels: radius
+  defaultValues: 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitCircle
+  plotlyFunc: plotlyCircleDistribution
+Continuous Uniform Distribution:
+  id: 16
+  name: ContinuousUniform
+  inputNames:
+  - UnifMin
+  - UnifMax
+  labels:
+  - Min.
+  - Max.
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitContinuousUniform
+  plotlyFunc: plotlyContinuousUniformDistribution
+Coupon Distribution:
+  id: 17
+  name: Coupon
+  inputNames: CouponN
+  labels: 'n'
+  defaultValues: 10.0
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitCoupon
+  plotlyFunc: plotlyCouponDistribution
+Die Distribution:
+  id: 18
+  name: Die
+  inputNames: DieN
+  labels: 'n'
+  defaultValues: 6.0
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitDie
+  plotlyFunc: plotlyDieDistribution
+Discrete ArcSine Distribution:
+  id: 19
+  name: DiscreteArcSine
+  inputNames:
+  - DisArcSineA
+  - DisArcSineB
+  labels:
+  - A
+  - B
+  defaultValues:
+  - 1.0
+  - 30.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitDiscreteArcSine
+  plotlyFunc: plotlyDiscreteArcSineDistribution
+Discrete Uniform Distribution:
+  id: 20
+  name: DiscreteUniform
+  inputNames:
+  - DisUnifMin
+  - DisUnifMax
+  labels:
+  - Min.
+  - Max.
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitDiscreteUniform
+  plotlyFunc: plotlyDiscreteUniformDistribution
+Erlang Distribution:
+  id: 21
+  name: Erlang
+  inputNames:
+  - ErlangScale
+  - ErlangShape
+  labels:
+  - scale
+  - shape
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitErlang
+  plotlyFunc: plotlyErlangDistribution
+Error Distribution:
+  id: 22
+  name: Error
+  inputNames:
+  - ErrorLocation
+  - ErrorScale
+  - ErrorShape
+  labels:
+  - location
+  - scale
+  - shape
+  defaultValues:
+  - 0.0
+  - 1.0
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitError
+  plotlyFunc: plotlyErrorDistribution
+Exponential Distribution:
+  id: 23
+  name: Exponential
+  inputNames: ExpLambda
+  labels: lambda
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitExponential
+  plotlyFunc: plotlyExponentialDistribution
+Finite Distribution:
+  id: 24
+  name: Finite
+  inputNames: FinProb
+  labels: Probability
+  defaultValues: 0.5
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitFinite
+  plotlyFunc: plotlyFiniteDistribution
+F Distribution:
+  id: 25
+  name: FisherF
+  inputNames:
+  - FdOne
+  - FdTwo
+  labels:
+  - d1
+  - d2
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitFisherF
+  plotlyFunc: plotlyFisherFDistribution
+Fishers-Tippett Distribution:
+  id: 26
+  name: FisherTippett
+  inputNames:
+  - GEVMiu
+  - GEVSigma
+  - GEVEpsilon
+  labels:
+  - miu
+  - sigma
+  - Epsilon
+  defaultValues:
+  - 1.0
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitFisherTippett
+  plotlyFunc: plotlyFisherTippettDistribution
+Gamma Distribution:
+  id: 27
+  name: Gamma
+  inputNames:
+  - GammaA
+  - GammaB
+  labels:
+  - alpha
+  - beta
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitGamma
+  plotlyFunc: plotlyGammaDistribution
+General Cauchy Distribution:
+  id: 28
+  name: GeneralCauchy
+  inputNames:
+  - GeneralCauchyAlpha
+  - GeneralCauchyBeta
+  labels:
+  - alpha
+  - beta
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitGeneralCauchy
+  plotlyFunc: plotlyGeneralCauchyDistribution
+Generalized Extreme Value (GEV) Distribution:
+  id: 29
+  name: GeneralizedExtremeValueGEV
+  inputNames:
+  - GEVMiu
+  - GEVSigma
+  - GEVEpsilon
+  labels:
+  - miu
+  - sigma
+  - Epsilon
+  defaultValues:
+  - 1.0
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitGeneralizedExtremeValueGEV
+  plotlyFunc: plotlyGeneralizedExtremeValueGEVDistribution
+Geometric Distribution:
+  id: 30
+  name: Geometric
+  inputNames: GeomProb
+  labels: Probability
+  defaultValues: 0.5
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitGeometric
+  plotlyFunc: plotlyGeometricDistribution
+Gilbrats Distribution:
+  id: 31
+  name: Gilbrats
+  inputNames:
+  - GilbratsMu
+  - GilbratsSigma
+  labels:
+  - mu
+  - sigma
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitGilbrats
+  plotlyFunc: plotlyGilbratsDistribution
+Gompertz Distribution:
+  id: 32
+  name: Gompertz
+  inputNames:
+  - Gompertz_N
+  - Gompertz_B
+  labels:
+  - shape eta
+  - scale Beta
+  defaultValues:
+  - 2.0
+  - 3.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitGompertz
+  plotlyFunc: plotlyGompertzDistribution
+Gumbel Distribution:
+  id: 33
+  name: Gumbel
+  inputNames:
+  - Gumbel_U
+  - Gumbel_Beta
+  labels:
+  - location u
+  - scale Beta
+  defaultValues:
+  - 2.0
+  - 3.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitGumbel
+  plotlyFunc: plotlyGumbelDistribution
+Half Normal Distribution:
+  id: 34
+  name: HalfNormal
+  inputNames: HNorm
+  labels: sigma
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitHalfNormal
+  plotlyFunc: plotlyHalfNormalDistribution
+Hyper Geometric Distribution:
+  id: 35
+  name: HyperGeometric
+  inputNames:
+  - HyperM
+  - HyperN
+  - HyperK
+  labels:
+  - m
+  - 'N'
+  - 'n'
+  defaultValues:
+  - 50.0
+  - 500.0
+  - 100.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitHyperGeometric
+  plotlyFunc: plotlyHyperGeometricDistribution
+Hyperbolic-Secant Distribution:
+  id: 36
+  name: HyperbolicSecant
+  inputNames:
+  - HSmu
+  - HSsigma
+  labels:
+  - mu
+  - sigma
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitHyperbolicSecant
+  plotlyFunc: plotlyHyperbolicSecantDistribution
+Inverse-Gamma Distribution:
+  id: 37
+  name: InverseGamma
+  inputNames:
+  - InvGammaA
+  - InvGammaB
+  labels:
+  - alpha
+  - beta
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitInverseGamma
+  plotlyFunc: plotlyInverseGammaDistribution
+Inverse-Gaussian(Wald) Distribution:
+  id: 38
+  name: InverseGaussianWald
+  inputNames:
+  - InvGausM
+  - InvGausL
+  labels:
+  - mu
+  - lambda
+  defaultValues:
+  - 1.0
+  - 0.2
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitInverseGaussianWald
+  plotlyFunc: plotlyInverseGaussianWaldDistribution
+Johnson SB (Bounded) Distribution:
+  id: 39
+  name: JohnsonSBBounded
+  inputNames:
+  - JohnSBgamma
+  - JohnSBdelta
+  - JohnSBxi
+  - JohnSBlambda
+  labels:
+  - gamma
+  - delta
+  - xi
+  - lambda
+  defaultValues:
+  - -0.5
+  - 2.0
+  - -0.5
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitJohnsonSBBounded
+  plotlyFunc: plotlyJohnsonSBBoundedDistribution
+Johnson SU (Unbounded) Distribution:
+  id: 40
+  name: JohnsonSUUnbounded
+  inputNames:
+  - JohnSUgamma
+  - JohnSUdelta
+  - JohnSUxi
+  - JohnSUlambda
+  labels:
+  - gamma
+  - delta
+  - xi
+  - lambda
+  defaultValues:
+  - -0.5
+  - 2.0
+  - -0.5
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitJohnsonSUUnbounded
+  plotlyFunc: plotlyJohnsonSUUnboundedDistribution
+Kolmogorov Distribution:
+  id: 41
+  name: Kolmogorov
+  inputNames: Kolmogorovn
+  labels: 'n'
+  defaultValues: 1.0
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitKolmogorov
+  plotlyFunc: plotlyKolmogorovDistribution
+Laplace Distribution:
+  id: 42
+  name: Laplace
+  inputNames:
+  - LapMu
+  - LapSig
+  labels:
+  - mu
+  - sigma
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitLaplace
+  plotlyFunc: plotlyLaplaceDistribution
+Logarithmic-series Distribution:
+  id: 43
+  name: LogarithmicSeries
+  inputNames: LogP
+  labels: P
+  defaultValues: 0.5
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitLogarithmicSeries
+  plotlyFunc: plotlyLogarithmicSeriesDistribution
+Logistic Distribution:
+  id: 44
+  name: Logistic
+  inputNames:
+  - LogiA
+  - LogiB
+  labels:
+  - a
+  - b
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitLogistic
+  plotlyFunc: plotlyLogisticDistribution
+Logistic Exponential Distribution:
+  id: 45
+  name: LogisticExponential
+  inputNames:
+  - LogEx_A
+  - LogEx_B
+  labels:
+  - a
+  - b
+  defaultValues:
+  - 5.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitLogisticExponential
+  plotlyFunc: plotlyLogisticExponentialDistribution
+LogNormal Distribution:
+  id: 46
+  name: LogNormal
+  inputNames:
+  - LogNormMean
+  - LogNormSD
+  labels:
+  - mean
+  - standard deviation
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitLogNormal
+  plotlyFunc: plotlyLogNormalDistribution
+Lomax Distribution:
+  id: 47
+  name: Lomax
+  inputNames:
+  - LomaxLamda
+  - LomaxKappa
+  labels:
+  - Lambda
+  - Kappa
+  defaultValues:
+  - 1.0
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitLomax
+  plotlyFunc: plotlyLomaxDistribution
+Matching Distribution:
+  id: 48
+  name: Matching
+  inputNames: MatchParam
+  labels: parameter
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitMatching
+  plotlyFunc: plotlyMatchingDistribution
+Maxwell Distribution:
+  id: 49
+  name: Maxwell
+  inputNames: MaxwellA
+  labels: a
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitMaxwell
+  plotlyFunc: plotlyMaxwellDistribution
+Minimax Distribution:
+  id: 50
+  name: Minimax
+  inputNames:
+  - Mini_B
+  - Mini_V
+  labels:
+  - Beta
+  - Gama
+  defaultValues:
+  - 1.0
+  - 2.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitMinimax
+  plotlyFunc: plotlyMinimaxDistribution
+Mixture Distribution:
+  id: 51
+  name: Mixture
+  inputNames: MixProb
+  labels: Probability
+  defaultValues: 0.5
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitMixture
+  plotlyFunc: plotlyMixtureDistribution
+Multinomial Distribution:
+  id: 52
+  name: Multinomial
+  inputNames:
+  - MultProb
+  - MultN
+  labels:
+  - Probability
+  - 'n'
+  defaultValues:
+  - 0.5
+  - 10.0
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitMultinomial
+  plotlyFunc: plotlyMultinomialDistribution
+Muth Distribution:
+  id: 53
+  name: Muth
+  inputNames: MuthKappa
+  labels: Kappa
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitMuth
+  plotlyFunc: plotlyMuthDistribution
+Negative Binomial Distribution:
+  id: 54
+  name: NegativeBinomial
+  inputNames:
+  - NegBiR
+  - NegBiP
+  labels:
+  - r
+  - p
+  defaultValues:
+  - 1.0
+  - 0.5
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitNegativeBinomial
+  plotlyFunc: plotlyNegativeBinomialDistribution
+Negative HyperGeometric Distribution:
+  id: 55
+  name: NegativeHyperGeometric
+  inputNames:
+  - NegHyperK
+  - NegHyperN
+  - NegHyperR
+  labels:
+  - W
+  - B
+  - b
+  defaultValues:
+  - 45.0
+  - 30.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitNegativeHyperGeometric
+  plotlyFunc: plotlyNegativeHyperGeometricDistribution
+Negative Multinomial Distribution:
+  id: 56
+  name: NegativeMultinomial
+  inputNames:
+  - NegMultK
+  - NegMultP
+  labels:
+  - k
+  - p
+  defaultValues:
+  - 1.0
+  - 0.5
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitNegativeMultinomial
+  plotlyFunc: plotlyNegativeMultinomialDistribution
+Normal Distribution:
+  id: 57
+  name: Normal
+  inputNames:
+  - NormMean
+  - NormSD
+  labels:
+  - mean
+  - standard deviation
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitNormal
+  plotlyFunc: plotlyNormalDistribution
+Normal Truncated Distribution:
+  id: 58
+  name: NormalTruncated
+  inputNames:
+  - TruncNormMean
+  - TruncNormSD
+  - TruncNormMin
+  - TruncNormMax
+  labels:
+  - mean
+  - standard deviation
+  - Min
+  - Max
+  defaultValues:
+  - 0.0
+  - 3.0
+  - -5.0
+  - 5.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitNormalTruncated
+  plotlyFunc: plotlyNormalTruncatedDistribution
+Pareto Distribution:
+  id: 59
+  name: Pareto
+  inputNames:
+  - ParetoA
+  - ParetoB
+  labels:
+  - a
+  - b
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitPareto
+  plotlyFunc: plotlyParetoDistribution
+Point Mass Distribution:
+  id: 60
+  name: PointMass
+  inputNames: PMD_Location
+  labels: location
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitPointMass
+  plotlyFunc: plotlyPointMassDistribution
+Poisson Distribution:
+  id: 61
+  name: Poisson
+  inputNames: PoiLambda
+  labels: lambda
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitPoisson
+  plotlyFunc: plotlyPoissonDistribution
+Poker Dice Distribution:
+  id: 62
+  name: PokerDice
+  inputNames: ~
+  labels: ~
+  defaultValues: ~
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitPokerDice
+  plotlyFunc: plotlyPokerDiceDistribution
+Power Function Distribution:
+  id: 63
+  name: PowerFunction
+  inputNames:
+  - PowerAlpha
+  - PowerBeta
+  labels:
+  - alpha
+  - beta
+  defaultValues:
+  - 3.0
+  - 4.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitPowerFunction
+  plotlyFunc: plotlyPowerFunctionDistribution
+Rayleigh Distribution:
+  id: 64
+  name: Rayleigh
+  inputNames: RayleighSigma
+  labels: sigma
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitRayleigh
+  plotlyFunc: plotlyRayleighDistribution
+Rice Distribution:
+  id: 65
+  name: Rice
+  inputNames:
+  - RiceVee
+  - RiceSigma
+  labels:
+  - VEE
+  - Sigma
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitRice
+  plotlyFunc: plotlyRiceDistribution
+T Distribution:
+  id: 66
+  name: StudentsT
+  inputNames: Tdof
+  labels: degree of freedom
+  defaultValues: 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitStudentsT
+  plotlyFunc: plotlyStudentsTDistribution
+T Non Central Distribution:
+  id: 67
+  name: StudentsTNonCentral
+  inputNames:
+  - TNCdof
+  - TNCNCP
+  labels:
+  - degree of freedom
+  - non-centrality parameter
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitStudentsTNonCentral
+  plotlyFunc: plotlyStudentsTNonCentralDistribution
+Triangular Distribution:
+  id: 68
+  name: Triangular
+  inputNames:
+  - Triangular_A
+  - Triangular_B
+  - Triangular_C
+  labels:
+  - a
+  - b
+  - c
+  defaultValues:
+  - 1.0
+  - 10.0
+  - 4.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitTriangular
+  plotlyFunc: plotlyTriangularDistribution
+Two-Sided Power Distribution:
+  id: 69
+  name: TwoSidedPower
+  inputNames:
+  - TSPowerLeft
+  - TSPowerRight
+  - TSPowerMed
+  - TSPowerPower
+  labels:
+  - left
+  - right
+  - med
+  - power
+  defaultValues:
+  - -5.0
+  - 5.0
+  - 0.0
+  - 3.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitTwoSidedPower
+  plotlyFunc: plotlyTwoSidedPowerDistribution
+U-quadratic distribution:
+  id: 70
+  name: UQuadratic
+  inputNames:
+  - UQ_C
+  - UQ_W
+  labels:
+  - c
+  - w
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitUQuadratic
+  plotlyFunc: plotlyUQuadraticDistribution
+Von Mises Distribution:
+  id: 71
+  name: VonMises
+  inputNames:
+  - vonMisesMu
+  - vonMisesKappa
+  labels:
+  - mu
+  - kappa
+  defaultValues:
+  - 0.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitVonMises
+  plotlyFunc: plotlyVonMisesDistribution
+Walk Max Distribution:
+  id: 72
+  name: WalkMax
+  inputNames: WalkMaxSteps
+  labels: steps
+  defaultValues: 4.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitWalkMax
+  plotlyFunc: plotlyWalkMaxDistribution
+Walk Position Distribution:
+  id: 73
+  name: WalkPosition
+  inputNames: WalkPosSteps
+  labels: steps
+  defaultValues: 4.0
+  hasImplementation: no
+  isWithSD: no
+  fitFunc: fitWalkPosition
+  plotlyFunc: plotlyWalkPositionDistribution
+Weibull Distribution:
+  id: 74
+  name: Weibull
+  inputNames:
+  - WeibullLambda
+  - WeibullK
+  labels:
+  - lambda
+  - k
+  defaultValues:
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: yes
+  fitFunc: fitWeibull
+  plotlyFunc: plotlyWeibullDistribution
+Zipf-Mandelbrot Distribution:
+  id: 75
+  name: ZipfMandelbrot
+  inputNames:
+  - Zipf_q
+  - Zipf_N
+  - Zipf_s
+  labels:
+  - shape parameter q
+  - shape parameter N
+  - shape parameter s
+  defaultValues:
+  - 1.0
+  - 1.0
+  - 1.0
+  hasImplementation: yes
+  isWithSD: no
+  fitFunc: fitZipfMandelbrot
+  plotlyFunc: plotlyZipfMandelbrotDistribution

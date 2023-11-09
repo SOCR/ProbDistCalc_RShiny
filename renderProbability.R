@@ -134,7 +134,7 @@ renderProbability <- function(input, output, session) {
     # ----------------------- Discrete: Gilbrats Distribution ----------------------- #
     else if (distType == distributions[31]) {
       prob <- pGilbrats(as.numeric(probrange[2]), as.numeric(input$GilbratsMu), as.numeric(input$GilbratsSigma)) -
-            pGilbrats(as.numeric(probrange[1]), as.numeric(input$GilbratsMu), as.numeric(input$GilbratsSigma)) 
+        pGilbrats(as.numeric(probrange[1]), as.numeric(input$GilbratsMu), as.numeric(input$GilbratsSigma))
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Discrete: Gompertz Distribution ----------------------- #
@@ -229,7 +229,7 @@ renderProbability <- function(input, output, session) {
     # ----------------------- Continuous: Matching Distribution ----------------------- #
     else if (distType == distributions[48]) {
       prob <- pMatch(as.numeric(probrange[2]), as.numeric(input$MatchParam)) -
-            pMatch(as.numeric(probrange[1]), as.numeric(input$MatchParam))
+        pMatch(as.numeric(probrange[1]), as.numeric(input$MatchParam))
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: Maxwell Distribution ----------------------- #
@@ -341,9 +341,13 @@ renderProbability <- function(input, output, session) {
     }
     # ----------------------- Continuous: Two-Sided Power Distribution ----------------------- #
     else if (distType == distributions[69]) {
-      prob <- pTwoSidedPower(as.numeric(probrange[2]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight)
-        , as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)) - pTwoSidedPower(as.numeric(probrange[1]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight)
-        , as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)) 
+      prob <- pTwoSidedPower(
+        as.numeric(probrange[2]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
+        as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
+      ) - pTwoSidedPower(
+        as.numeric(probrange[1]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
+        as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
+      )
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: U-quadratic distribution ----------------------- #
