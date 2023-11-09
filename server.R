@@ -32,6 +32,8 @@ library(circular)
 library(mnormt)
 library(ExtDist)
 library(VaRES)
+library(shinyjs)
+shinyjs::useShinyjs()
 source("renderMainPlot.R")
 source("renderProbability.R")
 
@@ -86,6 +88,18 @@ shinyServer(
           # FIXME: This is not working
           # paste("Fitted mean: ", fitted_mean, " Fitted standard deviation: ", fitted_sd)
         })
+      }
+    })
+
+    observe({
+      if (input$numericalValues == 0 && input$Distribution %in% distWithSD) {
+        shinyjs::enable("SDNum")
+        # FIXME: This is not working
+        # shinyjs::toggle("SDNumColumn", condition = TRUE)
+      } else {
+        shinyjs::disable("SDNum")
+        # FIXME: This is not working
+        # shinyjs::toggle("SDNumColumn", condition = FALSE)
       }
     })
 

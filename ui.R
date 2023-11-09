@@ -84,15 +84,13 @@ generateMainPlotPanel <- function() {
   panel(
     fluidRow(
       column(2, switchInput(inputId = "numericalValues", value = FALSE, onLabel = "Manual", offLabel = "Slider")),
-      column(10, div(
-        align = "left",
-        conditionalPanel(
-          condition = sprintf("input.numericalValues == 0 && input.Distribution %%in%% %s", shQuote(distWithSD)),
-          textInput("SDNum", paste("Standard deviations from mean (0 to adjust freely, many are still implementing : )", sep = ""), 0)
+      column(
+        10, div(
+          align = "left",
+          textInput("SDNum", paste("Standard deviation from mean (0 to adjust freely)", sep = ""), 0)
         )
-      ))
+      )
     ),
-
     # ----------------------- Input: Slider Input for x-Range ----------------------- #
     conditionalPanel(
       condition = "input.numericalValues == 0",
