@@ -32,17 +32,22 @@ generateParameterlPanel <- function(distributionInfo) {
   )
 }
 
-
-generateFitButton <- function() {
+generateCalculatorSidePanel <- function() {
   panel(
-    actionButton("fitParams", "Modeler: Fit Parameters from Data"),
-    textOutput("fitStatus")
+    selectInput("Distribution", "Please select distribution type",
+      choices = distributions,
+      selected = distributions[57]
+    ),
+    selectInput("FunctionType", "Please select distribution function type",
+      choices = c("", "PDF/PMF", "CDF/CMF")
+    ),
+    lapply(distributionInfoList, generateParameterlPanel)
   )
 }
 
-generateSideBarPanel <- function() {
-  sidebarPanel(
-    ## added
+
+generateModelerSidePanel <- function() {
+  panel(
     selectInput("outcome",
       label = h3("Outcome (y)"),
       choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[6]
@@ -51,31 +56,31 @@ generateSideBarPanel <- function() {
       label = h3("Explanatory variable (x)"),
       choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
     ),
+    actionButton("fitParams", "Modeler: Fit Parameters from Data"),
+    textOutput("fitStatus")
+  )
+}
 
-    # add end
-
-    # ----------------------- Input: Specifying Distrtibution Type ----------------------- #
-    selectInput("Distribution", "Please select distribution type",
-      choices = distributions,
-      selected = distributions[57]
-    ),
-    # ----------------------- Input: Specifying Function Type ----------------------- #
-    selectInput("FunctionType", "Please select distribution function type",
-      choices = c("", "PDF/PMF", "CDF/CMF")
-    ),
-    # ----------------------- Input: Parameter Inputs ----------------------- #
-    lapply(distributionInfoList, generateParameterlPanel),
-    # ----------------------- Input: Fit Parameters from Data ----------------------- #
-    generateFitButton(),
-    # ----------------------- Input: Helpme ----------------------- #
+generateHelpPanel <- function() {
+  panel(
     actionButton("vh.readme", "ReadMe/Help"),
-    # ----------------------- Output: Metadata Output ----------------------- #
     actionButton("toggleButton", "Show/Hide Distribution Metadata"),
     conditionalPanel(
       condition = "input.toggleButton % 2 == 1",
       uiOutput("MetaData"),
       tags$style(type = "text/css", "#MetaData {white-space: pre-wrap;}")
     )
+  )
+}
+
+
+
+
+generateSideBarPanel <- function() {
+  sidebarPanel(
+    generateCalculatorSidePanel(),
+    generateModelerSidePanel(),
+    generateHelpPanel()
   )
 }
 
