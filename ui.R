@@ -45,14 +45,16 @@ generateCalculatorSidePanel <- function() {
 generateModelerSidePanel <- function() {
   panel(
     selectInput("outcome",
-      label = h3("Outcome (y)"),
+      label = ("Outcome (y)"),
       choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[6]
     ),
-    selectInput("indepvar",
-      label = h3("Explanatory variable (x)"),
-      choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
-    ),
+    # selectInput("indepvar",
+    #   label = ("Explanatory variable (x)"),
+    #   choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
+    # ),
     actionButton("fitParams", "Fit Parameters from Data"),
+    tags$hr(),
+    generateDatasetFilePanel()
   )
 }
 
@@ -169,6 +171,20 @@ generateDatasetPanel <- function() {
       ), # Scatter Plot,
       tabPanel("Model Summary", verbatimTextOutput("summary")) # Regression output
     )
+  )
+}
+
+generateDatasetFilePanel <- function() {
+  panel(
+    fileInput("file", "Upload a dataset.",
+      accept = c(
+        "text/csv",
+        "text/comma-separated-values,text/plain",
+        ".csv"
+      )
+    ),
+    p("Note: Please upload a CSV file."),
+    p("Default dataset is iris.")
   )
 }
 

@@ -42,8 +42,8 @@ renderMainPlot <- function(input, output, session) {
         if (!is.null(fig) && input$CalcModelerTabsetPanel == "Modeler") {
             fig <- fig %>%
                 layout(title = "Data Histogram & Probability Distribution Model") %>%
-                layout(yaxis = list(title = input$outcome)) %>%
-                layout(xaxis = list(title = input$indepvar))
+                layout(yaxis = list(title = "relative frequency / probability density")) %>%
+                layout(xaxis = list(title = input$outcome))
             if (is.null(distributionInfo$fitFunc)) {
                 fig <- NULL
             }

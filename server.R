@@ -121,6 +121,17 @@ shinyServer(
       }
     })
 
+    # Reactive function to read uploaded file and update dataset
+    observeEvent(input$file, {
+      req(input$file)
+      dataset <<- read.csv(input$file$datapath)
+      # Update choices for selectInput widgets
+      # updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = namedListOfFeatures()[6])
+      # updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = namedListOfFeatures()[4])
+      updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = NULL)
+      updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = NULL)
+    })
+
     # ----------------------- HelpMe ----------------------- #
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
