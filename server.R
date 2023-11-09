@@ -32,11 +32,6 @@ library(circular)
 library(mnormt)
 library(ExtDist)
 library(VaRES)
-
-plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
-for (file in plotlyFunctions) {
-  source(file)
-}
 source("renderMainPlot.R")
 source("renderProbability.R")
 
@@ -75,19 +70,15 @@ shinyServer(
     })
     # ----------------------- HelpMe ----------------------- #
     observeEvent(input$fitParams, {
-      # Check if the data is available in the 'dataset' variable
-      if (!is.null(dataset)) {
-        # Fit the data to a normal distribution
-        fit_result <- fitdist(dataset[, input$outcome], "norm")
-        # Extract the mean and standard deviation
-        fitted_mean <- fit_result$estimate[[1]]
-        fitted_sd <- fit_result$estimate[[2]]
-        # Update the input fields with the fitted parameters
-        updateTextInput(session, "NormMean", value = fitted_mean)
-        updateTextInput(session, "NormSD", value = fitted_sd)
-        # Display a fitting status message
+      distributionInfo <- distributionInfoList[[input$Distribution]]
+      if (!is.null(dataset) && !is.null((distributionInfo$fitFunc))) {
+        fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
+        for (i in 1:length(fit_result$estimate)) {
+          updateTextInput(session, distributionInfo$inputNames[[i]], value = fit_result$estimate[[i]])
+        }
         output$fitStatus <- renderText({
-          paste("Fitted mean: ", fitted_mean, " Fitted standard deviation: ", fitted_sd)
+          # FIXME: This is not working
+          # paste("Fitted mean: ", fitted_mean, " Fitted standard deviation: ", fitted_sd)
         })
       }
     })

@@ -16,7 +16,10 @@ library(plotly)
 library(stringr)
 library("Rlab")
 library("shinyWidgets")
-
+plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
+for (file in plotlyFunctions) {
+  source(file)
+}
 # ----------------------- Parse and Store xml Databse of Metadata from Distributome Project ----------------------- #
 xml_data <- read_xml("Distributome.xml", encoding = "UTF-8")
 xml_rootnode <- xml_root(xml_data)
@@ -42,7 +45,7 @@ for (i in 1:xml_len) {
   }
 }
 
-distributionInfoClass <- function(id, name, inputNames, labels, defaultValues, hasImplementation = TRUE, isWithSD = FALSE) {
+distributionInfoClass <- function(id, name, inputNames, labels, defaultValues, hasImplementation = TRUE, isWithSD = FALSE, fitFunc = NULL) {
   structure(list(
     id = id,
     name = name,
@@ -50,7 +53,8 @@ distributionInfoClass <- function(id, name, inputNames, labels, defaultValues, h
     labels = labels,
     defaultValues = defaultValues,
     hasImplementation = hasImplementation,
-    isWithSD = isWithSD
+    isWithSD = isWithSD,
+    fitFunc = fitFunc
   ), class = "distributionInfo")
 }
 
@@ -59,7 +63,7 @@ distributionInfoList <- list(
   "ArcSine Distribution" = distributionInfoClass(2, "ArcSine", c("ArcSineA", "ArcSineB"), c("A", "B"), c(1, 2)),
   "Benford Distribution" = distributionInfoClass(3, "Benford", c("Benfn"), c("number of leading digits"), c(1)),
   "Bernoulli Distribution" = distributionInfoClass(4, "Bernoulli", c("BernProb"), c("Probability"), c(0.5)),
-  "Beta Distribution" = distributionInfoClass(5, "Beta", c("BetaAlpha", "BetaBeta"), c("Alpha", "Beta"), c(0, 1)),
+  "Beta Distribution" = distributionInfoClass(5, "Beta", c("BetaAlpha", "BetaBeta"), c("Alpha", "Beta"), c(2, 2)),
   "Beta (Generalized) Distribution" = distributionInfoClass(6, "Beta(Generalized)", c("BetaGenA", "BetaGenB", "BetaGenC", "BetaGenP"), c("A", "B", "C", "P"), c(3, 2, 1, 5)),
   "Beta-Binomial Distribution" = distributionInfoClass(7, "Beta-Binomial", c("BetaBinomN", "BetaBinomU", "BetaBinomV"), c("n", "alpha", "beta"), c(2, 3, 0.2)),
   "Binomial Distribution" = distributionInfoClass(8, "Binomial", c("BinomP", "BinomN"), c("Probability", "n"), c(0.5, 10)),
@@ -111,7 +115,7 @@ distributionInfoList <- list(
   "Negative Binomial Distribution" = distributionInfoClass(54, "Negative Binomial", c("NegBiR", "NegBiP"), c("r", "p"), c(1, 0.5)),
   "Negative HyperGeometric Distribution" = distributionInfoClass(55, "Negative HyperGeometric", c("NegHyperK", "NegHyperN", "NegHyperR"), c("W", "B", "b"), c(45, 30, 1)),
   "Negative Multinomial Distribution" = distributionInfoClass(56, "Negative Multinomial", c("NegMultK", "NegMultP"), c("k", "p"), c(1, 0.5), hasImplementation = FALSE),
-  "Normal Distribution" = distributionInfoClass(57, "Normal", c("NormMean", "NormSD"), c("mean", "standard deviation"), c(0, 1), isWithSD = TRUE),
+  "Normal Distribution" = distributionInfoClass(57, "Normal", c("NormMean", "NormSD"), c("mean", "standard deviation"), c(0, 1), isWithSD = TRUE, fitFunc = fitNormal),
   "Normal Truncated Distribution" = distributionInfoClass(58, "Normal Truncated", c("TruncNormMean", "TruncNormSD", "TruncNormMin", "TruncNormMax"), c("mean", "standard deviation", "Min", "Max"), c(0, 3, -5, 5)),
   "Pareto Distribution" = distributionInfoClass(59, "Pareto", c("ParetoA", "ParetoB"), c("a", "b"), c(1, 1)),
   "Point Mass Distribution" = distributionInfoClass(60, "Point Mass", c("PMD_Location"), c("location"), c(1)),
