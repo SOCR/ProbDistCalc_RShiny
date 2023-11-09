@@ -44,7 +44,10 @@ renderMainPlot <- function(input, output, session) {
                 layout(title = "Data Histogram & Probability Distribution Model") %>%
                 layout(yaxis = list(title = input$outcome)) %>%
                 layout(xaxis = list(title = input$indepvar))
+            if (is.null(distributionInfo$fitFunc)) {
+                fig <- NULL
+            }
         }
-        fig
+        return(fig)
     })
 }
