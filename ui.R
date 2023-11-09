@@ -40,26 +40,6 @@ generateFitButton <- function() {
   )
 }
 
-# Define custom JavaScript to highlight the text input
-js_code <- "
-Shiny.addCustomMessageHandler('highlightTextInput', function(inputId) {
-  // Duration to keep the background color changed (in milliseconds)
-  var duration = 500; // 0.5 seconds
-  var inputElement = $('#' + inputId);
-
-  // Store the original background color
-  var originalColor = inputElement.css('background-color');
-
-  // Set the background color to yellow
-  inputElement.css('background-color', 'yellow');
-
-  // After the specified duration, revert to the original color
-  setTimeout(function() {
-    inputElement.css('background-color', originalColor);
-  }, duration);
-});
-"
-
 shinyUI(
   fluidPage(
     tags$head(
