@@ -783,6 +783,21 @@
       "Repository": "CRAN",
       "Hash": "f7736a18de97dea803bde0a2daaafb27"
     },
+    "fitdistrplus": {
+      "Package": "fitdistrplus",
+      "Version": "1.1-11",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "MASS",
+        "R",
+        "grDevices",
+        "methods",
+        "stats",
+        "survival"
+      ],
+      "Hash": "f40ef9686e85681a1ccbf33d9236aeb9"
+    },
     "flexsurv": {
       "Package": "flexsurv",
       "Version": "2.2.2",

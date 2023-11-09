@@ -14,8 +14,10 @@ library(xml2)
 library(shiny)
 library(plotly)
 library(stringr)
+library(fitdistrplus)
 library("Rlab")
 library("shinyWidgets")
+
 plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
 for (file in plotlyFunctions) {
   source(file)
