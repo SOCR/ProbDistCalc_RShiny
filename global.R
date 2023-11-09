@@ -154,18 +154,16 @@ for (name in distributions) {
   # assign corresponding function to distributionInfo$fitFunc
   fitFuncName <- paste0("fit", distributionInfoList[[name]]$name)
   if (exists(fitFuncName)) {
-      distributionInfoList[[name]]$fitFunc <- get(fitFuncName)
-  }
-  else {
-      print(paste0("[WARNING] fit function ", fitFuncName, " does not exist"))
+    distributionInfoList[[name]]$fitFunc <- get(fitFuncName)
+  } else {
+    print(paste0("[WARNING] fit function ", fitFuncName, " does not exist"))
   }
   # assign corresponding function to distributionInfo$plotlyFunc
   plotlyFuncName <- paste0("plotly", distributionInfoList[[name]]$name, "Distribution")
   if (exists(plotlyFuncName)) {
-      distributionInfoList[[name]]$plotlyFunc <- get(plotlyFuncName)
-  }
-  else {
-      print(paste0("[WARNING] plotly function ", plotlyFuncName, " does not exist"))
+    distributionInfoList[[name]]$plotlyFunc <- get(plotlyFuncName)
+  } else {
+    print(paste0("[WARNING] plotly function ", plotlyFuncName, " does not exist"))
   }
 }
 

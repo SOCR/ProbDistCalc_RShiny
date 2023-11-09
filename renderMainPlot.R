@@ -23,17 +23,16 @@ renderMainPlot <- function(input, output, session) {
             probrange[1] <- input$probrangeNumMin
             probrange[2] <- input$probrangeNumMax
         }
-        distributionInfo = distributionInfoList[[distType]]
-        arity = length(formals(distributionInfo$plotlyFunc))
-        if ( arity == 4) {
+        distributionInfo <- distributionInfoList[[distType]]
+        arity <- length(formals(distributionInfo$plotlyFunc))
+        if (arity == 4) {
             distributionInfo$plotlyFunc(plotrange, input, distType, probrange)
-        } else if (arity == 5){
+        } else if (arity == 5) {
             distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session)
-        } else if (arity == 6){
+        } else if (arity == 6) {
             distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session, old_SD)
         } else {
             stop("unexpected arity")
         }
-    }
-    )
+    })
 }

@@ -74,9 +74,8 @@ shinyUI(
              .highlight-input {
              background-color: yellow;
              }
-             "
-            )
-        ),
+             ")
+      ),
       tags$script(
         HTML(
           "Shiny.addCustomMessageHandler('highlightTextInput', function(inputId) {

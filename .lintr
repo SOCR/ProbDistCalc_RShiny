@@ -11,5 +11,6 @@ exclusions: list(
     "renderProbability.R",
     "Function.R",
     "plotlyFunctions",
-    "fitFunctions.R"
+    "fitFunctions.R",
+    "dataset.R"
   )

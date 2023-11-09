@@ -1,4 +1,3 @@
-
 dataset <- iris
 
 # Imputation of categorical variables using Mode

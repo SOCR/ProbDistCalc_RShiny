@@ -75,7 +75,7 @@ shinyServer(
         showNotification("Dataset is not specified.", type = "error", duration = 2)
       } else if (is.null((distributionInfo$fitFunc))) {
         showNotification("Fitting this distribution is not supported yet.", type = "error", duration = 2)
-      } else{
+      } else {
         fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
         for (i in 1:length(fit_result$estimate)) {
           inputName <- distributionInfo$inputNames[[i]]
