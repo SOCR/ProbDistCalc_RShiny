@@ -50,7 +50,7 @@ for (i in 1:xml_len) {
 
 distributionInfoClass <- function(id, name, inputNames, labels, defaultValues, hasImplementation = TRUE, isWithSD = FALSE, fitFunc = NULL) {
   structure(list(
-    id = id,
+    id = as.integer(id),
     name = name,
     inputNames = inputNames,
     labels = labels,
@@ -158,3 +158,7 @@ for (name in distributions) {
       print(paste0("[WARNING] fit function ", fitFuncName, " does not exist"))
   }
 }
+
+# library(yaml)
+# data_to_save <- lapply(distributionInfoList, as.list)
+# write_yaml(data_to_save, "distribution_info.yaml")
