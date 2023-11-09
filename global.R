@@ -121,7 +121,7 @@ distributionInfoList <- list(
   "Normal Truncated Distribution" = distributionInfoClass(58, "Normal Truncated", c("TruncNormMean", "TruncNormSD", "TruncNormMin", "TruncNormMax"), c("mean", "standard deviation", "Min", "Max"), c(0, 3, -5, 5)),
   "Pareto Distribution" = distributionInfoClass(59, "Pareto", c("ParetoA", "ParetoB"), c("a", "b"), c(1, 1)),
   "Point Mass Distribution" = distributionInfoClass(60, "Point Mass", c("PMD_Location"), c("location"), c(1)),
-  "Poisson Distribution" = distributionInfoClass(61, "Poisson", c("PoiLambda"), c("lambda"), c(1), isWithSD = TRUE),
+  "Poisson Distribution" = distributionInfoClass(61, "Poisson", c("PoiLambda"), c("lambda"), c(1), isWithSD = TRUE, fitFunc = fitPoisson),
   "Poker Dice Distribution" = distributionInfoClass(62, "Poker Dice", c(), c(), c()),
   "Power Function Distribution" = distributionInfoClass(63, "Power Function", c("PowerAlpha", "PowerBeta"), c("alpha", "beta"), c(3, 4)),
   "Rayleigh Distribution" = distributionInfoClass(64, "Rayleigh", c("RayleighSigma"), c("sigma"), c(1), isWithSD = TRUE),
