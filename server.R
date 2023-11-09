@@ -74,7 +74,7 @@ shinyServer(
       )
     })
     # ----------------------- HelpMe ----------------------- #
-    observeEvent(input$fitNormalParams, {
+    observeEvent(input$fitParams, {
       # Check if the data is available in the 'dataset' variable
       if (!is.null(dataset)) {
         # Fit the data to a normal distribution

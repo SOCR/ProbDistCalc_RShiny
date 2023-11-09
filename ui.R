@@ -32,6 +32,20 @@ generateParameterlPanel <- function(distributionInfo) {
   )
 }
 
+# conditionalPanel(
+#   condition = paste("input.NeedFit && input.Distribution == '", distributions[57], "'", sep = ""),
+#   actionButton("fitNormalParams", "Fit Parameters from Data"),
+#   textOutput("fitStatus")
+# ),
+
+generateFitButton <- function(distributionInfo) {
+  conditionalPanel(
+    condition = paste("input.NeedFit && input.Distribution == '", nameToFullName(distributionInfo$name), "'", sep = ""),
+    actionButton("fitParams", "Fit Parameters from Data"),
+    textOutput("fitStatus")
+  )
+}
+
 shinyUI(
   fluidPage(
     withMathJax(),
@@ -62,6 +76,8 @@ shinyUI(
       switchInput(inputId = "NeedFit", value = FALSE, onLabel = "Modeler", offLabel = "Calculator"),
       # ----------------------- Input: Parameter Inputs ----------------------- #
       lapply(distributionInfoList, generateParameterlPanel),
+      # ----------------------- Input: Fit Parameters from Data ----------------------- #
+      generateFitButton(distributionInfoList[[57]]),
       # ----------------------- Input: Helpme ----------------------- #
       actionButton("vh.readme", "ReadMe/Help"),
       # ----------------------- Output: Metadata Output ----------------------- #
