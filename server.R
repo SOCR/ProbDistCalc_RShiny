@@ -71,7 +71,11 @@ shinyServer(
     # ----------------------- HelpMe ----------------------- #
     observeEvent(input$fitParams, {
       distributionInfo <- distributionInfoList[[input$Distribution]]
-      if (!is.null(dataset) && !is.null((distributionInfo$fitFunc))) {
+      if (is.null(dataset)) {
+        print("[ERROR] No dataset")
+      } else if (is.null((distributionInfo$fitFunc))) {
+        print("[ERROR] No fit function")
+      } else{
         fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
         for (i in 1:length(fit_result$estimate)) {
           updateTextInput(session, distributionInfo$inputNames[[i]], value = fit_result$estimate[[i]])
