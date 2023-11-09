@@ -70,7 +70,7 @@ shinyServer(
         max = input$plotrangeNumMax
       )
     })
-    # ----------------------- HelpMe ----------------------- #
+
     observeEvent(input$fitParams, {
       updateTextInput(session, "FunctionType", value = "PDF/PMF")
       distributionInfo <- distributionInfoList[[input$Distribution]]
@@ -86,10 +86,6 @@ shinyServer(
           updateTextInput(session, inputName, value = fitted_parameter)
           session$sendCustomMessage("highlightTextInput", inputName)
         }
-        output$fitStatus <- renderText({
-          # FIXME: This is not working
-          # paste("Fitted mean: ", fitted_mean, " Fitted standard deviation: ", fitted_sd)
-        })
       }
     })
 
@@ -125,6 +121,7 @@ shinyServer(
       }
     })
 
+    # ----------------------- HelpMe ----------------------- #
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
         title = "Help / ReadMe",

@@ -57,7 +57,6 @@ generateModelerSidePanel <- function() {
       choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
     ),
     actionButton("fitParams", "Fit Parameters from Data"),
-    textOutput("fitStatus")
   )
 }
 
