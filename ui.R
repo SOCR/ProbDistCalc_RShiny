@@ -203,7 +203,7 @@ shinyUI(
     ),
     withMathJax(),
     # ----------------------- Output: Title ----------------------- #
-    titlePanel("SOCR Probability Distribution Calculator and Modeler"),
+    titlePanel("SOCR Probability Distribution Calculator/Modeler"),
     # ----------------------- Output: Sidebar Panel ----------------------- #
     generateSideBarPanel(),
     # ----------------------- Output: Main Panel ----------------------- #
