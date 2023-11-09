@@ -1,9 +1,3 @@
-fitBeta <- function(dataset) {
-    scaled_data <- (dataset - min(dataset)) / (max(dataset) - min(dataset))
-    fitDistModel <- fitdist(scaled_data, "beta", method = "mme")
-    return(fitDistModel)
-}
-
 plotlyBetaDistribution <- function(plotrange, input, distType, probrange) {
     xseq <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01)

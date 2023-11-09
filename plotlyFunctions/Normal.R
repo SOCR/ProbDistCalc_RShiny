@@ -1,8 +1,3 @@
-fitNormal <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "norm")
-    return(fitDistModel)
-}
-
 plotlyNormalDistribution <- function(plotrange, input, distType, probrange, session) {
     old_SD <- 0
     if (plotrange[2] != as.numeric(input$NormMean) + as.numeric(input$SDNum) * as.numeric(input$NormSD) &&
