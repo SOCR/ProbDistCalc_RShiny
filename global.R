@@ -52,8 +52,8 @@ for (i in 1:xml_len) {
 
 distributionInfoList <- loadDistributionInfo("distribution_info.yaml")
 
-distToImpl <- Filter(function(x) !x$hasImplementation, distributionInfoList)
-distWithSD <- Filter(function(x) x$isWithSD, distributionInfoList)
+distToImpl <- names(Filter(function(x) !x$hasImplementation, distributionInfoList))
+distWithSD <- names(Filter(function(x) x$isWithSD, distributionInfoList))
 distributions <- names(distributionInfoList)
 nameToFullName <- function(name) {
   for (distributionInfo in distributionInfoList) {

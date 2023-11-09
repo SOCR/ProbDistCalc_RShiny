@@ -34,8 +34,7 @@ generateParameterlPanel <- function(distributionInfo) {
 
 
 generateFitButton <- function() {
-  conditionalPanel(
-    condition = TRUE,
+  panel(
     actionButton("fitParams", "Modeler: Fit Parameters from Data"),
     textOutput("fitStatus")
   )
@@ -154,29 +153,13 @@ shinyUI(
       # ----------------------- Input: Switch between Slider and Manual Inputs for Ranges and SD function ----------------------- #
       fluidRow(
         column(2, switchInput(inputId = "numericalValues", value = FALSE, onLabel = "Manual", offLabel = "Slider")),
-        column(10, div(align = "left", conditionalPanel(
-          condition = "input.numericalValues == 0 && (input.Distribution == 'Normal Distribution'
-                                                              || input.Distribution == 'Poisson Distribution'
-                                                              || input.Distribution == 'Rayleigh Distribution'
-                                                              || input.Distribution == 'Weibull Distribution'
-                                                              || input.Distribution == 'Maxwell Distribution'
-                                                              || input.Distribution == 'Log-Normal Distribution'
-                                                              || input.Distribution == 'Logistic Distribution'
-                                                              || input.Distribution == 'Logarithmic-Series Distribution'
-                                                              || input.Distribution == 'Laplace Distribution'
-                                                              || input.Distribution == 'Inverse Gaussian (Wald) Distribution'
-                                                              || input.Distribution == 'Inverse-Gamma Distribution'
-                                                              || input.Distribution == 'Hyper Geometric Distribution'
-                                                              || input.Distribution == 'Half-Normal Distribution'
-                                                              || input.Distribution == 'Gumbel Distribution'
-                                                              || input.Distribution == 'Gamma Distribution'
-                                                              || input.Distribution == 'Geometric Distribution'
-                                                              || input.Distribution == '(Non-Central) Chi-Squre Distribution'
-                                                              || input.Distribution == 'Chi-Square Distribution'
-                                                              || input.Distribution == 'Chi Distribution'
-                                                              || input.Distribution == 'Fisher F Distribution')",
-          textInput("SDNum", paste("Standard deviations from mean (0 to adjust freely, many are still implementing : )", sep = ""), 0)
-        )))
+        column(10, div(
+          align = "left",
+          conditionalPanel(
+            condition = sprintf("input.numericalValues == 0 && input.Distribution %%in%% %s", shQuote(distWithSD)),
+            textInput("SDNum", paste("Standard deviations from mean (0 to adjust freely, many are still implementing : )", sep = ""), 0)
+          )
+        ))
       ),
 
       # ----------------------- Input: Slider Input for x-Range ----------------------- #
