@@ -57,7 +57,7 @@ fitBeta <- function(dataset) {
 # }
 
 # FIXME: This is not working
-# fitBivariateNormal <- function(dataset) {
+# fitBivariateNormal3D <- function(dataset) {
 #     fitDistModel <- fitdist(dataset, "bivnorm")
 #     return(fitDistModel)
 # }
@@ -149,13 +149,13 @@ fitFinite <- function(dataset) {
 
 
 # Not tested
-fitF <- function(dataset) {
+fitFisherF <- function(dataset) {
     fitDistModel <- fitdist(dataset, "f")
     return(fitDistModel)
 }
 
 # Not tested
-fitFishersTippett <- function(dataset) {
+fitFisherTippett <- function(dataset) {
     fitDistModel <- fitdist(dataset, "fishertippett")
     return(fitDistModel)
 }
@@ -258,7 +258,7 @@ fitLaplace <- function(dataset) {
 }
 
 # Not tested
-fitLogarithmicseries <- function(dataset) {
+fitLogarithmicSeries <- function(dataset) {
     fitDistModel <- fitdist(dataset, "logarithmicseries")
     return(fitDistModel)
 }
@@ -275,7 +275,6 @@ fitLogisticExponential <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
 fitLogNormal <- function(dataset) {
     fitDistModel <- fitdist(dataset, "lnorm")
     return(fitDistModel)
@@ -398,13 +397,13 @@ fitRice <- function(dataset) {
 }
 
 # Not tested
-fitT <- function(dataset) {
+fitStudentsT <- function(dataset) {
     fitDistModel <- fitdist(dataset, "t")
     return(fitDistModel)
 }
 
 # Not tested
-fitTNonCentral <- function(dataset) {
+fitStudentsTNonCentral <- function(dataset) {
     fitDistModel <- fitdist(dataset, "tnoncentral")
     return(fitDistModel)
 }
@@ -422,7 +421,7 @@ fitTwoSidedPower <- function(dataset) {
 }
 
 # Not tested
-fitUquadratic <- function(dataset) {
+fitUQuadratic <- function(dataset) {
     fitDistModel <- fitdist(dataset, "uquadratic")
     return(fitDistModel)
 }
