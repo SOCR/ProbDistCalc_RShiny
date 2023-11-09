@@ -22,6 +22,7 @@ plotlyFunctions <- list.files("plotlyFunctions", full.names = TRUE)
 for (file in plotlyFunctions) {
   source(file)
 }
+source("fitFunctions.R")
 # ----------------------- Parse and Store xml Databse of Metadata from Distributome Project ----------------------- #
 xml_data <- read_xml("Distributome.xml", encoding = "UTF-8")
 xml_rootnode <- xml_root(xml_data)

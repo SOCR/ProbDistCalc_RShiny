@@ -1,9 +1,3 @@
-fitPoisson <- function(dataset) {
-    rounded_data <- round(dataset)
-    fitDistModel <- fitdist(rounded_data, "pois", discrete = TRUE)
-    return(fitDistModel)
-}
-
 plotlyPoissonDistribution <- function(plotrange, input, distType, probrange, session) {
     mean <- as.numeric(input$PoiLambda)
     standard_dev <- sqrt(mean)
