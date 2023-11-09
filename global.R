@@ -150,13 +150,11 @@ nameToFullName <- function(name) {
 }
 # assign the function named fitFuncName to distributionInfo$fitFunc
 for (name in distributions) {
-  if (distributionInfoList[[name]]$hasImplementation) {
-      fitFuncName <- paste0("fit", distributionInfoList[[name]]$name)
-      if (exists(fitFuncName)) {
-          distributionInfoList[[name]]$fitFunc <- get(fitFuncName)
-      }
-      else {
-          print(paste0("[WARNING] fit function ", fitFuncName, " does not exist"))
-      }
+  fitFuncName <- paste0("fit", distributionInfoList[[name]]$name)
+  if (exists(fitFuncName)) {
+      distributionInfoList[[name]]$fitFunc <- get(fitFuncName)
+  }
+  else {
+      print(paste0("[WARNING] fit function ", fitFuncName, " does not exist"))
   }
 }

@@ -1,27 +1,27 @@
-# Not tested
+# FIXME: This is not working
 # fitAndersonDarling <- function(dataset) {
 #     fitDistModel <- fitdist(dataset, "andersonDarling")
 #     return(fitDistModel)
 # }
 
-# Not tested
+# FIXME: This is not working
 # fitArcSine <- function(dataset) {
 #     fitDistModel <- fitdist(dataset, "arcsine")
 #     return(fitDistModel)
 # }
 
-# Not tested
-fitBenford <- function(dataset) {
-    rounded_data <- round(dataset)
-    fitDistModel <- fitdist(rounded_data, "benford")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBenford <- function(dataset) {
+#     rounded_data <- round(dataset)
+#     fitDistModel <- fitdist(rounded_data, "benford")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitBernoulli <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "bernoulli")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBernoulli <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "bernoulli")
+#     return(fitDistModel)
+# }
 
 
 fitBeta <- function(dataset) {
@@ -30,55 +30,54 @@ fitBeta <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
-fitBetaGeneralized <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "betagen")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBetaGeneralized <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "betagen")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitBetaBinomial <- function(dataset) {
-    rounded_data <- round(dataset)
-    fitDistModel <- fitdist(rounded_data, "betabinom")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBetaBinomial <- function(dataset) {
+#     rounded_data <- round(dataset)
+#     fitDistModel <- fitdist(rounded_data, "betabinom")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitBinomial <- function(dataset) {
-    rounded_data <- round(dataset)
-    fitDistModel <- fitdist(rounded_data, "binom")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBinomial <- function(dataset) {
+#     rounded_data <- round(dataset)
+#     fitDistModel <- fitdist(rounded_data, "binom")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitBirthday <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "birthday")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBirthday <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "birthday")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitBivariateNormal <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "bivnorm")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitBivariateNormal <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "bivnorm")
+#     return(fitDistModel)
+# }
 
-# Not tested
 fitCauchy <- function(dataset) {
     fitDistModel <- fitdist(dataset, "cauchy")
     return(fitDistModel)
 }
 
-# Not tested
-fitChi <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "chi")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitChi <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "chi")
+#     return(fitDistModel)
+# }
 
-# Not tested
-fitChiSquare <- function(dataset) {
-    fitDistModel <- fitdist(dataset, "chisq")
-    return(fitDistModel)
-}
+# FIXME: This is not working
+# fitChiSquare <- function(dataset) {
+#     fitDistModel <- fitdist(dataset, "chisq")
+#     return(fitDistModel)
+# }
 
 # Not tested
 fitChiSquareNonCentral <- function(dataset) {
@@ -264,7 +263,6 @@ fitLogarithmicseries <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
 fitLogistic <- function(dataset) {
     fitDistModel <- fitdist(dataset, "logis")
     return(fitDistModel)
@@ -369,7 +367,6 @@ fitPointMass <- function(dataset) {
     return(fitDistModel)
 }
 
-# Not tested
 fitPoisson <- function(dataset) {
     rounded_data <- round(dataset)
     fitDistModel <- fitdist(rounded_data, "pois", discrete = TRUE)
