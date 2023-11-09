@@ -81,7 +81,8 @@ shinyServer(
         fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
         for (i in 1:length(fit_result$estimate)) {
           inputName <- distributionInfo$inputNames[[i]]
-          updateTextInput(session, inputName, value = fit_result$estimate[[i]])
+          fitted_parameter <- round(fit_result$estimate[[i]], digits = 4)
+          updateTextInput(session, inputName, value = fitted_parameter)
           session$sendCustomMessage("highlightTextInput", inputName)
         }
         output$fitStatus <- renderText({
