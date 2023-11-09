@@ -84,12 +84,10 @@ generateMainPlotPanel <- function() {
   panel(
     fluidRow(
       column(2, switchInput(inputId = "numericalValues", value = FALSE, onLabel = "Manual", offLabel = "Slider")),
-      column(
-        10, div(
-          align = "left",
-          textInput("SDNum", paste("Standard deviation from mean (0 to adjust freely)", sep = ""), 0)
-        )
-      )
+      column(5, div(
+        textInput("SDNum", paste("Standard deviation from mean (0 to adjust freely)", sep = ""), 0)
+      )),
+      column(5, panel(div(htmlOutput("currentParameters"))))
     ),
     # ----------------------- Input: Slider Input for x-Range ----------------------- #
     conditionalPanel(

@@ -103,6 +103,20 @@ shinyServer(
       }
     })
 
+    # Generate text to display current parameters and their values
+    output$currentParameters <- renderUI(
+      HTML({
+        distributionInfo <- distributionInfoList[[input$Distribution]]
+        paramValues <- lapply(seq_along(distributionInfo$labels), function(i) {
+          label <- distributionInfo$labels[[i]]
+          inputName <- distributionInfo$inputNames[[i]]
+          paste("<i>", label, "</i>: <b>", input[[inputName]], "</b>")
+        })
+        # Combine the distribution name and parameter values into a single string
+        paste("Current Parameters:<br />", paste(paramValues, collapse = "<br />"))
+      })
+    )
+
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
         title = "Help / ReadMe",
