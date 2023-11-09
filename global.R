@@ -41,198 +41,96 @@ for (i in 1:xml_len) {
     distributions_meta[[j, i * 2]] <- xml_text(xml_i[j])
   }
 }
-# ----------------------- Distribubtions to be Implemented ----------------------- #
-distToImpl <- c(
-  "Anderson-Darling Distribution",
-  "Birthday Distribution",
-  "Coupon Distribution",
-  "Die Distribution",
-  "Finite Distribution",
-  "Kolmogorov Distribution",
-  # "Matching Distribution",
-  "Mixture Distribution",
-  "Multinomial Distribution",
-  "Negative-Multinomial Distribution",
-  # "Poker-Dice Distribution",
-  # "Two-Sided Power Distribution",
-  "WalkMax Distribution",
-  "WalkPosition Distribution"
-)
-#------------------------ List of Distributions with SD function -----------------------------#
-distWithSD <- c(
-  "Chi Distribution",
-  "Chi-Square Distribution",
-  "(Non-Central) Chi-Squre Distribution",
-  "Fisher F Distribution",
-  "Gamma Distribution",
-  "Geometric Distribution",
-  "Gumbel Distribution",
-  "Half-Normal Distribution",
-  "Hyper Geometric Distribution",
-  "Inverse-Gamma Distribution",
-  "Inverse Gaussian (Wald) Distribution",
-  "Laplace Distribution",
-  "Logarithmic-Series Distribution",
-  "Logistic Distribution",
-  "Log-Normal Distribution",
-  "Maxwell Distribution",
-  "Normal Distribution",
-  "Poisson Distribution",
-  "Rayleigh Distribution",
-  "Weibull Distribution"
-)
-# ----------------------- Complete List of All Probability Distributions ----------------------- #
-distributions <- c(
-  "Anderson-Darling Distribution",
-  "ArcSine Distribution",
-  "Benford Distribution",
-  "Bernoulli Distribution",
-  "Beta Distribution",
-  "Beta (Generalized) Distribution",
-  "Beta-Binomial Distribution",
-  "Binomial Distribution",
-  "Birthday Distribution",
-  "(3D) Bivariate Normal Distribution",
-  "Cauchy Distribution",
-  "Chi Distribution",
-  "Chi-Square Distribution",
-  "(Non-Central) Chi-Squre Distribution",
-  "Circle Distribution",
-  "Continuous Uniform Distribution",
-  "Coupon Distribution",
-  "Die Distribution",
-  "Discrete ArcSine Distribution",
-  "Discrete Uniform Distribution",
-  "Erlang Distribution",
-  "Error Distribution",
-  "Exponential Distribution",
-  "Finite Distribution",
-  "Fisher F Distribution",
-  "Fisher-Tippett Distribution",
-  "Gamma Distribution",
-  "General Cauchy Distribution",
-  "Generalized Extreme Value (GEV) Distribution",
-  "Geometric Distribution",
-  "Gilbrats Distribution",
-  "Gompertz Distribution",
-  "Gumbel Distribution",
-  "Half-Normal Distribution",
-  "Hyper Geometric Distribution",
-  "Hyperbolic-Secant Distribution",
-  "Inverse-Gamma Distribution",
-  "Inverse Gaussian (Wald) Distribution",
-  "Johnson SB (Bounded) Distribution",
-  "Johnson SU (Unbounded) Distribution",
-  "Kolmogorov Distribution",
-  "Laplace Distribution",
-  "Logarithmic-Series Distribution",
-  "Logistic Distribution",
-  "Logistic-Exponential Distribution",
-  "Log-Normal Distribution",
-  "Lomax Distribution",
-  "Matching Distribution",
-  "Maxwell Distribution",
-  "Minimax Distribution",
-  "Mixture Distribution",
-  "Multinomial Distribution",
-  "Muth Distribution",
-  "Negative-Binomial Distribution",
-  "Negative-HyperGeometric Distribution",
-  "Negative-Multinomial Distribution",
-  "Normal Distribution",
-  "Normal Truncated Distribution",
-  "Pareto Distribution",
-  "Point-Mass Distribution",
-  "Poisson Distribution",
-  "Poker-Dice Distribution",
-  "Power-Function Distribution",
-  "Rayleigh Distribution",
-  "Rice (Rician) Distribution",
-  "Student's T Distribution",
-  "Student's T Non-Central Distribution",
-  "Triangle Distribution",
-  "Two-Sided Power Distribution",
-  "U-Quadratic Distribution",
-  "Von Mises Distribution",
-  "WalkMax Distribution",
-  "WalkPosition Distribution",
-  "Weibull Distribution",
-  "Zipf-Manelbrot Distribution"
-)
 
-# index of each distribution
-AndersonDarling <- 1
-ArcSine <- 2
-Benford <- 3
-Bernoulli <- 4
-Beta <- 5
-BetaGeneralized <- 6
-BetaBinomial <- 7
-Binomial <- 8
-Birthday <- 9
-BivariateNormal3D <- 10
-Cauchy <- 11
-Chi <- 12
-ChiSquare <- 13
-ChiSqureNonCentral <- 14
-Circle <- 15
-ContinuousUniform <- 16
-Coupon <- 17
-Die <- 18
-DiscreteArcSine <- 19
-DiscreteUniform <- 20
-Erlang <- 21
-Error <- 22
-Exponential <- 23
-Finite <- 24
-FisherF <- 25
-FisherTippett <- 26
-Gamma <- 27
-GeneralCauchy <- 28
-GeneralizedExtremeValueGEV <- 29
-Geometric <- 30
-Gilbrats <- 31
-Gompertz <- 32
-Gumbel <- 33
-HalfNormal <- 34
-HyperGeometric <- 35
-HyperbolicSecant <- 36
-InverseGamma <- 37
-InverseGaussianWald <- 38
-JohnsonSBBounded <- 39
-JohnsonSUUnbounded <- 40
-Kolmogorov <- 41
-Laplace <- 42
-LogarithmicSeries <- 43
-Logistic <- 44
-LogisticExponential <- 45
-LogNormal <- 46
-Lomax <- 47
-Matching <- 48
-Maxwell <- 49
-Minimax <- 50
-Mixture <- 51
-Multinomial <- 52
-Muth <- 53
-NegativeBinomial <- 54
-NegativeHyperGeometric <- 55
-NegativeMultinomial <- 56
-Normal <- 57
-NormalTruncated <- 58
-Pareto <- 59
-PointMass <- 60
-Poisson <- 61
-PokerDice <- 62
-PowerFunction <- 63
-Rayleigh <- 64
-RiceRician <- 65
-StudentsT <- 66
-StudentsTNonCentral <- 67
-Triangle <- 68
-TwoSidedPower <- 69
-UQuadratic <- 70
-VonMises <- 71
-WalkMax <- 72
-WalkPosition <- 73
-Weibull <- 74
-ZipfManelbrot <- 75
+distributionInfoClass <- function(id, name, inputNames, labels, defaultValues, hasImplementation = TRUE, isWithSD = FALSE) {
+  structure(list(
+    id = id,
+    name = name,
+    inputNames = inputNames,
+    labels = labels,
+    defaultValues = defaultValues,
+    hasImplementation = hasImplementation,
+    isWithSD = isWithSD
+  ), class = "distributionInfo")
+}
+
+distributionInfoList <- list(
+  "Anderson-Darling Distribution" = distributionInfoClass(1, "Anderson-Darling", c("ADn", "ADNCP"), c("n", "non-centrality parameter"), c(1, 1), hasImplementation = FALSE),
+  "ArcSine Distribution" = distributionInfoClass(2, "ArcSine", c("ArcSineA", "ArcSineB"), c("A", "B"), c(1, 2)),
+  "Benford Distribution" = distributionInfoClass(3, "Benford", c("Benfn"), c("number of leading digits"), c(1)),
+  "Bernoulli Distribution" = distributionInfoClass(4, "Bernoulli", c("BernProb"), c("Probability"), c(0.5)),
+  "Beta Distribution" = distributionInfoClass(5, "Beta", c("BetaAlpha", "BetaBeta"), c("Alpha", "Beta"), c(0, 1)),
+  "Beta (Generalized) Distribution" = distributionInfoClass(6, "Beta(Generalized)", c("BetaGenA", "BetaGenB", "BetaGenC", "BetaGenP"), c("A", "B", "C", "P"), c(3, 2, 1, 5)),
+  "Beta-Binomial Distribution" = distributionInfoClass(7, "Beta-Binomial", c("BetaBinomN", "BetaBinomU", "BetaBinomV"), c("n", "alpha", "beta"), c(2, 3, 0.2)),
+  "Binomial Distribution" = distributionInfoClass(8, "Binomial", c("BinomP", "BinomN"), c("Probability", "n"), c(0.5, 10)),
+  "Birthday Distribution" = distributionInfoClass(9, "Birthday", c("BirthN"), c("n"), c(10), hasImplementation = FALSE),
+  "Bivariate Normal Distribution (3D)" = distributionInfoClass(10, "Bivariate Normal", c("BivaM1", "BivaV1", "BivaM2", "BivaV2", "BivaCov"), c("mean of the first random variable", "variance of the first random variable", "mean for the second random variable", "variance of the second random variable", "covariance of the two random variables"), c(0, 2, 0, 2, -1)),
+  "Cauchy Distribution" = distributionInfoClass(11, "Cauchy", c("CauchyX0", "CauchyGamma"), c("x0", "Gamma"), c(1, 1)),
+  "Chi Distribution" = distributionInfoClass(12, "Chi", c("ChiK"), c("k"), c(1), isWithSD = TRUE),
+  "Chi Square Distribution" = distributionInfoClass(13, "Chi Square", c("Chi2n"), c("n"), c(1), isWithSD = TRUE),
+  "Chi Square Non Central Distribution" = distributionInfoClass(14, "Chi Square Non Central", c("Chi2NCn", "Chi2NCNCP"), c("n", "non-centrality paramter"), c(1, 1), isWithSD = TRUE),
+  "Circle Distribution" = distributionInfoClass(15, "Circle", c("CircleRadius"), c("radius"), c(2)),
+  "Continuous Uniform Distribution" = distributionInfoClass(16, "Continuous Uniform", c("UnifMin", "UnifMax"), c("Min.", "Max."), c(0, 1)),
+  "Coupon Distribution" = distributionInfoClass(17, "Coupon", c("CouponN"), c("n"), c(10), hasImplementation = FALSE),
+  "Die Distribution" = distributionInfoClass(18, "Die", c("DieN"), c("n"), c(6), hasImplementation = FALSE),
+  "Discrete ArcSine Distribution" = distributionInfoClass(19, "Discrete ArcSine", c("DisArcSineA", "DisArcSineB"), c("A", "B"), c(1, 30)),
+  "Discrete Uniform Distribution" = distributionInfoClass(20, "Discrete Uniform", c("DisUnifMin", "DisUnifMax"), c("Min.", "Max."), c(0, 1)),
+  "Erlang Distribution" = distributionInfoClass(21, "Erlang", c("ErlangScale", "ErlangShape"), c("scale", "shape"), c(1, 1)),
+  "Error Distribution" = distributionInfoClass(22, "Error", c("ErrorLocation", "ErrorScale", "ErrorShape"), c("location", "scale", "shape"), c(0, 1, 2)),
+  "Exponential Distribution" = distributionInfoClass(23, "Exponential", c("ExpLambda"), c("lambda"), c(1)),
+  "Finite Distribution" = distributionInfoClass(24, "Finite", c("FinProb"), c("Probability"), c(0.5), hasImplementation = FALSE),
+  "F Distribution" = distributionInfoClass(25, "F", c("FdOne", "FdTwo"), c("d1", "d2"), c(1, 1)),
+  "Fishers-Tippett Distribution" = distributionInfoClass(26, "Fishers-Tippett", c("GEVMiu", "GEVSigma", "GEVEpsilon"), c("miu", "sigma", "Epsilon"), c(1, 1, 1), isWithSD = TRUE),
+  "Gamma Distribution" = distributionInfoClass(27, "Gamma", c("GammaA", "GammaB"), c("alpha", "beta"), c(1, 1), isWithSD = TRUE),
+  "General Cauchy Distribution" = distributionInfoClass(28, "General Cauchy", c("GeneralCauchyAlpha", "GeneralCauchyBeta"), c("alpha", "beta"), c(1, 1)),
+  "Generalized Extreme Value (GEV) Distribution" = distributionInfoClass(29, "Generalized Extreme Value (GEV)", c("GEVMiu", "GEVSigma", "GEVEpsilon"), c("miu", "sigma", "Epsilon"), c(1, 1, 1)),
+  "Geometric Distribution" = distributionInfoClass(30, "Geometric", c("GeomProb"), c("Probability"), c(0.5), isWithSD = TRUE),
+  "Gilbrats Distribution" = distributionInfoClass(31, "Gilbrats", c("GilbratsMu", "GilbratsSigma"), c("mu", "sigma"), c(0, 1)),
+  "Gompertz Distribution" = distributionInfoClass(32, "Gompertz", c("Gompertz_N", "Gompertz_B"), c("shape eta", "scale Beta"), c(2, 3)),
+  "Gumbel Distribution" = distributionInfoClass(33, "Gumbel", c("Gumbel_U", "Gumbel_Beta"), c("location u", "scale Beta"), c(2, 3), isWithSD = TRUE),
+  "Half Normal Distribution" = distributionInfoClass(34, "Half Normal", c("HNorm"), c("sigma"), c(1), isWithSD = TRUE),
+  "Hyper Geometric Distribution" = distributionInfoClass(35, "Hyper Geometric", c("HyperM", "HyperN", "HyperK"), c("m", "N", "n"), c(50, 500, 100), isWithSD = TRUE),
+  "Hyperbolic-Secant Distribution" = distributionInfoClass(36, "Hyperbolic-Secant", c("HSmu", "HSsigma"), c("mu", "sigma"), c(0, 1)),
+  "Inverse-Gamma Distribution" = distributionInfoClass(37, "Inverse-Gamma", c("InvGammaA", "InvGammaB"), c("alpha", "beta"), c(1, 1), isWithSD = TRUE),
+  "Inverse-Gaussian(Wald) Distribution" = distributionInfoClass(38, "Inverse-Gaussian(Wald)", c("InvGausM", "InvGausL"), c("mu", "lambda"), c(1, 0.2), isWithSD = TRUE),
+  "Johnson SB (Bounded) Distribution" = distributionInfoClass(39, "Johnson SB (Bounded)", c("JohnSBgamma", "JohnSBdelta", "JohnSBxi", "JohnSBlambda"), c("gamma", "delta", "xi", "lambda"), c(-0.5, 2, -0.5, 2)),
+  "Johnson SU (Unbounded) Distribution" = distributionInfoClass(40, "Johnson SU (Unbounded)", c("JohnSUgamma", "JohnSUdelta", "JohnSUxi", "JohnSUlambda"), c("gamma", "delta", "xi", "lambda"), c(-0.5, 2, -0.5, 2)),
+  "Kolmogorov Distribution" = distributionInfoClass(41, "Kolmogorov", c("Kolmogorovn"), c("n"), c(1), hasImplementation = FALSE),
+  "Laplace Distribution" = distributionInfoClass(42, "Laplace", c("LapMu", "LapSig"), c("mu", "sigma"), c(0, 1), isWithSD = TRUE),
+  "Logarithmic-series Distribution" = distributionInfoClass(43, "Logarithmic-series", c("LogP"), c("P"), c(0.5), isWithSD = TRUE),
+  "Logistic Distribution" = distributionInfoClass(44, "Logistic", c("LogiA", "LogiB"), c("a", "b"), c(0, 1), isWithSD = TRUE),
+  "Logistic Exponential Distribution" = distributionInfoClass(45, "Logistic Exponential", c("LogEx_A", "LogEx_B"), c("a", "b"), c(5, 1)),
+  "LogNormal Distribution" = distributionInfoClass(46, "LogNormal", c("LogNormMean", "LogNormSD"), c("mean", "standard deviation"), c(0, 1), isWithSD = TRUE),
+  "Lomax Distribution" = distributionInfoClass(47, "Lomax", c("LomaxLamda", "LomaxKappa"), c("Lambda", "Kappa"), c(1, 2)),
+  "Matching Distribution" = distributionInfoClass(48, "Matching", c("MatchParam"), c("parameter"), c(1)),
+  "Maxwell Distribution" = distributionInfoClass(49, "Maxwell", c("MaxwellA"), c("a"), c(1), isWithSD = TRUE),
+  "Minimax Distribution" = distributionInfoClass(50, "Minimax", c("Mini_B", "Mini_V"), c("Beta", "Gama"), c(1, 2)),
+  "Mixture Distribution" = distributionInfoClass(51, "Mixture", c("MixProb"), c("Probability"), c(0.5), hasImplementation = FALSE),
+  "Multinomial Distribution" = distributionInfoClass(52, "Multinomial", c("MultProb", "MultN"), c("Probability", "n"), c(0.5, 10), hasImplementation = FALSE),
+  "Muth Distribution" = distributionInfoClass(53, "Muth", c("MuthKappa"), c("Kappa"), c(1)),
+  "Negative Binomial Distribution" = distributionInfoClass(54, "Negative Binomial", c("NegBiR", "NegBiP"), c("r", "p"), c(1, 0.5)),
+  "Negative HyperGeometric Distribution" = distributionInfoClass(55, "Negative HyperGeometric", c("NegHyperK", "NegHyperN", "NegHyperR"), c("W", "B", "b"), c(45, 30, 1)),
+  "Negative Multinomial Distribution" = distributionInfoClass(56, "Negative Multinomial", c("NegMultK", "NegMultP"), c("k", "p"), c(1, 0.5), hasImplementation = FALSE),
+  "Normal Distribution" = distributionInfoClass(57, "Normal", c("NormMean", "NormSD"), c("mean", "standard deviation"), c(0, 1), isWithSD = TRUE),
+  "Normal Truncated Distribution" = distributionInfoClass(58, "Normal Truncated", c("TruncNormMean", "TruncNormSD", "TruncNormMin", "TruncNormMax"), c("mean", "standard deviation", "Min", "Max"), c(0, 3, -5, 5)),
+  "Pareto Distribution" = distributionInfoClass(59, "Pareto", c("ParetoA", "ParetoB"), c("a", "b"), c(1, 1)),
+  "Point Mass Distribution" = distributionInfoClass(60, "Point Mass", c("PMD_Location"), c("location"), c(1)),
+  "Poisson Distribution" = distributionInfoClass(61, "Poisson", c("PoiLambda"), c("lambda"), c(1), isWithSD = TRUE),
+  "Poker Dice Distribution" = distributionInfoClass(62, "Poker Dice", c(), c(), c()),
+  "Power Function Distribution" = distributionInfoClass(63, "Power Function", c("PowerAlpha", "PowerBeta"), c("alpha", "beta"), c(3, 4)),
+  "Rayleigh Distribution" = distributionInfoClass(64, "Rayleigh", c("RayleighSigma"), c("sigma"), c(1), isWithSD = TRUE),
+  "Rice Distribution" = distributionInfoClass(65, "Rice", c("RiceVee", "RiceSigma"), c("VEE", "Sigma"), c(1, 1)),
+  "T Distribution" = distributionInfoClass(66, "T", c("Tdof"), c("degree of freedom"), c(1)),
+  "T Non Central Distribution" = distributionInfoClass(67, "T Non Central", c("TNCdof", "TNCNCP"), c("degree of freedom", "non-centrality parameter"), c(1, 1)),
+  "Triangular Distribution" = distributionInfoClass(68, "Triangular", c("Triangular_A", "Triangular_B", "Triangular_C"), c("a", "b", "c"), c(1, 10, 4)),
+  "Two-Sided Power Distribution" = distributionInfoClass(69, "Two-Sided Power", c("TSPowerLeft", "TSPowerRight", "TSPowerMed", "TSPowerPower"), c("left", "right", "med", "power"), c(-5, 5, 0, 3)),
+  "U-quadratic distribution" = distributionInfoClass(70, "U-quadratic", c("UQ_C", "UQ_W"), c("c", "w"), c(1, 1)),
+  "Von Mises Distribution" = distributionInfoClass(71, "Von Mises", c("vonMisesMu", "vonMisesKappa"), c("mu", "kappa"), c(0, 1)),
+  "Walk Max Distribution" = distributionInfoClass(72, "Walk Max", c("WalkMaxSteps"), c("steps"), c(4)),
+  "Walk Position Distribution" = distributionInfoClass(73, "Walk Position", c("WalkPosSteps"), c("steps"), c(4), hasImplementation = FALSE),
+  "Weibull Distribution" = distributionInfoClass(74, "Weibull", c("WeibullLambda", "WeibullK"), c("lambda", "k"), c(1, 1), isWithSD = TRUE),
+  "Zipf-Mandelbrot Distribution" = distributionInfoClass(75, "Zipf-Mandelbrot", c("Zipf_q", "Zipf_N", "Zipf_s"), c("shape parameter q", "shape parameter N", "shape parameter s"), c(1, 1, 1))
+)
+distToImpl <- Filter(function(x) !x$hasImplementation, distributionInfoList)
+distWithSD <- Filter(function(x) x$isWithSD, distributionInfoList)
+distributions <- names(distributionInfoList)
