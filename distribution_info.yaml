@@ -3,12 +3,9 @@ Anderson-Darling Distribution:
   name: AndersonDarling
   inputNames:
   - ADn
-  - ADNCP
   labels:
   - 'n'
-  - non-centrality parameter
   defaultValues:
-  - 1.0
   - 1.0
   hasImplementation: yes
   isWithSD: no
