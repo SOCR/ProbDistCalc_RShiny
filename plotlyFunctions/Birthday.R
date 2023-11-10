@@ -1,14 +1,14 @@
 popSize <- 0
 sampleSize <- 0
 
-prob
+prob_birt <- array(0, c(0, 0))
 
 calculate <- function() {
     temp <- rep(0, (popSize+1)*(sampleSize+1))
 
-    prob <<- array(temp, dim=c(popSize+1, sampleSize+1))
-    prob[1,1] <<- 1
-    prob[2,2] <<- 1
+    prob_birt <<- array(temp, dim=c(popSize+1, sampleSize+1))
+    prob_birt[1,1] <<- 1
+    prob_birt[2,2] <<- 1
 
     for (i in 2:sampleSize) {
         if (i < popSize + 1) {
@@ -17,20 +17,20 @@ calculate <- function() {
             upperIndex <- popSize + 1
         }
         for (j in 2:upperIndex) {
-            prob[j,i+1] <<- prob[j, i] * (j/popSize) + prob[j-1, i] * ( (popSize - j + 1) / popSize )
+            prob_birt[j,i+1] <<- prob_birt[j, i] * (j/popSize) + prob_birt[j-1, i] * ( (popSize - j + 1) / popSize )
         }
     }
 }
 
-getDensity <- function(x) {
+getDensity_Birt <- function(x) {
     x = round(x)
     if (x<=0) {
         return(0)
     }
-    return(prob[x, sampleSize+1])
+    return(prob_birt[x, sampleSize+1])
 }
 
-getCDF <- function(x) {
+getCDF_Birt <- function(x) {
     x = round(x)
     if (x<=0) {
         return(0)
@@ -39,14 +39,14 @@ getCDF <- function(x) {
     res <- 0
 
     for (i in 1:x) {
-        res = res + prob[i, sampleSize+1]
+        res = res + prob_birt[i, sampleSize+1]
     }
     return(res)
 }
 
 dBirt <- function(x) {
     calculate()
-    sapply(x, getDensity)
+    sapply(x, getDensity_Birt)
 }
 
 pBirt <- function(x) {
@@ -73,25 +73,38 @@ plotlyBirthdayDistribution <- function(plotrange, input, distType, probrange) {
     }
 
     if (graphtype != "") {
-        xsize = length(xseq)
-        colors = c(rep("rgb(31, 119, 180)", xsize))
+        fig <- plot_ly(
+            x = xseq, y = f9, name = distType, type = "scatter", mode = "lines",
+            hoverinfo = "xy"
+        )
+        xsize <- length(xseq)
+        newy <- f9
         for (index in 1:xsize) {
-            if (xseq[index] >= round(probrange[1], 0) && xseq[index] <= round(probrange[2],
-                0)) {
-                colors[index] = "rgb(255, 127, 14)"
+            if (xseq[index] < probrange[1] || xseq[index] > probrange[2]) {
+                newy[index] <- NA
             }
         }
-        fig <- plot_ly(x = xseq, y = f9, name = distType, type = "bar", marker = list(color = colors),
-            text = f9, hovertemplate = paste("<br><b>Prob. </b>: %{y}</br>", "<b>X</b>: %{x}",
-                "<b>Y</b>: %{y}"), )
+        prob <- getCDF_Birt(as.numeric(probrange[2])) - getCDF_Birt(as.numeric(probrange[1]))
         fig <- fig %>%
-            plotly::layout(title = paste(distributions[9], " - ", graphtype, sep = ""),
-                hovermode = "x", hoverlabel = list(namelength = 100), yaxis = list(fixedrange = TRUE,
-                  zeroline = TRUE, range = c(min(f9), max(f9)), type = "linear"),
-                xaxis = list(showticklabels = TRUE, title = "* All x values rounded to nearest integers",
-                  zeroline = TRUE, showline = TRUE, showgrid = TRUE, linecolor = "rgb(204, 204, 204)",
-                  linewidth = 2, mirror = TRUE, fixedrange = TRUE, range = c(plotrange[1],
-                    plotrange[2])), showlegend = FALSE)
+            add_trace(
+                x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
+                hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)"
+            )
+        fig <- fig %>%
+            plotly::layout(
+                title = paste(distType, " - ", graphtype, sep = ""), hovermode = "x",
+                hoverlabel = list(namelength = 100), yaxis = list(
+                    fixedrange = TRUE,
+                    zeroline = TRUE, range = c(min(f9), max(f9))
+                ), xaxis = list(
+                    showticklabels = TRUE,
+                    zeroline = TRUE, showline = TRUE, showgrid = TRUE, linecolor = "rgb(204, 204, 204)",
+                    linewidth = 2, mirror = TRUE, fixedrange = TRUE, range = c(
+                        plotrange[1],
+                        plotrange[2]
+                    )
+                ), showlegend = FALSE
+            )
         fig <- fig %>%
             config(editable = FALSE)
         fig

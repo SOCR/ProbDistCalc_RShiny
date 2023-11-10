@@ -63,6 +63,7 @@ cdfTerm3 <- function(x) {
     if (x < C) {
         v <- x / C
         v <- sqrt(v) * (1.0 - v) * (49 * v - 102)
+
         return(x + v * (0.0037 / (n * n) + 0.00078 / n + 0.00006) / n)
     }
 
@@ -84,7 +85,7 @@ getCDF_n_1 <- function(x) {
     }
 }
 
-getCDF <- function(x) {
+getCDF_AD <- function(x) {
     if (x <= 0.0) {
         return(0.0)
     }
@@ -111,10 +112,10 @@ specialCaseDensity_n_1 <- function(x) {
 }
 
 distributionGradient <- function(x, delta) {
-    return((getCDF(x + delta) - getCDF(x - delta)) / (2.0 * delta))
+    return((getCDF_AD(x + delta) - getCDF_AD(x - delta)) / (2.0 * delta))
 }
 
-getDensity <- function(x) {
+getDensity_AD <- function(x) {
     if (n <= 0) {
         n <- 1
     }
@@ -142,12 +143,13 @@ getDensity <- function(x) {
 
 dAD <- function(x, n_in) {
     n <<- n_in
-    sapply(x, getDensity)
+    print(n)
+    sapply(x, getDensity_AD)
 }
 
 pAD <- function(x, n_in) {
     n <<- n_in
-    sapply(x, getCDF)
+    sapply(x, getCDF_AD)
 }
 
 plotlyAndersonDarlingDistribution <- function(plotrange, input, distType, probrange) {
@@ -178,7 +180,7 @@ plotlyAndersonDarlingDistribution <- function(plotrange, input, distType, probra
                 newy[index] <- NA
             }
         }
-        prob <- getCDF(as.numeric(probrange[2])) - getCDF(as.numeric(probrange[1]))
+        prob <- getCDF_AD(as.numeric(probrange[2])) - getCDF_AD(as.numeric(probrange[1]))
         fig <- fig %>%
             add_trace(
                 x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
