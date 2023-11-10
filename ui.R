@@ -32,149 +32,203 @@ generateParameterlPanel <- function(distributionInfo) {
   )
 }
 
+generateCalculatorSidePanel <- function() {
+  panel(
+    selectInput("FunctionType", "Please select distribution function type",
+      choices = c("", "PDF/PMF", "CDF/CMF")
+    ),
+    lapply(distributionInfoList, generateParameterlPanel)
+  )
+}
 
-generateFitButton <- function() {
-  conditionalPanel(
-    condition = paste("input.NeedFit"),
+
+generateModelerSidePanel <- function() {
+  panel(
+    selectInput("outcome",
+      label = ("Outcome (y)"),
+      choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[6]
+    ),
+    selectInput("indepvar",
+      label = ("Explanatory variable (x)"),
+      choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
+    ),
     actionButton("fitParams", "Fit Parameters from Data"),
-    textOutput("fitStatus")
+    tags$hr(),
+    generateDatasetFilePanel()
+  )
+}
+
+generateHelpPanel <- function() {
+  panel(
+    actionButton("vh.readme", "ReadMe/Help"),
+    actionButton("toggleButton", "Show/Hide Distribution Metadata"),
+    conditionalPanel(
+      condition = "input.toggleButton % 2 == 1",
+      uiOutput("MetaData"),
+      tags$style(type = "text/css", "#MetaData {white-space: pre-wrap;}")
+    )
+  )
+}
+
+
+
+
+generateSideBarPanel <- function() {
+  sidebarPanel(
+    selectInput("Distribution", "Please select distribution type",
+      choices = distributions,
+      selected = distributions[57]
+    ),
+    tabsetPanel(
+      id = "CalcModelerTabsetPanel",
+      type = "tabs",
+      tabPanel("Calculator", generateCalculatorSidePanel()),
+      tabPanel("Modeler", generateModelerSidePanel())
+    ),
+    generateHelpPanel()
+  )
+}
+
+generateMainPlotPanel <- function() {
+  # ----------------------- Input: Switch between Slider and Manual Inputs for Ranges and SD function ----------------------- #
+  panel(
+    fluidRow(
+      column(2, switchInput(inputId = "numericalValues", value = FALSE, onLabel = "Manual", offLabel = "Slider")),
+      column(5, div(
+        textInput("SDNum", paste("Standard deviation from mean (0 to adjust freely)", sep = ""), 0)
+      )),
+      column(5, panel(div(htmlOutput("currentParameters"))))
+    ),
+    # ----------------------- Input: Slider Input for x-Range ----------------------- #
+    conditionalPanel(
+      condition = "input.numericalValues == 0",
+      div(align = "right", sliderInput("plotrange", "X Range:",
+        min = -1000, max = 1000,
+        value = c(-10, 10),
+        step = 0.01,
+        width = "96%"
+      ))
+    ),
+    # ----------------------- Input: Numerical Inputs for x-Range ----------------------- #
+    conditionalPanel(
+      condition = "input.numericalValues == 1",
+      fluidRow(
+        column(3, numericInput(inputId = "plotrangeNumMin", label = "X-range Min:", value = -10)),
+        column(3, numericInput(inputId = "plotrangeNumMax", label = "X-range Max:", value = 10))
+      )
+    ),
+    # ----------------------- Output: Main Plot Output ----------------------- #
+    div(plotlyOutput("myPlot", height = "400"), aligh = "left"),
+    # ----------------------- Output: Implementing Text ----------------------- #
+    textOutput("Implementing"),
+    # ----------------------- Input: Slider Input for Lower and Upper Bounds for Probability Calculation ----------------------- #
+    conditionalPanel(
+      condition = "input.numericalValues == 0",
+      div(align = "right", sliderInput("probrange", "Probability Range:",
+        min = -10, max = 10,
+        value = c(-1, 1),
+        step = 0.01,
+        width = "96%"
+      ))
+    ),
+    # ----------------------- Input: Numerical Input for Lower and Upper Bounds for Probability Calculation ----------------------- #
+    conditionalPanel(
+      condition = "input.numericalValues == 1",
+      fluidRow(
+        column(3, numericInput(inputId = "probrangeNumMin", label = "Prob. Lower Bound:", value = -1)),
+        column(3, numericInput(inputId = "probrangeNumMax", label = "Prob. Upper Bound:", value = 1))
+      )
+    ),
+    # ----------------------- Ouput: Calculated Probability ----------------------- #
+    textOutput("probability")
+  )
+}
+
+generateDatasetPanel <- function() {
+  panel(
+    h3(textOutput("caption")),
+    tabsetPanel(
+      type = "tabs",
+      tabPanel("Data", DT::dataTableOutput("tbl")), # Data as datatable
+      tabPanel(
+        "Scatterplot", plotlyOutput("scatterplot"),
+        br(), hr(),
+        withMathJax(
+          paste0("Least Squares Linear Model Estimates"),
+          br(),
+          paste0(
+            "Slope: \\(\\hat{\\beta}_1 = \\dfrac{\\big(\\sum^n_{i=1} x_i y_i \\big) - n \\bar{x}
+                                    \\bar{y}}{\\sum^n_{i=1} (x_i- \\bar{x})^2} \\) =",
+            "\\(\\dfrac{ n \\big(\\sum^n_{i=1} x_i y_i \\big) -
+                                    \\big(\\sum^n_{i=1} x_i \\big) \\big(\\sum^n_{i=1} y_i \\big) }
+                                    {n \\sum^n_{i=1} x_i^2 - \\big(\\sum^n_{i=1} x_i \\big)^2} \\)"
+          ),
+          br(),
+          paste0("Intercept: \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x} \\) "),
+          br(),
+          paste0("Prediction: \\( \\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x \\) ")
+        )
+      ), # Scatter Plot,
+      tabPanel("Model Summary", verbatimTextOutput("summary")) # Regression output
+    )
+  )
+}
+
+generateDatasetFilePanel <- function() {
+  panel(
+    fileInput("file", "Upload a dataset.",
+      accept = c(
+        "text/csv",
+        "text/comma-separated-values,text/plain",
+        ".csv"
+      )
+    ),
+    p("Note: Please upload a CSV file."),
+    p("Default dataset is iris.")
   )
 }
 
 shinyUI(
   fluidPage(
+    tags$head(
+      tags$style(
+        HTML(".shiny-notification {
+             position:fixed;
+             top: calc(40%);
+             left: calc(40%);
+             font-size: 30px;
+             }
+             .highlight-input {
+             background-color: yellow;
+             }
+             ")
+      ),
+      tags$script(
+        HTML(
+          "Shiny.addCustomMessageHandler('highlightTextInput', function(inputId) {
+            var duration = 500; // 0.5 seconds
+            var inputElement = $('#' + inputId);
+            var originalColor = inputElement.css('background-color');
+            inputElement.addClass('highlight-input');
+            setTimeout(function() {
+              inputElement.removeClass('highlight-input');
+            }, duration);
+          });"
+        )
+      )
+    ),
     withMathJax(),
     # ----------------------- Output: Title ----------------------- #
-    titlePanel("SOCR Probability Distribution Calculator and Modeler"),
-    sidebarPanel(
-      ## added
-      selectInput("outcome",
-        label = h3("Outcome (y)"),
-        choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[6]
-      ),
-      selectInput("indepvar",
-        label = h3("Explanatory variable (x)"),
-        choices = unique(namedListOfFeatures()), selected = namedListOfFeatures()[4]
-      ),
-
-      # add end
-
-      # ----------------------- Input: Specifying Distrtibution Type ----------------------- #
-      selectInput("Distribution", "Please select distribution type",
-        choices = distributions,
-        selected = distributions[57]
-      ),
-      # ----------------------- Input: Specifying Function Type ----------------------- #
-      selectInput("FunctionType", "Please select distribution function type",
-        choices = c("", "PDF/PMF", "CDF/CMF")
-      ),
-      switchInput(inputId = "NeedFit", value = FALSE, onLabel = "Modeler", offLabel = "Calculator"),
-      # ----------------------- Input: Parameter Inputs ----------------------- #
-      lapply(distributionInfoList, generateParameterlPanel),
-      # ----------------------- Input: Fit Parameters from Data ----------------------- #
-      generateFitButton(),
-      # ----------------------- Input: Helpme ----------------------- #
-      actionButton("vh.readme", "ReadMe/Help"),
-      # ----------------------- Output: Metadata Output ----------------------- #
-      uiOutput("MetaData"), tags$style(type = "text/css", "#MetaData {white-space: pre-wrap;}")
-    ),
+    titlePanel("SOCR Probability Distribution Calculator/Modeler"),
+    # ----------------------- Output: Sidebar Panel ----------------------- #
+    generateSideBarPanel(),
+    # ----------------------- Output: Main Panel ----------------------- #
     mainPanel(
-      h3(textOutput("caption")),
       tabsetPanel(
         type = "tabs",
-        tabPanel("Data", DT::dataTableOutput("tbl")), # Data as datatable
-        tabPanel(
-          "Scatterplot", plotlyOutput("scatterplot"),
-          br(), hr(),
-          withMathJax(
-            paste0("Least Squares Linear Model Estimates"),
-            br(),
-            paste0(
-              "Slope: \\(\\hat{\\beta}_1 = \\dfrac{\\big(\\sum^n_{i=1} x_i y_i \\big) - n \\bar{x}
-                                    \\bar{y}}{\\sum^n_{i=1} (x_i- \\bar{x})^2} \\) =",
-              "\\(\\dfrac{ n \\big(\\sum^n_{i=1} x_i y_i \\big) -
-                                    \\big(\\sum^n_{i=1} x_i \\big) \\big(\\sum^n_{i=1} y_i \\big) }
-                                    {n \\sum^n_{i=1} x_i^2 - \\big(\\sum^n_{i=1} x_i \\big)^2} \\)"
-            ),
-            br(),
-            paste0("Intercept: \\(\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x} \\) "),
-            br(),
-            paste0("Prediction: \\( \\hat{y} = \\hat{\\beta}_0 + \\hat{\\beta}_1 x \\) ")
-          )
-        ), # Scatter Plot,
-        tabPanel("Model Summary", verbatimTextOutput("summary")) # Regression output
+        tabPanel("Plot", generateMainPlotPanel()),
+        tabPanel("Dataset", generateDatasetPanel())
       ),
-
-      # ----------------------- Input: Switch between Slider and Manual Inputs for Ranges and SD function ----------------------- #
-      fluidRow(
-        column(2, switchInput(inputId = "numericalValues", value = FALSE, onLabel = "Manual", offLabel = "Slider")),
-        column(10, div(align = "left", conditionalPanel(
-          condition = "input.numericalValues == 0 && (input.Distribution == 'Normal Distribution'
-                                                              || input.Distribution == 'Poisson Distribution'
-                                                              || input.Distribution == 'Rayleigh Distribution'
-                                                              || input.Distribution == 'Weibull Distribution'
-                                                              || input.Distribution == 'Maxwell Distribution'
-                                                              || input.Distribution == 'Log-Normal Distribution'
-                                                              || input.Distribution == 'Logistic Distribution'
-                                                              || input.Distribution == 'Logarithmic-Series Distribution'
-                                                              || input.Distribution == 'Laplace Distribution'
-                                                              || input.Distribution == 'Inverse Gaussian (Wald) Distribution'
-                                                              || input.Distribution == 'Inverse-Gamma Distribution'
-                                                              || input.Distribution == 'Hyper Geometric Distribution'
-                                                              || input.Distribution == 'Half-Normal Distribution'
-                                                              || input.Distribution == 'Gumbel Distribution'
-                                                              || input.Distribution == 'Gamma Distribution'
-                                                              || input.Distribution == 'Geometric Distribution'
-                                                              || input.Distribution == '(Non-Central) Chi-Squre Distribution'
-                                                              || input.Distribution == 'Chi-Square Distribution'
-                                                              || input.Distribution == 'Chi Distribution'
-                                                              || input.Distribution == 'Fisher F Distribution')",
-          textInput("SDNum", paste("Standard deviations from mean (0 to adjust freely, many are still implementing : )", sep = ""), 0)
-        )))
-      ),
-
-      # ----------------------- Input: Slider Input for x-Range ----------------------- #
-      conditionalPanel(
-        condition = "input.numericalValues == 0",
-        div(align = "right", sliderInput("plotrange", "X Range:",
-          min = -1000, max = 1000,
-          value = c(-10, 10),
-          step = 0.01,
-          width = "96%"
-        ))
-      ),
-      # ----------------------- Input: Numerical Inputs for x-Range ----------------------- #
-      conditionalPanel(
-        condition = "input.numericalValues == 1",
-        fluidRow(
-          column(3, numericInput(inputId = "plotrangeNumMin", label = "X-range Min:", value = -10)),
-          column(3, numericInput(inputId = "plotrangeNumMax", label = "X-range Max:", value = 10))
-        )
-      ),
-      # ----------------------- Output: Main Plot Output ----------------------- #
-      div(plotlyOutput("myPlot", height = "400"), aligh = "left"),
-      # ----------------------- Output: Implementing Text ----------------------- #
-      textOutput("Implementing"),
-      # ----------------------- Input: Slider Input for Lower and Upper Bounds for Probability Calculation ----------------------- #
-      conditionalPanel(
-        condition = "input.numericalValues == 0",
-        div(align = "right", sliderInput("probrange", "Probability Range:",
-          min = -10, max = 10,
-          value = c(-1, 1),
-          step = 0.01,
-          width = "96%"
-        ))
-      ),
-      # ----------------------- Input: Numerical Input for Lower and Upper Bounds for Probability Calculation ----------------------- #
-      conditionalPanel(
-        condition = "input.numericalValues == 1",
-        fluidRow(
-          column(3, numericInput(inputId = "probrangeNumMin", label = "Prob. Lower Bound:", value = -1)),
-          column(3, numericInput(inputId = "probrangeNumMax", label = "Prob. Upper Bound:", value = 1))
-        )
-      ),
-      # ----------------------- Ouput: Calculated Probability ----------------------- #
-      textOutput("probability"),
       # ----------------------- Output: SOCR Footer ----------------------- #
       tags$footer(
         div(shinyUI(bootstrapPage(div(

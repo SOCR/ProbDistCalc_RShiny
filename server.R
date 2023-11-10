@@ -32,6 +32,8 @@ library(circular)
 library(mnormt)
 library(ExtDist)
 library(VaRES)
+library(shinyjs)
+shinyjs::useShinyjs()
 source("renderMainPlot.R")
 source("renderProbability.R")
 
@@ -68,21 +70,67 @@ shinyServer(
         max = input$plotrangeNumMax
       )
     })
-    # ----------------------- HelpMe ----------------------- #
+
     observeEvent(input$fitParams, {
+      updateTextInput(session, "FunctionType", value = "PDF/PMF")
       distributionInfo <- distributionInfoList[[input$Distribution]]
-      if (!is.null(dataset) && !is.null((distributionInfo$fitFunc))) {
+      if (is.null(dataset)) {
+        showNotification("Dataset is not specified.", type = "error", duration = 2)
+      } else if (is.null((distributionInfo$fitFunc))) {
+        showNotification("Fitting this distribution is not supported yet.", type = "error", duration = 2)
+      } else {
         fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
         for (i in 1:length(fit_result$estimate)) {
-          updateTextInput(session, distributionInfo$inputNames[[i]], value = fit_result$estimate[[i]])
+          inputName <- distributionInfo$inputNames[[i]]
+          fitted_parameter <- round(fit_result$estimate[[i]], digits = 4)
+          updateTextInput(session, inputName, value = fitted_parameter)
+          session$sendCustomMessage("highlightTextInput", inputName)
         }
-        output$fitStatus <- renderText({
-          # FIXME: This is not working
-          # paste("Fitted mean: ", fitted_mean, " Fitted standard deviation: ", fitted_sd)
-        })
       }
     })
 
+    observe({
+      if (input$numericalValues == 0 && input$Distribution %in% distWithSD) {
+        shinyjs::enable("SDNum")
+        # FIXME: This is not working
+        # shinyjs::toggle("SDNumColumn", condition = TRUE)
+      } else {
+        shinyjs::disable("SDNum")
+        # FIXME: This is not working
+        # shinyjs::toggle("SDNumColumn", condition = FALSE)
+      }
+    })
+
+    # Generate text to display current parameters and their values
+    output$currentParameters <- renderUI(
+      HTML({
+        distributionInfo <- distributionInfoList[[input$Distribution]]
+        paramValues <- lapply(seq_along(distributionInfo$labels), function(i) {
+          label <- distributionInfo$labels[[i]]
+          inputName <- distributionInfo$inputNames[[i]]
+          paste("<i>", label, "</i>: <b>", input[[inputName]], "</b>")
+        })
+        # Combine the distribution name and parameter values into a single string
+        paste("Current Parameters:<br />", paste(paramValues, collapse = "<br />"))
+      })
+    )
+
+    observeEvent(input$CalcModelerTabsetPanel, {
+      if (input$CalcModelerTabsetPanel == "Modeler") {
+        updateTextInput(session, "FunctionType", value = "")
+      }
+    })
+
+    # Reactive function to read uploaded file and update dataset
+    observeEvent(input$file, {
+      req(input$file)
+      dataset <<- read.csv(input$file$datapath)
+      # Update choices for selectInput widgets
+      updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = NULL)
+      updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = NULL)
+    })
+
+    # ----------------------- HelpMe ----------------------- #
     observeEvent(input$vh.readme, {
       showModal(modalDialog(
         title = "Help / ReadMe",
@@ -98,12 +146,13 @@ shinyServer(
             and researchers from SOCR, BDDS, MIDAS, MICHR, and the broad R-statistical computing community have contributed ideas,
             code, and support.
              <div align=\"center\">
-             <font size=\"3\"><b>Developers</b><br /></font></div>
-             <font size=\"2\">Jared (Tianyi) Chai (<b>chtianyi@umich.edu</b>)
-             <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)
-             <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>),
-             Ivo Dinov (<b>dinov@med.umich.edu</b>).</font>
-             <br /><br />
+             <font size=\"3\"><b>Developers</b><br /></font>
+             <font size=\"2\">Jared (Tianyi) Chai (<b>chtianyi@umich.edu</b>)<br />
+             <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)<br />
+             <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>)<br />
+             <font size=\"2\">Bole Li (<b>boleli@umich.edu</b>)<br />
+             Ivo Dinov (<b>dinov@med.umich.edu</b>).</font><br />
+             </div>
              "),
         easyClose = TRUE
       ))
@@ -155,9 +204,16 @@ shinyServer(
 
 
 
-    # Data output
+    # Reactive function to read uploaded file and update dataset
+    dataset_reactive <- reactive({
+      req(input$file)
+      read.csv(input$file$datapath)
+    })
+
+    # Render the DataTable dynamically based on the reactive dataset
     output$tbl <- DT::renderDataTable({
-      DT::datatable(dataset, options = list(lengthChange = FALSE))
+      # Use isolate to prevent invalidation of the reactive expression on initial render
+        DT::datatable(dataset_reactive(), options = list(lengthChange = FALSE))
     })
 
 
@@ -201,37 +257,3 @@ shinyServer(
     })
   }
 )
-
-## stuff added
-
-dataset <- iris
-
-# Imputation of categorical variables using Mode
-getmode <- function(v) {
-  v <- v[nchar(as.character(v)) > 0]
-  uniqv <- unique(v)
-  uniqv[which.max(tabulate(match(v, uniqv)))]
-}
-
-# Imputation
-medianModeImputation <- function(df) {
-  for (cols in colnames(df)) {
-    if (cols %in% names(df[, sapply(df, is.numeric)])) { ## Numeric variables first, then the Categorical
-      df <- df %>% mutate(!!cols := replace(!!rlang::sym(cols), is.na(!!rlang::sym(cols)), mean(!!rlang::sym(cols), na.rm = TRUE)))
-    } else {
-      df <- df %>% mutate(!!cols := replace(!!rlang::sym(cols), !!rlang::sym(cols) == "", getmode(!!rlang::sym(cols))))
-    }
-  }
-  return(df)
-}
-
-fitCurrent <- NULL
-# print(dataset)
-dataset <- medianModeImputation(dataset)
-
-# named list of features
-namedListOfFeatures <- function() {
-  namedList <- as.list(colnames(dataset))
-  names(namedList) <- colnames(dataset)
-  return(namedList)
-}

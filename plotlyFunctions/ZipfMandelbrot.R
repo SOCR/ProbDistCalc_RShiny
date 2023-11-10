@@ -1,4 +1,4 @@
-plotlyZipfManelbrotDistribution <- function(plotrange, input, distType, probrange) {
+plotlyZipfMandelbrotDistribution <- function(plotrange, input, distType, probrange) {
     xseq <- seq(round(min(0, as.numeric(plotrange[1])), 0), round(max(as.numeric(plotrange[2]),
         10), 0), 1)
     f75 <- 0

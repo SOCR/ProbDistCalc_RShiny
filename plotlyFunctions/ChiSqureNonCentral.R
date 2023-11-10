@@ -1,4 +1,4 @@
-plotlyChiSqureNonCentralDistribution <- function(plotrange, input, distType, probrange,
+plotlyChiSquareNonCentralDistribution <- function(plotrange, input, distType, probrange,
     session) {
     k = as.numeric(input$Chi2NCn)
     lemda = as.numeric(input$Chi2NCNCP)

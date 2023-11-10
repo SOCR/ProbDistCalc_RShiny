@@ -23,170 +23,31 @@ renderMainPlot <- function(input, output, session) {
             probrange[1] <- input$probrangeNumMin
             probrange[2] <- input$probrangeNumMax
         }
-        if (distType == distributions[1]) {
-            plotlyAndersonDarlingDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[2]) {
-            plotlyArcSineDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[3]) {
-            plotlyBenfordDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[4]) {
-            plotlyBernoulliDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[5]) {
-            plotlyBetaDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[6]) {
-            plotlyBetaGeneralizedDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[7]) {
-            plotlyBetaBinomialDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[8]) {
-            plotlyBinomialDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[9]) {
-            plotlyBirthdayDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[10]) {
-            plotlyBivariateNormal3DDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[11]) {
-            plotlyCauchyDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[12]) {
-            plotlyChiDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[13]) {
-            plotlyChiSquareDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[14]) {
-            plotlyChiSqureNonCentralDistribution(
-                plotrange, input, distType, probrange,
-                session
-            )
-        } else if (distType == distributions[16]) {
-            plotlyContinuousUniformDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[19]) {
-            plotlyDiscreteArcSineDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[20]) {
-            plotlyDiscreteUniformDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[21]) {
-            plotlyErlangDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[22]) {
-            plotlyErrorDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[23]) {
-            plotlyExponentialDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[25]) {
-            plotlyFisherFDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[26]) {
-            #   Discrete: GEV Distribution
-            #   Miu = locationn Sig = scale
-            #   Epsilon = shape dgev(x, loc=0, scale=1, shape=0, log = FALSE)
-            #   pgev(q, loc=0, scale=1, shape=0, lower.tail = TRUE)
-            plotlyFisherTippettDistribution(
-                plotrange, input, distType,
-                probrange
-            )
-        } else if (distType == distributions[27]) {
-            plotlyGammaDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[28]) {
-            plotlyGeneralCauchyDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[29]) {
-            #   Discrete: GEV Distribution
-            #   Miu = locationn Sig = scale
-            #   Epsilon = shape dgev(x, loc=0, scale=1, shape=0, log = FALSE)
-            #   pgev(q, loc=0, scale=1, shape=0, lower.tail = TRUE)
-            plotlyGeneralizedExtremeValueGEVDistribution(
-                plotrange, input, distType,
-                probrange
-            )
-        } else if (distType == distributions[30]) {
-            plotlyGeometricDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[31]) {
-            plotlyGilbratsDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[32]) {
-            plotlyGompertzDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[33]) {
-            plotlyGumbelDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[34]) {
-            plotlyHalfNormalDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[35]) {
-            plotlyHyperGeometricDistribution(
-                plotrange, input, distType, probrange,
-                session, old_SD
-            )
-        } else if (distType == distributions[36]) {
-            plotlyHyperbolicSecantDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[37]) {
-            plotlyInverseGammaDistribution(
-                plotrange, input, distType, probrange,
-                session
-            )
-        } else if (distType == distributions[38]) {
-            plotlyInverseGaussianWaldDistribution(
-                plotrange, input, distType, probrange,
-                session
-            )
-        } else if (distType == distributions[39]) {
-            plotlyJohnsonSBBoundedDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[40]) {
-            plotlyJohnsonSUUnboundedDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[42]) {
-            plotlyLaplaceDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[43]) {
-            plotlyLogarithmicSeriesDistribution(
-                plotrange, input, distType, probrange,
-                session
-            )
-        } else if (distType == distributions[44]) {
-            plotlyLogisticDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[45]) {
-            plotlyLogisticExponentialDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[46]) {
-            plotlyLogNormalDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[47]) {
-            plotlyLomaxDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[48]) {
-            plotlyMatchingDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[49]) {
-            plotlyMaxwellDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[50]) {
-            plotlyMinimaxDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[53]) {
-            plotlyMuthDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[54]) {
-            plotlyNegativeBinomialDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[55]) {
-            plotlyNegativeHyperGeometricDistribution(
-                plotrange, input, distType,
-                probrange
-            )
-        } else if (distType == distributions[57]) {
-            plotlyNormalDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[58]) {
-            plotlyNormalTruncatedDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[59]) {
-            plotlyParetoDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[60]) {
-            plotlyPointMassDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[61]) {
-            plotlyPoissonDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[62]) {
-            plotlyPokerDiceDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[63]) {
-            plotlyPowerFunctionDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[64]) {
-            plotlyRayleighDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[65]) {
-            plotlyRiceRicianDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[66]) {
-            plotlyStudentsTDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[67]) {
-            plotlyStudentsTNonCentralDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[68]) {
-            plotlyTriangleDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[69]) {
-            plotlyTwoSidedPowerDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[70]) {
-            plotlyUQuadraticDistribution(plotrange, input, distType, probrange)
-        } else if (distType == distributions[71]) {
-            plotlyVonMisesDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[72]) {
-            plotlyWalkMaxDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[74]) {
-            plotlyWeibullDistribution(plotrange, input, distType, probrange, session)
-        } else if (distType == distributions[75]) {
-            plotlyZipfManelbrotDistribution(plotrange, input, distType, probrange)
+        distributionInfo <- distributionInfoList[[distType]]
+        if (distributionInfo$hasImplementation == FALSE) {
+            showNotification("This distribution is not yet implemented.", type = "error", duration = 2)
+            return()
         }
+        arity <- length(formals(distributionInfo$plotlyFunc))
+        if (arity == 4) {
+            fig <- distributionInfo$plotlyFunc(plotrange, input, distType, probrange)
+        } else if (arity == 5) {
+            fig <- distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session)
+        } else if (arity == 6) {
+            fig <- distributionInfo$plotlyFunc(plotrange, input, distType, probrange, session, old_SD)
+        } else {
+            stop("unexpected arity")
+        }
+        # change title axis labels if it is a modeler plot
+        if (!is.null(fig) && input$CalcModelerTabsetPanel == "Modeler") {
+            fig <- fig %>%
+                layout(title = "Data Histogram & Probability Distribution Model") %>%
+                layout(yaxis = list(title = "relative frequency / probability density")) %>%
+                layout(xaxis = list(title = input$outcome))
+            if (is.null(distributionInfo$fitFunc)) {
+                fig <- NULL
+            }
+        }
+        return(fig)
     })
 }
