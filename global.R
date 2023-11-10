@@ -69,7 +69,7 @@ distributionInfoList <- list(
   "Beta (Generalized) Distribution" = distributionInfoClass(6, "Beta(Generalized)", c("BetaGenA", "BetaGenB", "BetaGenC", "BetaGenP"), c("A", "B", "C", "P"), c(3, 2, 1, 5)),
   "Beta-Binomial Distribution" = distributionInfoClass(7, "Beta-Binomial", c("BetaBinomN", "BetaBinomU", "BetaBinomV"), c("n", "alpha", "beta"), c(2, 3, 0.2)),
   "Binomial Distribution" = distributionInfoClass(8, "Binomial", c("BinomP", "BinomN"), c("Probability", "n"), c(0.5, 10)),
-  "Birthday Distribution" = distributionInfoClass(9, "Birthday", c("BirthN"), c("n"), c(10), hasImplementation = FALSE),
+  "Birthday Distribution" = distributionInfoClass(9, "Birthday", c("BirthN", "BirthK"), c("n", "k"), c(365, 20)),
   "Bivariate Normal Distribution (3D)" = distributionInfoClass(10, "Bivariate Normal", c("BivaM1", "BivaV1", "BivaM2", "BivaV2", "BivaCov"), c("mean of the first random variable", "variance of the first random variable", "mean for the second random variable", "variance of the second random variable", "covariance of the two random variables"), c(0, 2, 0, 2, -1)),
   "Cauchy Distribution" = distributionInfoClass(11, "Cauchy", c("CauchyX0", "CauchyGamma"), c("x0", "Gamma"), c(1, 1)),
   "Chi Distribution" = distributionInfoClass(12, "Chi", c("ChiK"), c("k"), c(1), isWithSD = TRUE),
