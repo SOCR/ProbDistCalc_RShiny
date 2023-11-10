@@ -61,7 +61,7 @@ distributionInfoClass <- function(id, name, inputNames, labels, defaultValues, h
 }
 
 distributionInfoList <- list(
-  "Anderson-Darling Distribution" = distributionInfoClass(1, "Anderson-Darling", c("ADn", "ADNCP"), c("n", "non-centrality parameter"), c(1, 1), hasImplementation = FALSE),
+  "Anderson-Darling Distribution" = distributionInfoClass(1, "Anderson-Darling", c("ADn"), c("n"), c(1)),
   "ArcSine Distribution" = distributionInfoClass(2, "ArcSine", c("ArcSineA", "ArcSineB"), c("A", "B"), c(1, 2)),
   "Benford Distribution" = distributionInfoClass(3, "Benford", c("Benfn"), c("number of leading digits"), c(1)),
   "Bernoulli Distribution" = distributionInfoClass(4, "Bernoulli", c("BernProb"), c("Probability"), c(0.5)),
