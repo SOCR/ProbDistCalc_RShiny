@@ -1,4 +1,5 @@
-renderMainPlot <- function(input, output, session) {
+# renderMainPlot <- function(input, output, session) {
+renderMainPlot <- function(input, output, session, dataset) {
     output$myPlot <- renderPlotly({
         distType <- input$Distribution
         plotrange <- c(0, 0)
@@ -149,8 +150,10 @@ renderMainPlot <- function(input, output, session) {
                 plotrange, input, distType,
                 probrange
             )
+        # } else if (distType == distributions[57]) {
+        #     plotlyNormalDistribution(plotrange, input, distType, probrange, session)
         } else if (distType == distributions[57]) {
-            plotlyNormalDistribution(plotrange, input, distType, probrange, session)
+          plotlyNormalDistribution(plotrange, input, distType, probrange,session,dataset)
         } else if (distType == distributions[58]) {
             plotlyNormalTruncatedDistribution(plotrange, input, distType, probrange)
         } else if (distType == distributions[59]) {
