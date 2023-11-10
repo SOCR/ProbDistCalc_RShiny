@@ -1,5 +1,3 @@
-n <- 0.0
-
 cdfTerm1 <- function(x, j) {
     T <- (4.0 * j + 1.0) * (4.0 * j + 1.0) * 1.23370055013617 / x
     if (T > 150.0) {
@@ -54,23 +52,23 @@ cdfTerm2 <- function(x) {
 cdfTerm3 <- function(x) {
     x <- cdfTerm2(x)
     if (x > 0.8) {
-        v <- (-130.2137 + (745.2337 - (1705.091 - (1950.646 - (1116.360 - 255.7844 * x) * x) * x) * x) * x) / n
+        v <- (-130.2137 + (745.2337 - (1705.091 - (1950.646 - (1116.360 - 255.7844 * x) * x) * x) * x) * x) / n_AD
         return(x + v)
     }
 
-    C <- 0.01265 + 0.1757 / n
+    C <- 0.01265 + 0.1757 / n_AD
 
     if (x < C) {
         v <- x / C
         v <- sqrt(v) * (1.0 - v) * (49 * v - 102)
 
-        return(x + v * (0.0037 / (n * n) + 0.00078 / n + 0.00006) / n)
+        return(x + v * (0.0037 / (n_AD * n_AD) + 0.00078 / n_AD + 0.00006) / n_AD)
     }
 
     v <- (x - C) / (0.8 - C)
     v <- -0.00022633 + (6.54034 - (14.6538 - (14.458 - (8.259 - 1.91864 * v) * v) * v) * v) * v
 
-    return(x + v * (0.04213 + 0.01365 / n) / n)
+    return(x + v * (0.04213 + 0.01365 / n_AD) / n_AD)
 }
 
 getCDF_n_1 <- function(x) {
@@ -92,7 +90,7 @@ getCDF_AD <- function(x) {
     if (x >= 40.0) {
         return(1.0)
     }
-    if (n == 1) {
+    if (n_AD == 1) {
         return(getCDF_n_1(x))
     }
     cdfValue <- cdfTerm3(x)
@@ -116,11 +114,11 @@ distributionGradient <- function(x, delta) {
 }
 
 getDensity_AD <- function(x) {
-    if (n <= 0) {
-        n <- 1
+    if (n_AD <= 0) {
+        n_AD <<- 1
     }
 
-    if (n == 1) {
+    if (n_AD == 1) {
         return(specialCaseDensity_n_1(x))
     }
 
@@ -142,17 +140,15 @@ getDensity_AD <- function(x) {
 }
 
 dAD <- function(x, n_in) {
-    n <<- n_in
-    print(n)
     sapply(x, getDensity_AD)
 }
 
 pAD <- function(x, n_in) {
-    n <<- n_in
     sapply(x, getCDF_AD)
 }
 
 plotlyAndersonDarlingDistribution <- function(plotrange, input, distType, probrange) {
+    n_AD <<- as.numeric(input$ADn)
     xseq <- seq(
         min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01

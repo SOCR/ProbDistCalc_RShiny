@@ -15,12 +15,13 @@ renderProbability <- function(input, output, session) {
       probrange[2] <- input$probrangeNumMax
     }
     # ----------------------- Discrete: Anderson Darling Distribution ----------------------- #
-    # if (distType == distributions[1]) {
-    #   prob <- getCDF_AD(as.numeric(probrange[2])) - getCDF_AD(as.numeric(probrange[1]))
-    #   paste("Prob. = ", prob, sep = "")
-    # }
+    if (distType == distributions[1]) {
+      prob <- getCDF_AD(as.numeric(probrange[2])) - getCDF_AD(as.numeric(probrange[1]))
+      print(prob)
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Continuous: ArcSine Distribution ----------------------- #
-    if (distType == distributions[2]) {
+    else if (distType == distributions[2]) {
       prob <- parcsine(as.numeric(probrange[2]), as.numeric(input$ArcSineA), as.numeric(input$ArcSineB)) - parcsine(as.numeric(probrange[1]), as.numeric(input$ArcSineA), as.numeric(input$ArcSineB))
       paste("Prob. = ", prob, sep = "")
     }
@@ -55,10 +56,10 @@ renderProbability <- function(input, output, session) {
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Discrete: Birthday Distribution ----------------------- #
-    # else if (distType == distributions[9]) {
-    #   prob <- getCDF_Birt(as.numeric(probrange[2])) - getCDF_Birt(as.numeric(probrange[1]))
-    #   paste("Prob. = ", prob, sep = "")
-    # }
+    else if (distType == distributions[9]) {
+      prob <- getCDF_Birt(as.numeric(probrange[2])) - getCDF_Birt(as.numeric(probrange[1]))
+      paste("Prob. = ", prob, sep = "")
+    }
     # ----------------------- Continuous: Bivariate Normal Distribution (3D) ----------------------- #
     else if (distType == distributions[10]) {
       prob <- pmnorm(cbind(as.numeric(probrange[2]), as.numeric(probrange[2])), c(as.numeric(input$BivaM1), as.numeric(input$BivaM2)), matrix(c(as.numeric(input$BivaV1), as.numeric(input$BivaCov), as.numeric(input$BivaCov), as.numeric(input$BivaV2)), 2))

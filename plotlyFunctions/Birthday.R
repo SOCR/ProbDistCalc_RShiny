@@ -1,23 +1,18 @@
-popSize <- 0
-sampleSize <- 0
-
-prob_birt <- array(0, c(0, 0))
-
 calculate <- function() {
-    temp <- rep(0, (popSize+1)*(sampleSize+1))
+    temp <- rep(0, (popSize_Birt+1)*(sampleSize_Birt+1))
 
-    prob_birt <<- array(temp, dim=c(popSize+1, sampleSize+1))
+    prob_birt <<- array(temp, dim=c(popSize_Birt+1, sampleSize_Birt+1))
     prob_birt[1,1] <<- 1
     prob_birt[2,2] <<- 1
 
-    for (i in 2:sampleSize) {
-        if (i < popSize + 1) {
+    for (i in 2:sampleSize_Birt) {
+        if (i < popSize_Birt + 1) {
             upperIndex <- i + 1
         } else {
-            upperIndex <- popSize + 1
+            upperIndex <- popSize_Birt + 1
         }
         for (j in 2:upperIndex) {
-            prob_birt[j,i+1] <<- prob_birt[j, i] * (j/popSize) + prob_birt[j-1, i] * ( (popSize - j + 1) / popSize )
+            prob_birt[j,i+1] <<- prob_birt[j, i] * (j/popSize_Birt) + prob_birt[j-1, i] * ( (popSize_Birt - j + 1) / popSize_Birt )
         }
     }
 }
@@ -27,7 +22,7 @@ getDensity_Birt <- function(x) {
     if (x<=0) {
         return(0)
     }
-    return(prob_birt[x, sampleSize+1])
+    return(prob_birt[x, sampleSize_Birt+1])
 }
 
 getCDF_Birt <- function(x) {
@@ -39,24 +34,23 @@ getCDF_Birt <- function(x) {
     res <- 0
 
     for (i in 1:x) {
-        res = res + prob_birt[i, sampleSize+1]
+        res = res + prob_birt[i, sampleSize_Birt+1]
     }
     return(res)
 }
 
 dBirt <- function(x) {
-    calculate()
     sapply(x, getDensity_Birt)
 }
 
 pBirt <- function(x) {
-    calculate()
     sapply(x, getCDF)
 }
 
 plotlyBirthdayDistribution <- function(plotrange, input, distType, probrange) {
-    popSize <<- as.numeric(input$BirthN)
-    sampleSize <<- as.numeric(input$BirthK)
+    popSize_Birt <<- as.numeric(input$BirthN)
+    sampleSize_Birt <<- as.numeric(input$BirthK)
+    calculate()
     
     xseq <- seq(min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01)

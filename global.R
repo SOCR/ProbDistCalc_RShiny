@@ -25,6 +25,15 @@ for (file in plotlyFunctions) {
 source("fitFunctions.R")
 source("dataset.R")
 source("distributionInfo.R")
+
+# ----------------------- Discrete: Anderson Darling Distribution ----------------------- #    
+n_AD <- 0.0
+
+# ----------------------- Discrete: Birthday Distribution ----------------------- #
+popSize_Birt <- 0
+sampleSize_Birt <- 0
+prob_birt <- array(0, c(0, 0))
+
 # ----------------------- Parse and Store xml Databse of Metadata from Distributome Project ----------------------- #
 xml_data <- read_xml("Distributome.xml", encoding = "UTF-8")
 xml_rootnode <- xml_root(xml_data)
