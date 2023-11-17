@@ -51,11 +51,17 @@ References
 * [Bivariate Normal Distribution Calculator](https://github.com/SOCR/SOCR_Bivariate_Distributions) and the [SOCR Bivariate Normal Distribution Activity](http://wiki.stat.ucla.edu/socr/index.php/SOCR_BivariateNormal_JS_Activity).
 * [SOCR Distributions](http://www.socr.ucla.edu/htmls/dist/) and [distribution activities](http://wiki.socr.umich.edu/index.php/SOCR_EduMaterials_DistributionsActivities).
 # TODO
-- [x] Sample finished to-do item.
-- [x] The title of app should indicate it can be used as either probability calculator or modeler.
-- [ ] There should be histogram indicating the original dataset along with the distribution curve plot.
-- [ ] Should somehow allow user to upload their own datasets besides using the predefined datasets.
-- [ ] Should add labels to the plot, indicating the meaning of x,y axis.
-- [ ] Should display current parameters (like $\mu$ and $\sigma$) along with the plot.
-- [ ] User should be able to hide/display the distribution information (currently always shown in the left-bottom corner).
-- [ ] Extend modeling functionality to other distributions (currently only supporting Normal Distribution).
+- [x]  The title of app should indicate it can be used as either probability calculator or modeler.
+- [ ]  There should be histogram indicating the original dataset along with the distribution curve plot.
+- [x]  Use tabs to switch between calculator and modeler
+- [x]  Should somehow allow user to upload their own datasets besides using the predefined datasets.
+- [x]  Should add labels to the plot, indicating the meaning of x and y axis.
+- [x]  Should display current parameters (like $\mu$ and $\sigma$) along with the plot.
+- [x]  Should round parameters.
+- [x]  User should be able to hide/display the distribution information (currently always shown in the left-bottom corner).
+- [x]  Extend modeling functionality to other distributions (currently only supporting Normal Distribution).
+- [x]  Newline between "Fitted mean: “ and "Fitted standard deviation: “
+- [x]  better UI design.
+- [ ]  Center the graph at mean automatically
+- [ ]  BUG: probability density of Normal Distribution looks wrong, especially at mean.
+- [ ]  Deploy to SOCR server
