@@ -241,11 +241,17 @@ Continuous Uniform Distribution:
   plotlyFunc: plotlyContinuousUniformDistribution
 Coupon Distribution:
   id: 17
-  name: Coupon
-  inputNames: CouponN
-  labels: 'n'
-  defaultValues: 10.0
-  hasImplementation: no
+  name: Coupon  
+  inputNames:
+  - CouponPopSize
+  - CouponDistNum
+  labels:
+  - Population Size
+  - Number of distinct values needed
+  defaultValues:
+  - 10
+  - 4
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitCoupon
   plotlyFunc: plotlyCouponDistribution
@@ -253,9 +259,9 @@ Die Distribution:
   id: 18
   name: Die
   inputNames: DieN
-  labels: 'n'
-  defaultValues: 6.0
-  hasImplementation: no
+  labels: 'n (0 <= n <= 5)'
+  defaultValues: 0
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitDie
   plotlyFunc: plotlyDieDistribution
@@ -339,10 +345,19 @@ Exponential Distribution:
 Finite Distribution:
   id: 24
   name: Finite
-  inputNames: FinProb
-  labels: Probability
-  defaultValues: 0.5
-  hasImplementation: no
+  inputNames:
+  - FiniteA
+  - FiniteB
+  - FiniteW
+  labels:
+  - a
+  - b
+  - w
+  defaultValues:
+  - 1
+  - 1
+  - 1
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitFinite
   plotlyFunc: plotlyFiniteDistribution
@@ -614,10 +629,10 @@ Johnson SU (Unbounded) Distribution:
 Kolmogorov Distribution:
   id: 41
   name: Kolmogorov
-  inputNames: Kolmogorovn
-  labels: 'n'
+  inputNames: KolmogorovDegree
+  labels: n (degree)
   defaultValues: 1.0
-  hasImplementation: no
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitKolmogorov
   plotlyFunc: plotlyKolmogorovDistribution
