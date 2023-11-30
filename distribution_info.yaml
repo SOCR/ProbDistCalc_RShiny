@@ -1087,10 +1087,16 @@ Walk Max Distribution:
 Walk Position Distribution:
   id: 73
   name: WalkPosition
-  inputNames: WalkPosSteps
-  labels: steps
-  defaultValues: 4.0
-  hasImplementation: no
+  inputNames: 
+  - WalkPosSteps
+  - WalkPosP
+  labels: 
+  - number of steps
+  - probability of a step in the positive direction
+  defaultValues: 
+  - 10
+  - 0.5
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitWalkPosition
   plotlyFunc: plotlyWalkPositionDistribution

@@ -53,6 +53,10 @@ prob_Finite <- rep(0,1)
 # ----------------------- Discrete: Finite Distribution --------------------------------- #
 degree_Kol <- 0
 
+# ----------------------- Discrete: Walk Position Distribution -------------------------- #
+steps_WalkPos <- 10
+prob_WalkPos <- 0.5
+
 # ----------------------- Parse and Store xml Databse of Metadata from Distributome Project ----------------------- #
 xml_data <- read_xml("Distributome.xml", encoding = "UTF-8")
 xml_rootnode <- xml_root(xml_data)
