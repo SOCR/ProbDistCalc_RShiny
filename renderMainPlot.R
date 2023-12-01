@@ -1,4 +1,4 @@
-renderMainPlot <- function(input, output, session) {
+renderMainPlot <- function(input, output, session, dataset) {
     output$myPlot <- renderPlotly({
         distType <- input$Distribution
         plotrange <- c(0, 0)
@@ -38,12 +38,25 @@ renderMainPlot <- function(input, output, session) {
         } else {
             stop("unexpected arity")
         }
+        
+        
         # change title axis labels if it is a modeler plot
         if (!is.null(fig) && input$CalcModelerTabsetPanel == "Modeler") {
             fig <- fig %>%
                 layout(title = "Data Histogram & Probability Distribution Model") %>%
                 layout(yaxis = list(title = "relative frequency / probability density")) %>%
                 layout(xaxis = list(title = input$outcome))
+            # Error Message
+            # fig <- fig %>% add_trace(data = dataset, x = ~dataset[, input$outcome], type = "histogram",
+            #                          histnorm = "probability",
+            #                          name = "Histogram Layer",
+            #                          size = 0.4)
+            
+            # Histogram works
+            # fig <- plot_ly(data = dataset, x = ~dataset[, input$outcome], type = "histogram",
+            #                          histnorm = "probability",
+            #                          name = "Histogram Layer",
+            #                          size = 0.4)
             if (is.null(distributionInfo$fitFunc)) {
                 fig <- NULL
             }

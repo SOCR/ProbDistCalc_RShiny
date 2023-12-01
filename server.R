@@ -168,6 +168,7 @@ shinyServer(
              <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)<br />
              <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>)<br />
              <font size=\"2\">Bole Li (<b>boleli@umich.edu</b>)<br />
+             <font size=\"2\">Joonseop Kim (<b>joonkim@umich.edu</b>)<br />
              Ivo Dinov (<b>dinov@med.umich.edu</b>).</font><br />
              </div>
              "),
@@ -201,7 +202,7 @@ shinyServer(
       withMathJax(helpText(HTML(outputstring)))
     })
     # ----------------------- Render Main Plot ----------------------- #
-    renderMainPlot(input, output, session)
+    renderMainPlot(input, output, session, dataset)
     # ----------------------- Render Implementing Message ----------------------- #
     output$Implementing <- renderText({
       if (input$Distribution %in% distToImpl) {
