@@ -152,7 +152,7 @@ shinyServer(
       showModal(modalDialog(
         title = "Help / ReadMe",
         HTML("<div>
-             <font size=\"3\"><font color=\"blue\"><b>SOCR Interactive Probability Distribution Calculator [Version: V.0.8]</b></font></font>
+             <font size=\"3\"><font color=\"blue\"><b>SOCR Interactive Probability Distribution Calculator [Version: V.0.9]</b></font></font>
              The SOCR RShiny probability distribution calculators provide interactive vizualizations of probability densities,
              mass functions, and cumulative distributions, e.g., bivariate normal distribution.
              <br /><br />
