@@ -53,6 +53,14 @@ prob_Finite <- rep(0,1)
 # ----------------------- Discrete: Finite Distribution --------------------------------- #
 degree_Kol <- 0
 
+# ----------------------- Continuous: Mix Distribution ---------------------------------- #
+mu1_Mix <- -2
+sigma1_Mix <- 1
+mu2_Mix <- 2
+sigma2_Mix <- 1
+prob1_Mix <- 0.5
+prob2_Mix <- 0.5
+
 # ----------------------- Discrete: Walk Position Distribution -------------------------- #
 steps_WalkPos <- 10
 prob_WalkPos <- 0.5

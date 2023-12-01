@@ -765,10 +765,28 @@ Minimax Distribution:
 Mixture Distribution:
   id: 51
   name: Mixture
-  inputNames: MixProb
-  labels: Probability
-  defaultValues: 0.5
-  hasImplementation: no
+  inputNames: 
+  - MixMu1
+  - MixSigma1
+  - MixProb1
+  - MixMu2
+  - MixSigma2
+  - MixProb2
+  labels: 
+  - mu for the first normal distribution
+  - sigma for the first normal distribution
+  - probability of first normal distribution
+  - mu for the second normal distribution
+  - sigma for the second normal distribution
+  - probability of second normal distribution
+  defaultValues:
+  - -2.0
+  - 1.0
+  - 0.5
+  - 2.0
+  - 1.0
+  - 0.5
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitMixture
   plotlyFunc: plotlyMixtureDistribution
