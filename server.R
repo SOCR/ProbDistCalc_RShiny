@@ -39,6 +39,7 @@ source("renderProbability.R")
 
 shinyServer(
   function(input, output, session) {
+    datasetShown <- reactiveVal(iris)
     # ----------------------- Update Distribution Type and Function Type according to URL handle ----------------------- #
     observe({
       query <- parseQueryString(session$clientData$url_search)
@@ -125,6 +126,7 @@ shinyServer(
     observeEvent(input$file, {
       req(input$file)
       dataset <<- read.csv(input$file$datapath)
+      datasetShown(dataset)
       # Update choices for selectInput widgets
       updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = NULL)
       updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = NULL)
@@ -202,21 +204,11 @@ shinyServer(
       uniqv[which.max(tabulate(match(v, uniqv)))]
     }
 
-
-
-    # Reactive function to read uploaded file and update dataset
-    dataset_reactive <- reactive({
-      req(input$file)
-      read.csv(input$file$datapath)
-    })
-
     # Render the DataTable dynamically based on the reactive dataset
     output$tbl <- DT::renderDataTable({
       # Use isolate to prevent invalidation of the reactive expression on initial render
-        DT::datatable(dataset_reactive(), options = list(lengthChange = FALSE))
+      DT::datatable(datasetShown(), options = list(lengthChange = FALSE))
     })
-
-
 
     # Regression output
     output$summary <- renderPrint({
