@@ -87,6 +87,21 @@ shinyServer(
           updateTextInput(session, inputName, value = fitted_parameter)
           session$sendCustomMessage("highlightTextInput", inputName)
         }
+        if (distributionInfo$isWithSD) {
+          # update the plot range, make it centered at the mean
+          oldPlotRange <- input$plotrange
+          halfLength <- (oldPlotRange[2] - oldPlotRange[1]) / 2
+          updateSliderInput(session,
+            "plotrange",
+            label = NULL,
+            value = c(fit_result$estimate[[1]] - halfLength, fit_result$estimate[[1]] + halfLength),
+            min = -1000,
+            max = 1000,
+            step = NULL,
+            timeFormat = NULL,
+            timezone = NULL
+          )
+        }
       }
     })
 
