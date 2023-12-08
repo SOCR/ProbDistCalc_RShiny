@@ -28,7 +28,7 @@ The code is organized as follows:
 Other files are mostly for testing and debugging and less important.
 
 ## Guidelines for Future Development
-- Using RStudio is the easiest way to develop and the app almost out-of-box. However, if you want to use other IDEs like VSCode, use `renv` to manage the packages. The `renv.lock` file is already included in the repo. To install the packages, run `renv::restore()` in the R console.
+- Using RStudio is the easiest way to develop and the app almost out-of-box. However, if you want to use other IDEs like VSCode, use `renv` to manage the packages. The `renv.lock` file is already included in the repo. To install the packages, run `renv::restore()` in the R console. You may need to install other dependencies manually to install the packages, if there's error message saying so.
 
 - To support a new distribution: 
     - Add the distribution information in `distribution_info.yaml`. Note that the `fitFunc` field indicates the function for fitting the distribution in modeler, and the `plotlyFunc` field indicates the function for plotting the distribution in calculator.
@@ -52,6 +52,7 @@ This work is supported in part by NIH grants [P20 NR015331](www.socr.umich.edu/C
 * [SOCR Distributions](http://www.socr.ucla.edu/htmls/dist/) and [distribution activities](http://wiki.socr.umich.edu/index.php/SOCR_EduMaterials_DistributionsActivities).
 
 ## TODO
+- [x] Sample finished to-do item.
 - [ ]  There should be histogram indicating the original dataset along with the distribution curve plot. Part of the code is already in the branch `sub`, but it only works for the normal distribution. Need to generalize it.
 - [ ] To generalize the histogram, we may need to extract the similar code in plotlyFunctions into a separate function. Otherwise we have to repeat the code for histogram 70+ times for each distribution. Currently the code is mostly duplicated but slightly different in these functions, which makes it very hard to extract the common code.
 - [ ]  Deploy to SOCR server. Update the `LINK_NEEDED` in this README.
