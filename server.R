@@ -39,6 +39,7 @@ source("renderProbability.R")
 
 shinyServer(
   function(input, output, session) {
+    datasetShown <- reactiveVal(iris)
     # ----------------------- Update Distribution Type and Function Type according to URL handle ----------------------- #
     observe({
       query <- parseQueryString(session$clientData$url_search)
@@ -86,6 +87,21 @@ shinyServer(
           updateTextInput(session, inputName, value = fitted_parameter)
           session$sendCustomMessage("highlightTextInput", inputName)
         }
+        if (distributionInfo$isWithSD) {
+          # update the plot range, make it centered at the mean
+          oldPlotRange <- input$plotrange
+          halfLength <- (oldPlotRange[2] - oldPlotRange[1]) / 2
+          updateSliderInput(session,
+            "plotrange",
+            label = NULL,
+            value = c(fit_result$estimate[[1]] - halfLength, fit_result$estimate[[1]] + halfLength),
+            min = -1000,
+            max = 1000,
+            step = NULL,
+            timeFormat = NULL,
+            timezone = NULL
+          )
+        }
       }
     })
 
@@ -125,6 +141,7 @@ shinyServer(
     observeEvent(input$file, {
       req(input$file)
       dataset <<- read.csv(input$file$datapath)
+      datasetShown(dataset)
       # Update choices for selectInput widgets
       updateSelectInput(session, "outcome", choices = namedListOfFeatures(), selected = NULL)
       updateSelectInput(session, "indepvar", choices = namedListOfFeatures(), selected = NULL)
@@ -135,7 +152,7 @@ shinyServer(
       showModal(modalDialog(
         title = "Help / ReadMe",
         HTML("<div>
-             <font size=\"3\"><font color=\"blue\"><b>SOCR Interactive Probability Distribution Calculator [Version: V.0.8]</b></font></font>
+             <font size=\"3\"><font color=\"blue\"><b>SOCR Interactive Probability Distribution Calculator [Version: V.0.9]</b></font></font>
              The SOCR RShiny probability distribution calculators provide interactive vizualizations of probability densities,
              mass functions, and cumulative distributions, e.g., bivariate normal distribution.
              <br /><br />
@@ -151,6 +168,7 @@ shinyServer(
              <font size=\"2\">Shihang Li (<b>shihangl@umich.edu</b>)<br />
              <font size=\"2\">Yongxiang Zhao (<b>zyxleo@umich.edu</b>)<br />
              <font size=\"2\">Bole Li (<b>boleli@umich.edu</b>)<br />
+             <font size=\"2\">Joonseop Kim (<b>joonkim@umich.edu</b>)<br />
              Ivo Dinov (<b>dinov@med.umich.edu</b>).</font><br />
              </div>
              "),
@@ -184,7 +202,7 @@ shinyServer(
       withMathJax(helpText(HTML(outputstring)))
     })
     # ----------------------- Render Main Plot ----------------------- #
-    renderMainPlot(input, output, session)
+    renderMainPlot(input, output, session, dataset)
     # ----------------------- Render Implementing Message ----------------------- #
     output$Implementing <- renderText({
       if (input$Distribution %in% distToImpl) {
@@ -202,21 +220,11 @@ shinyServer(
       uniqv[which.max(tabulate(match(v, uniqv)))]
     }
 
-
-
-    # Reactive function to read uploaded file and update dataset
-    dataset_reactive <- reactive({
-      req(input$file)
-      read.csv(input$file$datapath)
-    })
-
     # Render the DataTable dynamically based on the reactive dataset
     output$tbl <- DT::renderDataTable({
       # Use isolate to prevent invalidation of the reactive expression on initial render
-        DT::datatable(dataset_reactive(), options = list(lengthChange = FALSE))
+      DT::datatable(datasetShown(), options = list(lengthChange = FALSE))
     })
-
-
 
     # Regression output
     output$summary <- renderPrint({

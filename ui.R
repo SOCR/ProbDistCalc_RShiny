@@ -220,7 +220,7 @@ shinyUI(
           includeHTML("SOCR_footer_tracker.html")
         )))),
         div(
-          "Version: V.0.8",
+          "Version: V.0.9",
           align = "center"
         ),
         # HTML("<img class='statcounter' src='https://c.statcounter.com/5714596/0/038e9ac4/0/' alt='Web Analytics' border='0' align='center'>")
