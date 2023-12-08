@@ -1,8 +1,8 @@
 plotlyVonMisesDistribution <- function(plotrange, input, distType, probrange, session) {
-    updateSliderInput(session, "plotrange",
-        label = NULL, value = NULL, min = -pi,
-        max = pi, step = NULL, timeFormat = NULL, timezone = NULL
-    )
+    # updateSliderInput(session, "plotrange",
+    #     label = NULL, value = NULL, min = -pi,
+    #     max = pi, step = NULL, timeFormat = NULL, timezone = NULL
+    # )
     xseq <- seq(min(-pi, as.numeric(plotrange[1])), max(
         as.numeric(plotrange[2]),
         pi

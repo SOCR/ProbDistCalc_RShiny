@@ -1,3 +1,11 @@
+zero <- function(x) {
+    if (x <= 0) {
+        0.0001
+    } else {
+        x
+    }
+}
+
 plotlyLogarithmicSeriesDistribution <- function(
     plotrange, input, distType, probrange,
     session) {
@@ -35,7 +43,7 @@ plotlyLogarithmicSeriesDistribution <- function(
         )
         old_SD <- input$SDNum
     }
-    xseq <- seq(round(max(0, as.numeric(plotrange[1])), 0), round(max(
+    xseq <- seq(round(max(1, as.numeric(plotrange[1])), 0), round(max(
         as.numeric(plotrange[2]),
         10
     ), 0), 1)

@@ -9,7 +9,7 @@ densityConst <- function(x) {
         return(2.0)
     }
 
-    if (x <= 1.0 / degree_Kol) {
+    if ( x <= (1.0 / degree_Kol) ) {
         t <- 2.0 * x - 1.0 / degree_Kol
         
         if (degree_Kol <= nMax_Kol) {
@@ -22,7 +22,7 @@ densityConst <- function(x) {
         return(2 * degree_Kol * exp(w))
     }
 
-    if (x >= 1.0 - 1.0 / degree_Kol) {
+    if (x >= 1.0 - (1.0 / degree_Kol) ) {
         return(2.0 * degree_Kol * ( (1.0 - x) ^ (degree_Kol - 1) ))
     }
 
@@ -62,35 +62,40 @@ cdfConst <- function(x) {
 }
 
 mMultiply_Kol <- function(A, B, C, m) {
-    print(A)
     for (i in 0:(m-1)) {
         for (j in 0:(m-1)) {
             s <- 0.0
             for (k in 0:(m-1)) {
                 s <- s + (A[i * m + k + 1] * B[k * m + j + 1])
             }
-            print(s)
             C[i * m + j + 1] <- s
         }
     }
 
-    return(C)
+    return(list(first=A, second=B, third=C))
 }
 
 mPower_Kol <- function(A, eA, V, m, n) {
     eV <- rep(0,1)
     if (n == 1) {
         for (i in 0:(m * m - 1)) {
-            V[i+1] = A[i+1]
+            V[i+1] <- A[i+1]
         }
         eV[1] = eA
-        return(eV)
+        return(list(first=eV, second=A, third=V))
     }
 
-    eV <- mPower_Kol(A, eA, V, m, n / 2)
+    result_power <- mPower_Kol(A, eA, V, m, n / 2)
+    eV <- result_power$first
+    A <- result_power$second
+    V <- result_power$third
 
     B <- rep(0, m*m)
-    B <- mMultiply_Kol(V, V, B, m)
+    result_multiply <- mMultiply_Kol(V, V, B, m)
+
+    V <- result_multiply$first
+    B <- result_multiply$third
+
     eB <- 2 * eV[1]
 
     if (n %% 2 == 0) {
@@ -100,7 +105,10 @@ mPower_Kol <- function(A, eA, V, m, n) {
 
         eV[1] = eB
     } else {
-        V <- mMultiply_Kol(A, B, V, m)
+        result_multiply <- mMultiply_Kol(A, B, V, m)
+        A <- result_multiply$first
+        B <- result_multiply$second
+        V <- result_multiply$third
         eV[1] = eA + eB
     }
 
@@ -111,7 +119,7 @@ mPower_Kol <- function(A, eA, V, m, n) {
         eV[1] <- eV[1] + 140
     }
 
-    return(eV)
+    return(list(first=eV, second=A, third=V))
 }
 
 getCDF_Kol <- function(x) {
@@ -121,8 +129,8 @@ getCDF_Kol <- function(x) {
     }
 
     s <- x * x * degree_Kol
-    if (x > 7.24 || (s > 3.76 && degree_Kol > 99)) {
-        return(1 - 2 * exp(-( 2.000071 + 0.331/sqrt(degree_Kol) + 1.409 / degree_Kol ) * s))
+    if (s > 7.24 || (s > 3.76 && degree_Kol > 99)) {
+        return(1 - 2 * exp(-( 2.000071 + (0.331 / sqrt(degree_Kol)) + (1.409 / degree_Kol) ) * s))
     }
 
     k <- (degree_Kol * x) + 1
@@ -161,7 +169,12 @@ getCDF_Kol <- function(x) {
     }
 
     eH <- 0
-    eQ <- (mPower_Kol(H, eH, Q, m, degree_Kol))[1]
+
+    result_power <- (mPower_Kol(H, eH, Q, m, degree_Kol))[1]
+
+    eQ <- (result_power$first)[1]
+    H <- result_power$second
+    Q <- result_power$third
 
     s <- Q[(k - 1) * m + k - 1 + 1]
 
@@ -192,7 +205,7 @@ getDensity_Kol <- function(x) {
     D1 <- distributionGrad_Kol(x, delta)
     D2 <- distributionGrad_Kol(x, 2.0 * delta)
 
-    densConst <- D1 + (D1 - D2) / 3.0
+    densConst <- D1 + ((D1 - D2) / 3.0)
 
     if (densConst <= 0.0) {
         return(0.0)
@@ -211,6 +224,10 @@ pKol <- function(x) {
 
 plotlyKolmogorovDistribution <- function(plotrange, input, distType, probrange) {
     degree_Kol <<- as.numeric(input$KolmogorovDegree)
+    if (degree_Kol > nMax_Kol) {
+        degree_Kol <<- nMax_Kol
+    }
+
     xseq <- seq(
         min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01
@@ -246,7 +263,7 @@ plotlyKolmogorovDistribution <- function(plotrange, input, distType, probrange) 
             )
         fig <- fig %>%
             plotly::layout(
-                title = paste(distributions[39], " - ", graphtype, sep = ""),
+                title = paste(distributions[41], " - ", graphtype, sep = ""),
                 hovermode = "x", hoverlabel = list(namelength = 100), yaxis = list(
                     fixedrange = TRUE,
                     zeroline = TRUE, range = c(min(f41), max(f41))

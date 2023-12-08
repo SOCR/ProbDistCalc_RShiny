@@ -32,13 +32,19 @@ plotlyCircleDistribution <- function(plotrange, input, distType, probrange) {
                 colors[index] <- "rgb(255, 127, 14)"
             }
         }
+
+        prob <- pCircle(as.numeric(probrange[2]), as.numeric(input$CircleRadius)) - pCircle(as.numeric(probrange[1]), as.numeric(input$CircleRadius))
+
         fig <- plot_ly(
-            x = xseq, y = f15, name = distType, type = "bar", marker = list(color = colors),
-            text = f15, hovertemplate = paste(
-                "<br><b>Prob. </b>: %{y}</br>", "<b>X</b>: %{x}",
-                "<b>Y</b>: %{y}"
-            ),
+            x = xseq, y = f15, name = distType, type = "scatter", mode = "lines",
+            hoverinfo = "xy"
         )
+
+        fig <- fig %>%
+            add_trace(
+                x = xseq, y = f15, name = paste("Probability = ", prob, sep = ""),
+                hoverinfo = "name", fill = "tozeroy", fillcolor = "rgba(255, 212, 96, 0.5)"
+            )
         fig <- fig %>%
             plotly::layout(
                 title = paste(distributions[15], " - ", graphtype, sep = ""),

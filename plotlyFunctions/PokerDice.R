@@ -16,8 +16,38 @@ dPokerDice <- function(x) {
     )
 }
 
+getCDF_PD <- function(x) {
+    c <- 7776
+    i <- round(x + 0.5, 0)
+    sum <- 0
+    if (i < 0) {
+        return(0)
+    } else if (i > 6) {
+        return(1)
+    } else {
+        for (index in 0:i) {
+            if (index == 0) {
+                sum <- sum + 720.0/c
+            } else if (index == 1) {
+                sum <- sum + 3600.0 / c
+            } else if (index == 2) {
+                sum <- sum + 1800.0 / c
+            } else if (index == 3) {
+                sum <- sum + 1200.0 / c
+            } else if (index == 4) {
+                sum <- sum + 300.0 / c
+            } else if (index == 5) {
+                sum <- sum + 150.0 / c
+            } else if (index == 6) {
+                sum <- sum + 6.0 / c
+            }
+        }
+        return(sum)
+    }
+}
+
 pPokerDice <- function(x) {
-    0
+    sapply(x, getCDF_PD)
 }
 
 plotlyPokerDiceDistribution <- function(plotrange, input, distType, probrange) {
@@ -48,7 +78,7 @@ plotlyPokerDiceDistribution <- function(plotrange, input, distType, probrange) {
                 newy[index] <- NA
             }
         }
-        prob <- pPokerDice(as.numeric(probrange[2])) - pPokerDice(as.numeric(probrange[1]))
+        prob <- getCDF_PD(as.numeric(probrange[2])) - getCDF_PD(as.numeric(probrange[1]))
         fig <- fig %>%
             add_trace(
                 x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),

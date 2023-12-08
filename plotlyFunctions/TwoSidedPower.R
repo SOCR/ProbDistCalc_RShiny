@@ -1,15 +1,32 @@
-dTwoSidedPower <- function(x, left, right, med, power) {
-    c <- power / (right - left)
-    ifelse(((x <= left) | (x >= right)), 0,
-        ifelse(((x > left) & (x < med)), c * (((x - left) / (med - left))^(power - 1)), c * (((right - x) / (right - med))^(power - 1)))
-    )
+getDensity_TSP <- function(x) {
+    c <- power_TSP / (r_TSP - l_TSP)
+
+    if (x <= l_TSP || x >= r_TSP) {
+        return(0)
+    } else if (x > l_TSP && x <= med_TSP) {
+        return(c * (((x - l_TSP) / (med_TSP - l_TSP))^(power_TSP - 1)))
+    } else {
+        return(c * (((r_TSP - x) / (r_TSP - med_TSP))^(power_TSP - 1)))
+    }
 }
 
-pTwoSidedPower <- function(x, left, right, med, power) {
-    0
+dTwoSidedPower <- function(x) {
+    sapply(x, getDensity_TSP)
+}
+
+getCDF_TSP <- function(x) {
+    # TODO: CDF
+}
+
+pTwoSidedPower <- function(x) {
+    sapply(x,getCDF_TSP)
 }
 
 plotlyTwoSidedPowerDistribution <- function(plotrange, input, distType, probrange) {
+    l_TSP <<- as.numeric(input$TSPowerLeft)
+    r_TSP <<- as.numeric(input$TSPowerRight)
+    med_TSP <<- as.numeric(input$TSPowerMed)
+    power_TSP <<- as.numeric(input$TSPowerPower)
     xseq <- seq(
         min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01
@@ -17,16 +34,10 @@ plotlyTwoSidedPowerDistribution <- function(plotrange, input, distType, probrang
     f69 <- 0
     graphtype <- ""
     if (input$FunctionType == "PDF/PMF") {
-        f69 <- dTwoSidedPower(
-            xseq, as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
-            as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
-        )
+        f69 <- dTwoSidedPower(xseq)
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f69 <- pTwoSidedPower(
-            xseq, as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
-            as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
-        )
+        f69 <- pTwoSidedPower(xseq)
         graphtype <- "CDF"
     } else {
         graphtype <- ""
@@ -43,13 +54,7 @@ plotlyTwoSidedPowerDistribution <- function(plotrange, input, distType, probrang
                 newy[index] <- NA
             }
         }
-        prob <- pTwoSidedPower(
-            as.numeric(probrange[2]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
-            as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
-        ) - pTwoSidedPower(
-            as.numeric(probrange[1]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
-            as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
-        )
+        prob <- getCDF_TSP(as.numeric(probrange[2])) - getCDF_TSP(as.numeric(probrange[1]))
         fig <- fig %>%
             add_trace(
                 x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),

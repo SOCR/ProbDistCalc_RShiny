@@ -1,3 +1,11 @@
+zero <- function(x) {
+    if (x < 0) {
+        0
+    } else {
+        x
+    }
+}
+
 plotlyChiDistribution <- function(plotrange, input, distType, probrange, session) {
     old_SD <- 0
     k <- as.numeric(input$ChiK)
@@ -44,7 +52,12 @@ plotlyChiDistribution <- function(plotrange, input, distType, probrange, session
         f12 <- dchi(xseq, as.numeric(input$ChiK))
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
+        xseq <- sapply(xseq, zero)
         f12 <- pchi(xseq, as.numeric(input$ChiK))
+        xseq <- seq(
+            min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
+            0.01
+        )
         graphtype <- "CDF"
     } else {
         graphtype <- ""
