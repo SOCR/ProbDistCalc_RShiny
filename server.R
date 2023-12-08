@@ -1,6 +1,6 @@
 # SOCR Probability Distribution Calculator
 # Version 0.9
-# Updated October 6th 2023 by Joonseop Kim at the University of Michigan -SOCR
+# Updated December 8th by Bole Li and Joonseop Kim at the University of Michigan -SOCR
 # Orginally created by Jared(Tianyi) Chai
 
 # This is a SOCR Interactive Graphical Probability Distribution Calculator
