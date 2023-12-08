@@ -241,11 +241,17 @@ Continuous Uniform Distribution:
   plotlyFunc: plotlyContinuousUniformDistribution
 Coupon Distribution:
   id: 17
-  name: Coupon
-  inputNames: CouponN
-  labels: 'n'
-  defaultValues: 10.0
-  hasImplementation: no
+  name: Coupon  
+  inputNames:
+  - CouponPopSize
+  - CouponDistNum
+  labels:
+  - Population Size
+  - Number of distinct values needed
+  defaultValues:
+  - 10
+  - 4
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitCoupon
   plotlyFunc: plotlyCouponDistribution
@@ -253,9 +259,9 @@ Die Distribution:
   id: 18
   name: Die
   inputNames: DieN
-  labels: 'n'
-  defaultValues: 6.0
-  hasImplementation: no
+  labels: 'n (0 <= n <= 5)'
+  defaultValues: 0
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitDie
   plotlyFunc: plotlyDieDistribution
@@ -339,10 +345,19 @@ Exponential Distribution:
 Finite Distribution:
   id: 24
   name: Finite
-  inputNames: FinProb
-  labels: Probability
-  defaultValues: 0.5
-  hasImplementation: no
+  inputNames:
+  - FiniteA
+  - FiniteB
+  - FiniteW
+  labels:
+  - a
+  - b
+  - w
+  defaultValues:
+  - 1
+  - 1
+  - 1
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitFinite
   plotlyFunc: plotlyFiniteDistribution
@@ -614,10 +629,10 @@ Johnson SU (Unbounded) Distribution:
 Kolmogorov Distribution:
   id: 41
   name: Kolmogorov
-  inputNames: Kolmogorovn
-  labels: 'n'
+  inputNames: KolmogorovDegree
+  labels: n (degree)
   defaultValues: 1.0
-  hasImplementation: no
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitKolmogorov
   plotlyFunc: plotlyKolmogorovDistribution
@@ -750,10 +765,28 @@ Minimax Distribution:
 Mixture Distribution:
   id: 51
   name: Mixture
-  inputNames: MixProb
-  labels: Probability
-  defaultValues: 0.5
-  hasImplementation: no
+  inputNames: 
+  - MixMu1
+  - MixSigma1
+  - MixProb1
+  - MixMu2
+  - MixSigma2
+  - MixProb2
+  labels: 
+  - mu for the first normal distribution
+  - sigma for the first normal distribution
+  - probability of first normal distribution
+  - mu for the second normal distribution
+  - sigma for the second normal distribution
+  - probability of second normal distribution
+  defaultValues:
+  - -2.0
+  - 1.0
+  - 0.5
+  - 2.0
+  - 1.0
+  - 0.5
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitMixture
   plotlyFunc: plotlyMixtureDistribution
@@ -763,13 +796,16 @@ Multinomial Distribution:
   inputNames:
   - MultProb
   - MultN
+  - MultX
   labels:
-  - Probability
-  - 'n'
+  - Probability (comma delimited)
+  - Number of independent trials for each series
+  - List of observations used to evaluate prob-parameters (comma delimited)
   defaultValues:
-  - 0.5
-  - 10.0
-  hasImplementation: no
+  - "0.1,0.1,0.1,0.7"
+  - "10"
+  - "2,2,3,3"
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitMultinomial
   plotlyFunc: plotlyMultinomialDistribution
@@ -822,15 +858,18 @@ Negative Multinomial Distribution:
   id: 56
   name: NegativeMultinomial
   inputNames:
-  - NegMultK
+  - NegMultGamma
   - NegMultP
+  - NegMultX
   labels:
-  - k
-  - p
+  - gamma
+  - Probability (comma delimited)
+  - List of observations used to evaluate prob-parameters (comma delimited)
   defaultValues:
-  - 1.0
-  - 0.5
-  hasImplementation: no
+  - "2"
+  - "0.1"
+  - "1"
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitNegativeMultinomial
   plotlyFunc: plotlyNegativeMultinomialDistribution
@@ -1072,10 +1111,16 @@ Walk Max Distribution:
 Walk Position Distribution:
   id: 73
   name: WalkPosition
-  inputNames: WalkPosSteps
-  labels: steps
-  defaultValues: 4.0
-  hasImplementation: no
+  inputNames: 
+  - WalkPosSteps
+  - WalkPosP
+  labels: 
+  - number of steps
+  - probability of a step in the positive direction
+  defaultValues: 
+  - 10
+  - 0.5
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitWalkPosition
   plotlyFunc: plotlyWalkPositionDistribution

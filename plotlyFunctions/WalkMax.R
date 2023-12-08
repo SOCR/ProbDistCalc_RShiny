@@ -1,4 +1,4 @@
-comb <- function(n, k) {
+comb_WalkMax <- function(n, k) {
     res <- seq_len(0)
     perm <- ifelse((k > n | k < 0), 0,
         for (x in k) {
@@ -15,7 +15,7 @@ comb <- function(n, k) {
 dWalkMax <- function(x, steps) {
     k <- round(x, 0)
     m <- ifelse(((k + steps) %% 2 == 0), (k + steps) / 2, (k + steps + 1) / 2)
-    comb(steps, m) / (2^steps)
+    comb_WalkMax(steps, m) / (2^steps)
 }
 
 pWalkMax <- function(x, steps) {
