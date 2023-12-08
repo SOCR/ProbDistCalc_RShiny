@@ -796,13 +796,16 @@ Multinomial Distribution:
   inputNames:
   - MultProb
   - MultN
+  - MultX
   labels:
-  - Probability
-  - 'n'
+  - Probability (comma delimited)
+  - Number of independent trials for each series
+  - List of observations used to evaluate prob-parameters (comma delimited)
   defaultValues:
-  - 0.5
-  - 10.0
-  hasImplementation: no
+  - "0.1,0.1,0.1,0.7"
+  - "10"
+  - "2,2,3,3"
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitMultinomial
   plotlyFunc: plotlyMultinomialDistribution
@@ -855,15 +858,18 @@ Negative Multinomial Distribution:
   id: 56
   name: NegativeMultinomial
   inputNames:
-  - NegMultK
+  - NegMultGamma
   - NegMultP
+  - NegMultX
   labels:
-  - k
-  - p
+  - gamma
+  - Probability (comma delimited)
+  - List of observations used to evaluate prob-parameters (comma delimited)
   defaultValues:
-  - 1.0
-  - 0.5
-  hasImplementation: no
+  - "2"
+  - "0.1"
+  - "1"
+  hasImplementation: yes
   isWithSD: no
   fitFunc: fitNegativeMultinomial
   plotlyFunc: plotlyNegativeMultinomialDistribution

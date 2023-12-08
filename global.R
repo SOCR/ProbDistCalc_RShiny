@@ -61,6 +61,16 @@ sigma2_Mix <- 1
 prob1_Mix <- 0.5
 prob2_Mix <- 0.5
 
+# ----------------------- Discrete: Multinomial Distribution -------------------------- #
+prob_multinomial <- c()
+x_multinomial <- c()
+n_multinomial <- 0
+
+# ----------------------- Discrete: Multinomial Distribution -------------------------- #
+prob_negMult <- c()
+x_negMult <- c()
+gamma_negMult <- 1
+
 # ----------------------- Discrete: Walk Position Distribution -------------------------- #
 steps_WalkPos <- 10
 prob_WalkPos <- 0.5
