@@ -53,5 +53,6 @@ This work is supported in part by NIH grants [P20 NR015331](www.socr.umich.edu/C
 
 ## TODO
 - [ ]  There should be histogram indicating the original dataset along with the distribution curve plot. Part of the code is already in the branch `sub`, but it only works for the normal distribution. Need to generalize it.
+- [ ] To generalize the histogram, we may need to extract the similar code in plotlyFunctions into a separate function. Otherwise we have to repeat the code for histogram 70+ times for each distribution. Currently the code is mostly duplicated but slightly different in these functions, which makes it very hard to extract the common code.
 - [ ]  Deploy to SOCR server. Update the `LINK_NEEDED` in this README.
 - [ ]  Support more existing distributions in modeler. Currently only very few distributions are supported in modeler. To do this, follow the guidelines in the section above.
