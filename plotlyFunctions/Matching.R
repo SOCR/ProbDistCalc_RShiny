@@ -1,20 +1,41 @@
-dMatch <- function(x, param) {
-    k <- round(x, 0)
+getDensity_Match <- function(x) {
+    k <- round(x - 0.5, 0)
     sum <- 0
     sign <- -1
-    for (j in 0:(param - k)) {
-        sign <- -sign
-        sum <- sum + sign / factorial(j)
+    if (param_Match - k > 0) {
+        for (j in 0:(param_Match - k)) {
+            sign <- -sign
+            sum <- sum + sign / factorial(j)
+        }
+        sum / factorial(k)
+    } else {
+        0
     }
-    sum / factorial(k)
+
 }
 
-pMatch <- function(x, param) {
-    0
-    # TODO: CDF
+dMatch <- function(x) {
+    sapply(x, getDensity_Match)
+}
+
+getCDF_Match <- function(x) {
+    k <- round(x - 0.5, 0)
+
+    sum <- 0
+
+    for (i in 0:k) {
+        sum <- sum + getDensity_Match(i + 0.5)
+    }
+
+    sum
+}
+
+pMatch <- function(x) {
+    sapply(x, getCDF_Match)
 }
 
 plotlyMatchingDistribution <- function(plotrange, input, distType, probrange) {
+    param_Match <<- as.numeric(input$MatchParam)
     xseq <- seq(
         min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01
@@ -22,10 +43,10 @@ plotlyMatchingDistribution <- function(plotrange, input, distType, probrange) {
     f48 <- 0
     graphtype <- ""
     if (input$FunctionType == "PDF/PMF") {
-        f48 <- dMatch(xseq, as.numeric(input$MatchParam))
+        f48 <- dMatch(xseq)
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f48 <- pMatch(xseq, as.numeric(input$MatchParam))
+        f48 <- pMatch(xseq)
         graphtype <- "CDF"
     } else {
         graphtype <- ""
@@ -42,8 +63,7 @@ plotlyMatchingDistribution <- function(plotrange, input, distType, probrange) {
                 newy[index] <- NA
             }
         }
-        prob <- pMatch(as.numeric(probrange[2]), as.numeric(input$MatchParam)) -
-            pMatch(as.numeric(probrange[1]), as.numeric(input$MatchParam))
+        prob <- pMatch(as.numeric(probrange[2])) - pMatch(as.numeric(probrange[1]))
         fig <- fig %>%
             add_trace(
                 x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),

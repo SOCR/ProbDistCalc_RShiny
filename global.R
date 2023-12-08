@@ -53,6 +53,9 @@ prob_Finite <- rep(0,1)
 # ----------------------- Discrete: Finite Distribution --------------------------------- #
 degree_Kol <- 0
 
+# ----------------------- Discrete: Anderson Darling Distribution ----------------------- #    
+param_Match <- 0.0
+
 # ----------------------- Continuous: Mix Distribution ---------------------------------- #
 mu1_Mix <- -2
 sigma1_Mix <- 1
@@ -70,6 +73,15 @@ n_multinomial <- 0
 prob_negMult <- c()
 x_negMult <- c()
 gamma_negMult <- 1
+
+# ----------------------- Continuous: TSP Distribution -------------------------- #
+l_TSP <- 0
+r_TSP <- 1
+med_TSP <- 0.5
+power_TSP <- 2
+
+# ----------------------- Discrete: Walk Max Distribution -------------------------- #
+steps_WalkMax <- 10
 
 # ----------------------- Discrete: Walk Position Distribution -------------------------- #
 steps_WalkPos <- 10

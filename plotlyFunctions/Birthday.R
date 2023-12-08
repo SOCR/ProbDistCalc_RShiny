@@ -44,7 +44,7 @@ dBirt <- function(x) {
 }
 
 pBirt <- function(x) {
-    sapply(x, getCDF)
+    sapply(x, getCDF_Birt)
 }
 
 plotlyBirthdayDistribution <- function(plotrange, input, distType, probrange) {

@@ -1,43 +1,85 @@
 comb_WalkMax <- function(n, k) {
-    res <- seq_len(0)
-    perm <- ifelse((k > n | k < 0), 0,
-        for (x in k) {
-            prod <- 1
-            for (i in 1:x) {
-                prod <- prod * (n - i + 1)
-            }
-            append(res, prod)
+    perm <- 0
+    if (k > n | k < 0) { 
+        perm <- 0
+    } else {
+        perm <- 1
+        for (i in 1:k) {
+            perm <- perm * (n - i + 1)
         }
-    )
+    }
     perm / factorial(k)
 }
 
-dWalkMax <- function(x, steps) {
-    k <- round(x, 0)
-    m <- ifelse(((k + steps) %% 2 == 0), (k + steps) / 2, (k + steps + 1) / 2)
-    comb_WalkMax(steps, m) / (2^steps)
+getDensity_WalkMax <- function(x) {
+    k <- round(x + 0.5, 0)
+
+    if (k + steps_WalkMax <= 0) {
+        return(0)
+    }
+
+    if (k > steps_WalkMax) {
+        return(0)
+    }
+
+    m <- 0
+    if ((k + steps_WalkMax) %% 2 == 0) {
+        m <- (k + steps_WalkMax) / 2 
+    } else {
+        m <- (k + steps_WalkMax + 1) / 2
+    }
+
+    comb_WalkMax(steps_WalkMax, m) / (2 ^ steps_WalkMax)
+}
+
+getCDF_WalkMax <- function(x) {
+    k <- round(x + 0.5, 0)
+
+    if (k + steps_WalkMax <= 0) {
+        return(0)
+    }
+
+    if (k > steps_WalkMax) {
+        return(1)
+    }
+
+    sum <- 0
+
+    for (i in (- steps_WalkMax):min(k, steps_WalkMax)) {
+        sum <- sum + getDensity_WalkMax(i)
+    }
+
+    sum / 2
+}
+
+dWalkMax <- function(x) {
+    sapply(x, getDensity_WalkMax)
 }
 
 pWalkMax <- function(x, steps) {
-    0
+    sapply(x, getCDF_WalkMax)
 }
 
 plotlyWalkMaxDistribution <- function(plotrange, input, distType, probrange, session) {
-    updateSliderInput(session, "plotrange",
-        label = NULL, value = NULL, min = -pi,
-        max = pi, step = NULL, timeFormat = NULL, timezone = NULL
-    )
+    steps_WalkMax <<- as.numeric(input$WalkMaxSteps)
+
+    # updateSliderInput(session, "plotrange",
+    #     label = NULL, value = NULL, min = -pi,
+    #     max = pi, step = NULL, timeFormat = NULL, timezone = NULL
+    # )
+
     xseq <- seq(min(-pi, as.numeric(plotrange[1])), max(
         as.numeric(plotrange[2]),
         pi
     ), 0.01)
+
     f72 <- 0
     graphtype <- ""
     if (input$FunctionType == "PDF/PMF") {
-        f72 <- dWalkMax(xseq, as.numeric(input$WalkMaxSteps))
+        f72 <- dWalkMax(xseq)
         graphtype <- "PDF"
     } else if (input$FunctionType == "CDF/CMF") {
-        f72 <- pWalkMax(xseq, as.numeric(input$WalkMaxSteps))
+        f72 <- pWalkMax(xseq)
         graphtype <- "CDF"
     } else {
         graphtype <- ""
@@ -54,7 +96,7 @@ plotlyWalkMaxDistribution <- function(plotrange, input, distType, probrange, ses
                 newy[index] <- NA
             }
         }
-        prob <- pWalkMax(as.numeric(probrange[2]), as.numeric(input$WalkMaxSteps)) - pWalkMax(as.numeric(probrange[1]), as.numeric(input$WalkMaxSteps))
+        prob <- getCDF_WalkMax(as.numeric(probrange[2])) - getCDF_WalkMax(as.numeric(probrange[1]))
         fig <- fig %>%
             add_trace(
                 x = xseq, y = newy, name = paste("Probability = ", prob, sep = ""),
@@ -62,7 +104,7 @@ plotlyWalkMaxDistribution <- function(plotrange, input, distType, probrange, ses
             )
         fig <- fig %>%
             plotly::layout(
-                title = paste(distributions[15], " - ", graphtype, sep = ""),
+                title = paste(distributions[72], " - ", graphtype, sep = ""),
                 hovermode = "x", hoverlabel = list(namelength = 100), yaxis = list(
                     fixedrange = TRUE,
                     zeroline = TRUE, range = c(min(f72), max(f72))

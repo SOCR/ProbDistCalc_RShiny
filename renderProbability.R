@@ -17,7 +17,6 @@ renderProbability <- function(input, output, session) {
     # ----------------------- Discrete: Anderson Darling Distribution ----------------------- #
     if (distType == distributions[1]) {
       prob <- getCDF_AD(as.numeric(probrange[2])) - getCDF_AD(as.numeric(probrange[1]))
-      print(prob)
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: ArcSine Distribution ----------------------- #
@@ -202,7 +201,7 @@ renderProbability <- function(input, output, session) {
     # ----------------------- Discrete: Logarithmic Series Distribution ----------------------- #
     else if (distType == distributions[43]) {
       prob <- 0
-      for (i in (round(as.numeric(probrange[1])):round(as.numeric(probrange[2])))) {
+      for (i in (round(max(1, as.numeric(plotrange[1])), 0):round(max(as.numeric(plotrange[2]),10)))) {
         prob <- prob + dlogseries(i, as.numeric(input$LogP))
       }
       paste("Prob. = ", prob, sep = "")
@@ -239,8 +238,7 @@ renderProbability <- function(input, output, session) {
     }
     # ----------------------- Continuous: Matching Distribution ----------------------- #
     else if (distType == distributions[48]) {
-      prob <- pMatch(as.numeric(probrange[2]), as.numeric(input$MatchParam)) -
-        pMatch(as.numeric(probrange[1]), as.numeric(input$MatchParam))
+      prob <- pMatch(as.numeric(probrange[2])) - pMatch(as.numeric(probrange[1]))
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: Maxwell Distribution ----------------------- #
@@ -317,7 +315,7 @@ renderProbability <- function(input, output, session) {
     }
     # ----------------------- Discrete: Poker Dice Distribution ----------------------- #
     else if (distType == distributions[62]) {
-      prob <- pPokerDice(as.numeric(probrange[2])) - pPokerDice(as.numeric(probrange[1]))
+      prob <- getCDF_PD(as.numeric(probrange[2])) - getCDF_PD(as.numeric(probrange[1]))
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: Power Function Distribution ----------------------- #
@@ -352,13 +350,7 @@ renderProbability <- function(input, output, session) {
     }
     # ----------------------- Continuous: Two-Sided Power Distribution ----------------------- #
     else if (distType == distributions[69]) {
-      prob <- pTwoSidedPower(
-        as.numeric(probrange[2]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
-        as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
-      ) - pTwoSidedPower(
-        as.numeric(probrange[1]), as.numeric(input$TSPowerLeft), as.numeric(input$TSPowerRight),
-        as.numeric(input$TSPowerMed), as.numeric(input$TSPowerPower)
-      )
+      prob <- getCDF_TSP(as.numeric(probrange[2])) - getCDF_TSP(as.numeric(probrange[1]))
       paste("Prob. = ", prob, sep = "")
     }
     # ----------------------- Continuous: U-quadratic distribution ----------------------- #

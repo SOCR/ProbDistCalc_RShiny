@@ -201,6 +201,9 @@ pDie <- function(x) {
 
 plotlyDieDistribution <- function(plotrange, input, distType, probrange) {
     n_Die <<- as.numeric(input$DieN)
+    if (n_Die < 0 || n_Die > 5) {
+        n_Die <<- 0
+    }
     xseq <- seq(
         min(0, as.numeric(plotrange[1])), max(as.numeric(plotrange[2]), 10),
         0.01
