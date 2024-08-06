@@ -4,10 +4,10 @@
 ![Modeler Image](images/modeler.png)
 
 ## Overview 
-The [SOCR RShiny probability distribution calculators](LINK_NEEDED) provide interactive vizualizations of probability densities, mass functions, and cumulative distributions, e.g., [bivariate normal distribution](https://socr.umich.edu/HTML5/BivariateNormal/).
+The [SOCR RShiny probability distribution calculators](https://rcompute.nursing.umich.edu/SOCR_Probability_Distribution_Calculator_and_Modeler/) provide interactive vizualizations of probability densities, mass functions, and cumulative distributions, e.g., [bivariate normal distribution](https://socr.umich.edu/HTML5/BivariateNormal/).
 
 
-The most current version is V0.9, deployed at [here](LINK_NEEDED). The release can be find [here](https://github.com/SOCR/ProbDistCalc_RShiny/releases/tag/Ver0.9).
+The most current version is V0.9, deployed at [here](https://rcompute.nursing.umich.edu/SOCR_Probability_Distribution_Calculator_and_Modeler/). The release can be find [here](https://github.com/SOCR/ProbDistCalc_RShiny/releases/tag/Ver0.9).
 
 ## Team
 
