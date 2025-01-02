@@ -216,9 +216,15 @@ Chi Square Non Central Distribution:
 Circle Distribution:
   id: 15
   name: Circle
-  inputNames: CircleRadius
-  labels: radius
-  defaultValues: 2.0
+  inputNames: 
+  - CircleRadius
+  - CircleCenter
+  labels: 
+  - radius
+  - center
+  defaultValues: 
+  - 2.0
+  - 0.0
   hasImplementation: yes
   isWithSD: no
   fitFunc: fitCircle
