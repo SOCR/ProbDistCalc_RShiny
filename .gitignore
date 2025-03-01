@@ -2,3 +2,4 @@
 test.R
 .lintr
 *.gz
+.Rproj.user

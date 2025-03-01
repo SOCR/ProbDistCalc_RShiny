@@ -33,6 +33,7 @@ library(mnormt)
 library(ExtDist)
 library(VaRES)
 library(shinyjs)
+library(benford.analysis)
 shinyjs::useShinyjs()
 source("renderMainPlot.R")
 source("renderProbability.R")
@@ -75,12 +76,27 @@ shinyServer(
     observeEvent(input$fitParams, {
       updateTextInput(session, "FunctionType", value = "PDF/PMF")
       distributionInfo <- distributionInfoList[[input$Distribution]]
+      if (input$Distribution == "Bernoulli Distribution") {
+        if (is.null(dataset)) {
+          showNotification("Dataset is not specified.", type = "error", duration = 2)
+        } else if (!all(dataset[, input$outcome] %in% c(0, 1))) {
+          # Show a warning if the dataset is not binary
+          showNotification("Dataset must be binary for the Bernoulli distribution.", type = "error", duration = 4)
+        } 
+      } 
+        # Check if fitting is supported for other distributions
+      
+      
       if (is.null(dataset)) {
         showNotification("Dataset is not specified.", type = "error", duration = 2)
       } else if (is.null((distributionInfo$fitFunc))) {
         showNotification("Fitting this distribution is not supported yet.", type = "error", duration = 2)
       } else {
         fit_result <- distributionInfo$fitFunc(dataset[, input$outcome])
+        #if (input$Distribution == "Circle Distribution") {
+        #  selected_data <- dataset[, c(input$outcome, input$indepvar)]
+        #  fit_result <- distributionInfo$fitFunc(selected_data)
+        #}
         for (i in 1:length(fit_result$estimate)) {
           inputName <- distributionInfo$inputNames[[i]]
           fitted_parameter <- round(fit_result$estimate[[i]], digits = 4)
